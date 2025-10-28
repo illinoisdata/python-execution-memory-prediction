@@ -1,6 +1,7 @@
 import builtins
 import ast
 import sys
+import time
 from IPython import get_ipython
 
 
@@ -47,30 +48,36 @@ class TreeParser(ast.NodeTransformer):
             return eval(compile(ast.Expression(slice_node), '', 'eval'))
 
     def visit_Import(self, node):
-        print(ast.dump(node, indent=4))
         for name in node.names:
             self.imports[name.asname if name.asname is not None else name.name] = name.name
         return node
 
     def visit_ImportFrom(self, node):
-        print(ast.dump(node, indent=4))
         for name in node.names:
             self.imports[
                 name.asname if name.asname is not None else name.name] = f"{node.module}.{name.name}"
         return node
 
     def visit_Subscript(self, node: ast.Subscript):
-        node.name = self.visit_Name(node.value, node.slice)
+        if isinstance(node.value, ast.Attribute) and isinstance(node.value.value, ast.Name):
+            node.value.value = self.visit_Name(
+                node.value.value, node.slice, node.value.attr)
+        elif isinstance(node.value, ast.Name):
+            node.value = self.visit_Name(node.value, node.slice)
+        else:
+            self.generic_visit(node)
         return node
 
-    def visit_Name(self, node: ast.Name, _slice: ast.Slice = None):
-        print(ast.dump(node, indent=4))
-
-        if getattr(builtins, node.id, None) is not None or node.id in list(self.imports.keys()):
+    def visit_Name(self, node: ast.Name, _slice: ast.Slice = None, attr: str = None):
+        node_id = node.id
+        if getattr(builtins, node_id, None) is not None or node_id in list(self.imports.keys()):
             self.generic_visit(node)
             return node
 
-        variable = get_ipython().user_ns.get(node.id, None)
+        variable = get_ipython().user_ns.get(node_id, None)
+        if attr is not None and hasattr(variable, attr):
+            variable = getattr(variable, attr)
+            node_id = f"{node_id}.{attr}"
         if _slice is not None and isinstance(_slice, ast.Slice):
             variable = variable[self.eval_slice(_slice)]
 
@@ -78,25 +85,19 @@ class TreeParser(ast.NodeTransformer):
             variable_info = self.get_variable_info(
                 variable, sliced=_slice is not None)
             if variable_info is not None:
-                self.variables[node.id] = variable_info
+                self.variables[node_id] = variable_info
                 node.id = variable_info['id']
         else:
-            self.variables[node.id] = None
+            self.variables[node_id] = None
 
         self.generic_visit(node)
         return node
 
     def visit_Call(self, node: ast.Call):
         self.generic_visit(node)
-
-        if isinstance(node.func, ast.Name):
-            if getattr(builtins, node.func.id, None) is not None:
-                self.functions[node.func.id] = {'id': node.func.id, 'args': [arg.id if isinstance(arg, ast.Name) else arg.value for arg in node.args], 'kwargs': {
-                    kwarg.arg: kwarg.value.id if isinstance(kwarg.value, ast.Name) else kwarg.value.value for kwarg in node.keywords}}
         return node
 
     def start(self, node):
-        # print(ast.dump(node, indent=4))
         self.generic_visit(node)
         self.variables_ip = self.variables.copy()
         self.variables = {}
@@ -106,7 +107,9 @@ class TreeParser(ast.NodeTransformer):
         self.variables_op = self.variables.copy()
         self.variables = {}
 
-    def __init__(self, imports={}):
-        self.imports = imports
+    def __init__(self):
+        self.imports = {}
         self.variables = {}
-        self.functions = {}
+
+
+parser = TreeParser()
