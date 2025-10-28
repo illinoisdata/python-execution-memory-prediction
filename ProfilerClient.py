@@ -37,7 +37,7 @@ print({{
     "actual_code": \"\"\"{code}\"\"\",
     "ip_variables": parser.variables_ip,
     "op_variables": parser.variables_op,
-    "imports": parser.imports,
+    "imports": parser.local_imports,
     "execution_time": end - start,
 }})
 print("{PROFILER_DATA_ENDS}")

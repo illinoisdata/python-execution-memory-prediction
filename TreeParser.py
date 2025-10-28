@@ -50,12 +50,14 @@ class TreeParser(ast.NodeTransformer):
     def visit_Import(self, node):
         for name in node.names:
             self.imports[name.asname if name.asname is not None else name.name] = name.name
+            name.asname = None
         return node
 
     def visit_ImportFrom(self, node):
         for name in node.names:
             self.imports[
                 name.asname if name.asname is not None else name.name] = f"{node.module}.{name.name}"
+            name.asname = None
         return node
 
     def visit_Subscript(self, node: ast.Subscript):
@@ -70,7 +72,13 @@ class TreeParser(ast.NodeTransformer):
 
     def visit_Name(self, node: ast.Name, _slice: ast.Slice = None, attr: str = None):
         node_id = node.id
-        if getattr(builtins, node_id, None) is not None or node_id in list(self.imports.keys()):
+        if getattr(builtins, node_id, None) is not None:
+            self.generic_visit(node)
+            return node
+
+        if node_id in list(self.imports.keys()):
+            node.id = self.imports[node_id]
+            self.local_imports[node_id] = self.imports[node_id]
             self.generic_visit(node)
             return node
 
@@ -98,11 +106,13 @@ class TreeParser(ast.NodeTransformer):
         return node
 
     def start(self, node):
+        self.local_imports = {}
         self.generic_visit(node)
         self.variables_ip = self.variables.copy()
         self.variables = {}
 
     def exit(self, node):
+        self.local_imports = {}
         self.generic_visit(node)
         self.variables_op = self.variables.copy()
         self.variables = {}
