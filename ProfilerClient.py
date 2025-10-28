@@ -15,14 +15,20 @@ class ProfilerClient(NotebookClient):
     def __init__(self, nb, record_list):
         self.records = record_list  # shared list to store results
         self.imports = {}
-        parser_cell = nbformat.v4.new_code_cell(self.load_parser())
+        parser_cell = nbformat.v4.new_code_cell(
+            self.load_file("./TreeParser.py"))
+        disk_profiler_cell = nbformat.v4.new_code_cell(
+            self.load_file("./DiskProfiler.py"))
         load_profiler_cell = nbformat.v4.new_code_cell(self.load_profilers())
-        nb.cells = [parser_cell, load_profiler_cell] + nb.cells
+        new_cells = [parser_cell, disk_profiler_cell,
+                     load_profiler_cell]
+        self.new_cell_count = len(new_cells)
+        nb.cells = new_cells + nb.cells
         super().__init__(nb)
         print("Initialized ProfilerClient")
 
-    def load_parser(self):
-        with open('./TreeParser.py', 'r', encoding='utf-8') as file:
+    def load_file(self, path):
+        with open(path, 'r', encoding='utf-8') as file:
             file_content = file.read()
         return file_content
 
@@ -35,12 +41,14 @@ class ProfilerClient(NotebookClient):
     def get_start_parse_code(self, code):
         return f"""
 parser.start(ast.parse(\"\"\"{code}\"\"\"))
+diskProfiler.start()
 start = time.time()
         """
 
     def get_exit_parse_code(self, code):
         return f"""
 end = time.time()
+diskProfiler.stop()
 tree = ast.parse(\"\"\"{code}\"\"\")
 parser.exit(tree)
 
@@ -52,6 +60,10 @@ print({{
     "op_variables": parser.variables_op,
     "imports": parser.local_imports,
     "execution_time": end - start,
+    "disk_usage": {{
+        "peak_disk": diskProfiler.peak_used,
+        "increment": diskProfiler.increment
+    }}
 }})
 print("{PROFILER_DATA_ENDS}")
         """
@@ -64,10 +76,10 @@ print("{PROFILER_DATA_ENDS}")
                     continue
                 self.execute_cell(cell, i)
                 cell_count += 1
-        return cell_count
+        return cell_count - self.new_cell_count
 
     def execute_cell(self, cell, cell_index, execution_count=None, store_history=True):
-        should_profile = cell_index > 2
+        should_profile = cell_index > self.new_cell_count
 
         if (should_profile):
             tm = TransformerManager()
@@ -122,9 +134,10 @@ print("{PROFILER_DATA_ENDS}")
                                                    output_data_text, re.DOTALL)
 
                 if peak_memory_match and memory_increment_match:
-                    peak_memory = float(peak_memory_match.group(1).strip())
+                    peak_memory = float(peak_memory_match.group(
+                        1).strip()) * 1.049  # MiB to MB
                     memory_increment = float(
-                        memory_increment_match.group(1).strip())
+                        memory_increment_match.group(1).strip()) * 1.049  # MiB to MB
                     output['memory_usage'] = {
                         'peak_memory': peak_memory,
                         'memory_increment': memory_increment
