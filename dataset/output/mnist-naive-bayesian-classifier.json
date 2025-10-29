@@ -1,0 +1,1713 @@
+[
+  {
+    "code": "import glob\nimport numpy\nimport pandas\nimport matplotlib.pyplot\nimport seaborn\nseaborn.set()\nfrom sklearn.naive_bayes import GaussianNB\nfrom sklearn.metrics import accuracy_score\nfrom sklearn.metrics import confusion_matrix\nfrom skimage.transform import pyramid_gaussian\nfrom sklearn.model_selection import train_test_split\nprint(glob.glob('../input/*'))\nget_ipython().run_line_magic('matplotlib', 'inline')\nget_ipython().run_line_magic('precision', '2')",
+    "actual_code": "import glob\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns; sns.set()\nfrom sklearn.naive_bayes import GaussianNB\nfrom sklearn.metrics import accuracy_score\nfrom sklearn.metrics import confusion_matrix\nfrom skimage.transform import pyramid_gaussian\nfrom sklearn.model_selection import train_test_split\n\nprint(glob.glob(\"../input/*\"))\n\nget_ipython().run_line_magic('matplotlib', 'inline')\nget_ipython().run_line_magic('precision', '2')\n",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {
+      "sns": "seaborn",
+      "glob": "glob"
+    },
+    "execution_time": 2.045671224594116,
+    "disk_usage": {
+      "peak_disk": 406224.66015625,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 219.01021999999998,
+      "memory_increment": 136.31754999999998
+    }
+  },
+  {
+    "code": "def draw_confusionmatrix(ytest, yhat):\n    matplotlib.pyplot.figure(figsize=(10, 7))\n    cm = sklearn.metrics.confusion_matrix(ytest, yhat)\n    ax = seaborn.heatmap(cm, annot=True, fmt='d')\n    matplotlib.pyplot.ylabel('True label')\n    matplotlib.pyplot.xlabel('Predicted label')\n    acc = sklearn.metrics.accuracy_score(ytest, yhat)\n    print(f'Sum Axis-1 as Classification accuracy: {acc}')",
+    "actual_code": "def draw_confusionmatrix(ytest, yhat):\n    plt.figure(figsize=(10,7))\n    cm = confusion_matrix(ytest, yhat)\n    ax = sns.heatmap(cm, annot=True, fmt=\"d\")\n    plt.ylabel('True label')\n    plt.xlabel('Predicted label')\n\n    acc = accuracy_score(ytest, yhat)\n    print(f\"Sum Axis-1 as Classification accuracy: {acc}\")\n",
+    "ip_variables": {
+      "cm": null,
+      "ytest": null,
+      "yhat": null,
+      "ax": null,
+      "acc": null
+    },
+    "op_variables": {
+      "cm": null,
+      "ytest": null,
+      "yhat": null,
+      "ax": null,
+      "acc": null
+    },
+    "imports": {
+      "plt": "matplotlib.pyplot",
+      "confusion_matrix": "sklearn.metrics.confusion_matrix",
+      "sns": "seaborn",
+      "accuracy_score": "sklearn.metrics.accuracy_score"
+    },
+    "execution_time": 0.0,
+    "disk_usage": {
+      "peak_disk": 406224.5859375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 219.17806,
+      "memory_increment": 0.09441
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('./dataset/input/mnist-dataset/train.csv')\npandas.core.frame.DataFrame = pandas.read_csv('./dataset/input/mnist-dataset/test.csv')\npandas.core.frame.DataFrame = pandas.core.indexing._iLocIndexer.iloc[:, 1:]\npandas.core.series.Series = pandas.core.frame.DataFrame.label\nlist = sorted(pandas.core.series.Series.unique())",
+    "actual_code": "train_df = pd.read_csv('./dataset/input/mnist-dataset/train.csv')\ntest_df = pd.read_csv('./dataset/input/mnist-dataset/test.csv')\n\nX = train_df.iloc[:,1:]\ny = train_df.label\nlabel = sorted(y.unique())\n",
+    "ip_variables": {
+      "train_df": null,
+      "test_df": null,
+      "X": null,
+      "y": null,
+      "label": null
+    },
+    "op_variables": {
+      "train_df": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          785
+        ],
+        "size": 263760144,
+        "sliced": false
+      },
+      "test_df": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          28000,
+          784
+        ],
+        "size": 175616144,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": false
+      },
+      "train_df.iloc": {
+        "id": "pandas.core.indexing._iLocIndexer",
+        "shape": null,
+        "size": 72,
+        "sliced": true
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "label": {
+        "id": "list",
+        "shape": 10,
+        "size": 152,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 1.6316089630126953,
+    "disk_usage": {
+      "peak_disk": 406224.62109375,
+      "increment": 0.01171875
+    },
+    "memory_usage": {
+      "peak_memory": 784.62053,
+      "memory_increment": 565.46345
+    }
+  },
+  {
+    "code": "matplotlib.pyplot.figure(figsize=(9, 9))\nfor numpy.int64 in list:\n    matplotlib.pyplot.subplot(1, 10, numpy.int64 + 1)\n    numpy.ndarray = numpy.array(pandas.core.frame.DataFrame[y == i][1:2]).reshape(28, 28)\n    matplotlib.pyplot.imshow(numpy.ndarray)",
+    "actual_code": "plt.figure(figsize=(9,9))\nfor i in label:\n    plt.subplot(1,10, i+1)\n    img = np.array( X[y==i][1:2] ).reshape(28,28)\n    plt.imshow(img)\n",
+    "ip_variables": {
+      "i": null,
+      "label": {
+        "id": "list",
+        "shape": 10,
+        "size": 152,
+        "sliced": false
+      },
+      "img": null,
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "i": {
+        "id": "numpy.int64",
+        "shape": null,
+        "size": 32,
+        "sliced": false
+      },
+      "label": {
+        "id": "list",
+        "shape": 10,
+        "size": 152,
+        "sliced": false
+      },
+      "img": {
+        "id": "numpy.ndarray",
+        "shape": [
+          28,
+          28
+        ],
+        "size": 128,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "plt": "matplotlib.pyplot",
+      "np": "numpy"
+    },
+    "execution_time": 0.22786498069763184,
+    "disk_usage": {
+      "peak_disk": 406224.625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 854.24266,
+      "memory_increment": 99.42421999999999
+    }
+  },
+  {
+    "code": "int = pandas.core.series.Series.unique().shape[0]\nint = tuple.shape[1]\nnumpy.ndarray = numpy.zeros((int, int))\nnumpy.ndarray = numpy.zeros((int, int))\nfor numpy.int64 in list:\n    numpy.ndarray[i] = pandas.core.frame.DataFrame[y == i].mean()\n    numpy.ndarray[i] = pandas.core.frame.DataFrame[y == i].std()",
+    "actual_code": "m = y.unique().shape[0]\nn = X.shape[1]\n\nmu = np.zeros((m,n))\nsi = np.zeros((m,n))\nfor i in label:\n    mu[i] = X[y==i].mean()\n    si[i] = X[y==i].std()\n",
+    "ip_variables": {
+      "m": null,
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "n": null,
+      "X.shape": {
+        "id": "tuple",
+        "shape": 2,
+        "size": 56,
+        "sliced": true
+      },
+      "mu": null,
+      "si": null,
+      "i": {
+        "id": "numpy.int64",
+        "shape": null,
+        "size": 32,
+        "sliced": false
+      },
+      "label": {
+        "id": "list",
+        "shape": 10,
+        "size": 152,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "m": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "n": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "X.shape": {
+        "id": "tuple",
+        "shape": 2,
+        "size": 56,
+        "sliced": true
+      },
+      "mu": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10,
+          784
+        ],
+        "size": 62848,
+        "sliced": true
+      },
+      "si": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10,
+          784
+        ],
+        "size": 62848,
+        "sliced": true
+      },
+      "i": {
+        "id": "numpy.int64",
+        "shape": null,
+        "size": 32,
+        "sliced": false
+      },
+      "label": {
+        "id": "list",
+        "shape": 10,
+        "size": 152,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "np": "numpy"
+    },
+    "execution_time": 0.2675302028656006,
+    "disk_usage": {
+      "peak_disk": 406224.640625,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 859.94922,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "matplotlib.pyplot.figure(figsize=(9, 9))\nfor numpy.int64 in list:\n    matplotlib.pyplot.subplot(3, 4, numpy.int64 + 1)\n    numpy.ndarray = numpy.array(numpy.ndarray[i]).reshape(28, 28)\n    matplotlib.pyplot.imshow(numpy.ndarray)",
+    "actual_code": "plt.figure(figsize=(9,9))\nfor i in label:\n    plt.subplot(3,4, i+1)\n    img = np.array( mu[i] ).reshape(28,28)\n    plt.imshow(img)\n",
+    "ip_variables": {
+      "i": {
+        "id": "numpy.int64",
+        "shape": null,
+        "size": 32,
+        "sliced": false
+      },
+      "label": {
+        "id": "list",
+        "shape": 10,
+        "size": 152,
+        "sliced": false
+      },
+      "img": {
+        "id": "numpy.ndarray",
+        "shape": [
+          28,
+          28
+        ],
+        "size": 128,
+        "sliced": false
+      },
+      "mu": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10,
+          784
+        ],
+        "size": 62848,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "i": {
+        "id": "numpy.int64",
+        "shape": null,
+        "size": 32,
+        "sliced": false
+      },
+      "label": {
+        "id": "list",
+        "shape": 10,
+        "size": 152,
+        "sliced": false
+      },
+      "img": {
+        "id": "numpy.ndarray",
+        "shape": [
+          28,
+          28
+        ],
+        "size": 128,
+        "sliced": false
+      },
+      "mu": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10,
+          784
+        ],
+        "size": 62848,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "plt": "matplotlib.pyplot",
+      "np": "numpy"
+    },
+    "execution_time": 0.037236928939819336,
+    "disk_usage": {
+      "peak_disk": 406224.66015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 824.0104799999999,
+      "memory_increment": -28.6377
+    }
+  },
+  {
+    "code": "sklearn.naive_bayes.GaussianNB = sklearn.naive_bayes.GaussianNB()",
+    "actual_code": "model = GaussianNB()\n",
+    "ip_variables": {
+      "model": null
+    },
+    "op_variables": {
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "GaussianNB": "sklearn.naive_bayes.GaussianNB"
+    },
+    "execution_time": 2.5033950805664062e-05,
+    "disk_usage": {
+      "peak_disk": 406224.66015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 664.89816,
+      "memory_increment": -154.07711999999998
+    }
+  },
+  {
+    "code": "(pandas.core.frame.DataFrame, pandas.core.frame.DataFrame, pandas.core.series.Series, pandas.core.series.Series) = sklearn.model_selection.train_test_split(pandas.core.frame.DataFrame, pandas.core.series.Series, random_state=0)\nsklearn.naive_bayes.GaussianNB.fit(pandas.core.frame.DataFrame, pandas.core.series.Series)\nnumpy.ndarray = sklearn.naive_bayes.GaussianNB.predict(pandas.core.frame.DataFrame)\ndraw_confusionmatrix(pandas.core.series.Series, numpy.ndarray)",
+    "actual_code": "X_train, X_valid, y_train, y_valid = train_test_split(X, y, random_state=0)\nmodel.fit(X_train, y_train)\nyhat = model.predict(X_valid)\n\ndraw_confusionmatrix(y_valid, yhat)\n",
+    "ip_variables": {
+      "X_train": null,
+      "X_valid": null,
+      "y_train": null,
+      "y_valid": null,
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": null
+    },
+    "op_variables": {
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          31500,
+          784
+        ],
+        "size": 197820016,
+        "sliced": false
+      },
+      "X_valid": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          10500,
+          784
+        ],
+        "size": 65940016,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "y_valid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "train_test_split": "sklearn.model_selection.train_test_split"
+    },
+    "execution_time": 0.8902599811553955,
+    "disk_usage": {
+      "peak_disk": 406225.6171875,
+      "increment": 0.04296875
+    },
+    "memory_usage": {
+      "peak_memory": 746.39497,
+      "memory_increment": 185.38976999999997
+    }
+  },
+  {
+    "code": "numpy.ndarray = numpy.array(pandas.core.frame.DataFrame).reshape(tuple.shape[0], 28, 28)\nnumpy.ndarray = numpy.ndarray.sum(axis=1)\nnumpy.ndarray = numpy.ndarray.sum(axis=2)",
+    "actual_code": "Xtmp = np.array(X).reshape(X.shape[0], 28, 28)\nXaxis1 = Xtmp.sum(axis=1)\nXaxis2 = Xtmp.sum(axis=2)\n",
+    "ip_variables": {
+      "Xtmp": null,
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": false
+      },
+      "X.shape": {
+        "id": "tuple",
+        "shape": 2,
+        "size": 56,
+        "sliced": true
+      },
+      "Xaxis1": null,
+      "Xaxis2": null
+    },
+    "op_variables": {
+      "Xtmp": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28,
+          28
+        ],
+        "size": 144,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": false
+      },
+      "X.shape": {
+        "id": "tuple",
+        "shape": 2,
+        "size": 56,
+        "sliced": true
+      },
+      "Xaxis1": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      },
+      "Xaxis2": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "np": "numpy"
+    },
+    "execution_time": 0.20928430557250977,
+    "disk_usage": {
+      "peak_disk": 406225.640625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 818.02069,
+      "memory_increment": 140.8807
+    }
+  },
+  {
+    "code": "(numpy.ndarray, numpy.ndarray, pandas.core.series.Series, pandas.core.series.Series) = sklearn.model_selection.train_test_split(numpy.ndarray, pandas.core.series.Series, random_state=0)\nsklearn.naive_bayes.GaussianNB.fit(numpy.ndarray, pandas.core.series.Series)\nnumpy.ndarray = sklearn.naive_bayes.GaussianNB.predict(numpy.ndarray)\ndraw_confusionmatrix(pandas.core.series.Series, numpy.ndarray)",
+    "actual_code": "Xtrain, Xvalid, ytrain, yvalid = train_test_split(Xaxis1, y, random_state=0)\nmodel.fit(Xtrain, ytrain)\nyhat = model.predict(Xvalid)\n\ndraw_confusionmatrix(yvalid, yhat)\n",
+    "ip_variables": {
+      "Xtrain": null,
+      "Xvalid": null,
+      "ytrain": null,
+      "yvalid": null,
+      "Xaxis1": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          28
+        ],
+        "size": 7056128,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          28
+        ],
+        "size": 2352128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "Xaxis1": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "train_test_split": "sklearn.model_selection.train_test_split"
+    },
+    "execution_time": 0.10482907295227051,
+    "disk_usage": {
+      "peak_disk": 406225.640625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 823.84264,
+      "memory_increment": 7.343
+    }
+  },
+  {
+    "code": "(numpy.ndarray, numpy.ndarray, pandas.core.series.Series, pandas.core.series.Series) = sklearn.model_selection.train_test_split(numpy.ndarray, pandas.core.series.Series)\nsklearn.naive_bayes.GaussianNB.fit(numpy.ndarray, pandas.core.series.Series)\nnumpy.ndarray = sklearn.naive_bayes.GaussianNB.predict(numpy.ndarray)\ndraw_confusionmatrix(pandas.core.series.Series, numpy.ndarray)",
+    "actual_code": "Xtrain, Xvalid, ytrain, yvalid = train_test_split(Xaxis2, y)\nmodel.fit(Xtrain, ytrain)\nyhat = model.predict(Xvalid)\n\ndraw_confusionmatrix(yvalid, yhat)\n",
+    "ip_variables": {
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          28
+        ],
+        "size": 7056128,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          28
+        ],
+        "size": 2352128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "Xaxis2": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          28
+        ],
+        "size": 7056128,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          28
+        ],
+        "size": 2352128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "Xaxis2": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "train_test_split": "sklearn.model_selection.train_test_split"
+    },
+    "execution_time": 0.156494140625,
+    "disk_usage": {
+      "peak_disk": 406225.69140625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 830.4093799999999,
+      "memory_increment": 6.000279999999999
+    }
+  },
+  {
+    "code": "numpy.ndarray = numpy.hstack((numpy.ndarray, numpy.ndarray))",
+    "actual_code": "Xaxises = np.hstack((Xaxis1, Xaxis2))\n",
+    "ip_variables": {
+      "Xaxises": null,
+      "Xaxis1": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      },
+      "Xaxis2": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "Xaxises": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          56
+        ],
+        "size": 18816128,
+        "sliced": false
+      },
+      "Xaxis1": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      },
+      "Xaxis2": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28
+        ],
+        "size": 9408128,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "np": "numpy"
+    },
+    "execution_time": 0.0019729137420654297,
+    "disk_usage": {
+      "peak_disk": 406225.71484375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 847.26681,
+      "memory_increment": 10.930579999999999
+    }
+  },
+  {
+    "code": "(numpy.ndarray, numpy.ndarray, pandas.core.series.Series, pandas.core.series.Series) = sklearn.model_selection.train_test_split(numpy.ndarray, pandas.core.series.Series)\nsklearn.naive_bayes.GaussianNB.fit(numpy.ndarray, pandas.core.series.Series)\nnumpy.ndarray = sklearn.naive_bayes.GaussianNB.predict(numpy.ndarray)\ndraw_confusionmatrix(pandas.core.series.Series, numpy.ndarray)",
+    "actual_code": "Xtrain, Xvalid, ytrain, yvalid = train_test_split(Xaxises, y)\nmodel.fit(Xtrain, ytrain)\nyhat = model.predict(Xvalid)\n\ndraw_confusionmatrix(yvalid, yhat)\n",
+    "ip_variables": {
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          28
+        ],
+        "size": 7056128,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          28
+        ],
+        "size": 2352128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "Xaxises": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          56
+        ],
+        "size": 18816128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          56
+        ],
+        "size": 14112128,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          56
+        ],
+        "size": 4704128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "Xaxises": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          56
+        ],
+        "size": 18816128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "train_test_split": "sklearn.model_selection.train_test_split"
+    },
+    "execution_time": 0.10486006736755371,
+    "disk_usage": {
+      "peak_disk": 406225.71484375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 877.9185899999999,
+      "memory_increment": 30.66227
+    }
+  },
+  {
+    "code": "from scipy import ndimage\nnumpy.ndarray = numpy.array(pandas.core.frame.DataFrame).reshape(tuple.shape[0], 28, 28)\nnumpy.ndarray = numpy.zeros_like(numpy.ndarray)\nfor int in range(tuple.shape[0]):\n    numpy.ndarray[i] = scipy.ndimage.sobel(numpy.ndarray[i])\nnumpy.ndarray = numpy.ndarray.reshape(tuple.shape[0], 28 * 28)",
+    "actual_code": "from scipy import ndimage\nXtmp = np.array(X).reshape(X.shape[0], 28, 28)\nresult = np.zeros_like(Xtmp)\nfor i in range(Xtmp.shape[0]):\n    result[i] = ndimage.sobel(Xtmp[i])\n    \nresult = result.reshape(result.shape[0], 28*28)\n",
+    "ip_variables": {
+      "Xtmp": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28,
+          28
+        ],
+        "size": 144,
+        "sliced": true
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": false
+      },
+      "X.shape": {
+        "id": "tuple",
+        "shape": 2,
+        "size": 56,
+        "sliced": true
+      },
+      "result": null,
+      "i": {
+        "id": "numpy.int64",
+        "shape": null,
+        "size": 32,
+        "sliced": false
+      },
+      "Xtmp.shape": {
+        "id": "tuple",
+        "shape": 3,
+        "size": 64,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "Xtmp": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28,
+          28
+        ],
+        "size": 144,
+        "sliced": true
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 263424144,
+        "sliced": false
+      },
+      "X.shape": {
+        "id": "tuple",
+        "shape": 2,
+        "size": 56,
+        "sliced": true
+      },
+      "result": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 128,
+        "sliced": false
+      },
+      "i": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "Xtmp.shape": {
+        "id": "tuple",
+        "shape": 3,
+        "size": 64,
+        "sliced": true
+      },
+      "result.shape": {
+        "id": "tuple",
+        "shape": 2,
+        "size": 56,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "np": "numpy",
+      "ndimage": "scipy.ndimage"
+    },
+    "execution_time": 0.6149628162384033,
+    "disk_usage": {
+      "peak_disk": 406225.84375,
+      "increment": 0.125
+    },
+    "memory_usage": {
+      "peak_memory": 1000.2739499999999,
+      "memory_increment": 119.96364
+    }
+  },
+  {
+    "code": "(numpy.ndarray, numpy.ndarray, pandas.core.series.Series, pandas.core.series.Series) = sklearn.model_selection.train_test_split(numpy.ndarray, pandas.core.series.Series)",
+    "actual_code": "Xtrain, Xvalid, ytrain, yvalid = train_test_split(result, y)\n",
+    "ip_variables": {
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          56
+        ],
+        "size": 14112128,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          56
+        ],
+        "size": 4704128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "result": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          784
+        ],
+        "size": 197568128,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          784
+        ],
+        "size": 65856128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "result": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "train_test_split": "sklearn.model_selection.train_test_split"
+    },
+    "execution_time": 0.20905423164367676,
+    "disk_usage": {
+      "peak_disk": 406225.85546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 1134.73477,
+      "memory_increment": 164.54614
+    }
+  },
+  {
+    "code": "sklearn.naive_bayes.GaussianNB = sklearn.naive_bayes.GaussianNB()\nsklearn.naive_bayes.GaussianNB.fit(numpy.ndarray, pandas.core.series.Series)\nnumpy.ndarray = sklearn.naive_bayes.GaussianNB.predict(numpy.ndarray)\ndraw_confusionmatrix(pandas.core.series.Series, numpy.ndarray)",
+    "actual_code": "model = GaussianNB()\nmodel.fit(Xtrain, ytrain)\nyhat = model.predict(Xvalid)\ndraw_confusionmatrix(yvalid, yhat)\n",
+    "ip_variables": {
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          784
+        ],
+        "size": 197568128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          784
+        ],
+        "size": 65856128,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          784
+        ],
+        "size": 197568128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          784
+        ],
+        "size": 65856128,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "GaussianNB": "sklearn.naive_bayes.GaussianNB"
+    },
+    "execution_time": 0.6524369716644287,
+    "disk_usage": {
+      "peak_disk": 406225.85546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 1202.07008,
+      "memory_increment": 63.06587999999999
+    }
+  },
+  {
+    "code": "numpy.ndarray = numpy.array([[1, 1, 1], [1, 5, 1], [1, 1, 1]])\nnumpy.ndarray = numpy.zeros_like(numpy.ndarray)\nfor int in range(tuple.shape[0]):\n    numpy.ndarray[i] = scipy.ndimage.convolve(numpy.ndarray[i], numpy.ndarray, mode='constant')\nnumpy.ndarray = numpy.ndarray.reshape(tuple.shape[0], 28 * 28)",
+    "actual_code": "k = np.array([[1,1,1], [1,5,1], [1,1,1]])\nimages = np.zeros_like(Xtmp)\nfor i in range(Xtmp.shape[0]):\n    images[i] = ndimage.convolve(Xtmp[i], k, mode='constant')\n\nimages = images.reshape(images.shape[0], 28*28)\n",
+    "ip_variables": {
+      "k": null,
+      "images": null,
+      "Xtmp": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28,
+          28
+        ],
+        "size": 144,
+        "sliced": true
+      },
+      "i": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "Xtmp.shape": {
+        "id": "tuple",
+        "shape": 3,
+        "size": 64,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "k": {
+        "id": "numpy.ndarray",
+        "shape": [
+          3,
+          3
+        ],
+        "size": 200,
+        "sliced": false
+      },
+      "images": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 128,
+        "sliced": false
+      },
+      "Xtmp": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          28,
+          28
+        ],
+        "size": 144,
+        "sliced": true
+      },
+      "i": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "Xtmp.shape": {
+        "id": "tuple",
+        "shape": 3,
+        "size": 64,
+        "sliced": true
+      },
+      "images.shape": {
+        "id": "tuple",
+        "shape": 2,
+        "size": 56,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "np": "numpy",
+      "ndimage": "scipy.ndimage"
+    },
+    "execution_time": 0.8831028938293457,
+    "disk_usage": {
+      "peak_disk": 406225.9296875,
+      "increment": -0.1640625
+    },
+    "memory_usage": {
+      "peak_memory": 1109.4433799999997,
+      "memory_increment": -9.273159999999999
+    }
+  },
+  {
+    "code": "(numpy.ndarray, numpy.ndarray, pandas.core.series.Series, pandas.core.series.Series) = sklearn.model_selection.train_test_split(numpy.ndarray, pandas.core.series.Series)\nsklearn.naive_bayes.GaussianNB = sklearn.naive_bayes.GaussianNB()\nsklearn.naive_bayes.GaussianNB.fit(numpy.ndarray, pandas.core.series.Series)\nnumpy.ndarray = sklearn.naive_bayes.GaussianNB.predict(numpy.ndarray)\ndraw_confusionmatrix(pandas.core.series.Series, numpy.ndarray)",
+    "actual_code": "Xtrain, Xvalid, ytrain, yvalid = train_test_split(result, y)\n\nmodel = GaussianNB()\nmodel.fit(Xtrain, ytrain)\nyhat = model.predict(Xvalid)\ndraw_confusionmatrix(yvalid, yhat)\n",
+    "ip_variables": {
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          784
+        ],
+        "size": 197568128,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          784
+        ],
+        "size": 65856128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "result": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "Xtrain": {
+        "id": "numpy.ndarray",
+        "shape": [
+          31500,
+          784
+        ],
+        "size": 197568128,
+        "sliced": false
+      },
+      "Xvalid": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500,
+          784
+        ],
+        "size": 65856128,
+        "sliced": false
+      },
+      "ytrain": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31500
+        ],
+        "size": 504016,
+        "sliced": false
+      },
+      "yvalid": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          10500
+        ],
+        "size": 168016,
+        "sliced": false
+      },
+      "result": {
+        "id": "numpy.ndarray",
+        "shape": [
+          42000,
+          784
+        ],
+        "size": 128,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          42000
+        ],
+        "size": 336144,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.naive_bayes.GaussianNB",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "yhat": {
+        "id": "numpy.ndarray",
+        "shape": [
+          10500
+        ],
+        "size": 84112,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "train_test_split": "sklearn.model_selection.train_test_split",
+      "GaussianNB": "sklearn.naive_bayes.GaussianNB"
+    },
+    "execution_time": 0.8106539249420166,
+    "disk_usage": {
+      "peak_disk": 406226.9609375,
+      "increment": -0.1484375
+    },
+    "memory_usage": {
+      "peak_memory": 1185.54833,
+      "memory_increment": 449.44404999999995
+    }
+  },
+  {
+    "code": "",
+    "actual_code": "\n",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 2.86102294921875e-06,
+    "disk_usage": {
+      "peak_disk": 406225.5859375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 899.56995,
+      "memory_increment": -230.05619
+    }
+  }
+]

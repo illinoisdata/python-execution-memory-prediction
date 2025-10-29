@@ -79,7 +79,7 @@ print("{PROFILER_DATA_ENDS}")
         return cell_count - self.new_cell_count
 
     def execute_cell(self, cell, cell_index, execution_count=None, store_history=True):
-        should_profile = cell_index > self.new_cell_count
+        should_profile = cell_index >= self.new_cell_count
 
         if (should_profile):
             tm = TransformerManager()

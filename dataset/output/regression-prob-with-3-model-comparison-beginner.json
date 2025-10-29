@@ -1,0 +1,1545 @@
+[
+  {
+    "code": "import pandas\nimport seaborn\nimport matplotlib.pyplot",
+    "actual_code": "import pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 1.6012790203094482,
+    "disk_usage": {
+      "peak_disk": 406224.4140625,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 203.21228,
+      "memory_increment": 120.17344
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('./dataset/input/housing-prices-dataset/Housing.csv')",
+    "actual_code": "h_d = pd.read_csv('./dataset/input/housing-prices-dataset/Housing.csv')\n",
+    "ip_variables": {
+      "h_d": null
+    },
+    "op_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.013275146484375,
+    "disk_usage": {
+      "peak_disk": 406224.4140625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 202.40454999999997,
+      "memory_increment": -0.9545899999999999
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.head()",
+    "actual_code": "h_d.head()\n",
+    "ip_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.00010704994201660156,
+    "disk_usage": {
+      "peak_disk": 406224.23046875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 200.97790999999998,
+      "memory_increment": -1.39517
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.isnull().sum()",
+    "actual_code": "h_d.isnull().sum()\n",
+    "ip_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0014629364013671875,
+    "disk_usage": {
+      "peak_disk": 406224.34375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 198.08267,
+      "memory_increment": -2.88475
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.duplicated().sum()",
+    "actual_code": "h_d.duplicated().sum()\n",
+    "ip_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0031588077545166016,
+    "disk_usage": {
+      "peak_disk": 406224.34375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 198.34492,
+      "memory_increment": 0.23077999999999999
+    }
+  },
+  {
+    "code": "seaborn.boxplot(x=pandas.core.frame.DataFrame['bedrooms'], y=pandas.core.frame.DataFrame['price'])\nmatplotlib.pyplot.show()",
+    "actual_code": "sns.boxplot(x=h_d['bedrooms'],y=h_d['price'])\nplt.show()\n",
+    "ip_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "sns": "seaborn",
+      "plt": "matplotlib.pyplot"
+    },
+    "execution_time": 0.12006521224975586,
+    "disk_usage": {
+      "peak_disk": 406224.37890625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 205.04802999999998,
+      "memory_increment": 10.88862
+    }
+  },
+  {
+    "code": "seaborn.violinplot(x=pandas.core.frame.DataFrame['furnishingstatus'], y=pandas.core.frame.DataFrame['price'])\nmatplotlib.pyplot.show()",
+    "actual_code": "sns.violinplot(x=h_d['furnishingstatus'],y=h_d['price'])\nplt.show()\n",
+    "ip_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "sns": "seaborn",
+      "plt": "matplotlib.pyplot"
+    },
+    "execution_time": 0.10706186294555664,
+    "disk_usage": {
+      "peak_disk": 406224.37890625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 213.12532999999996,
+      "memory_increment": 8.06681
+    }
+  },
+  {
+    "code": "seaborn.stripplot(x=pandas.core.frame.DataFrame['parking'], y=pandas.core.frame.DataFrame['price'])\nmatplotlib.pyplot.show()",
+    "actual_code": "sns.stripplot(x=h_d['parking'],y=h_d['price'])\nplt.show()\n",
+    "ip_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "sns": "seaborn",
+      "plt": "matplotlib.pyplot"
+    },
+    "execution_time": 0.07433700561523438,
+    "disk_usage": {
+      "peak_disk": 406224.5859375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 212.35956,
+      "memory_increment": -0.78675
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.core.frame.DataFrame.corr()\npandas.core.frame.DataFrame",
+    "actual_code": "corr = h_d.corr()\ncorr\n",
+    "ip_variables": {
+      "corr": null,
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "corr": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          6,
+          6
+        ],
+        "size": 858,
+        "sliced": false
+      },
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0004417896270751953,
+    "disk_usage": {
+      "peak_disk": 406228.15625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 205.78232999999997,
+      "memory_increment": -6.49331
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.dtypes",
+    "actual_code": "h_d.dtypes\n",
+    "ip_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 6.4849853515625e-05,
+    "disk_usage": {
+      "peak_disk": 406227.65234375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 200.30655,
+      "memory_increment": -2.098
+    }
+  },
+  {
+    "code": "from sklearn.preprocessing import LabelEncoder",
+    "actual_code": "from sklearn.preprocessing import LabelEncoder\n",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.08721780776977539,
+    "disk_usage": {
+      "peak_disk": 406226.9921875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 202.98149999999998,
+      "memory_increment": 3.55611
+    }
+  },
+  {
+    "code": "sklearn.preprocessing._label.LabelEncoder = sklearn.preprocessing.LabelEncoder()",
+    "actual_code": "lb = LabelEncoder()\n",
+    "ip_variables": {
+      "lb": null
+    },
+    "op_variables": {
+      "lb": {
+        "id": "sklearn.preprocessing._label.LabelEncoder",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "LabelEncoder": "sklearn.preprocessing.LabelEncoder"
+    },
+    "execution_time": 3.0994415283203125e-06,
+    "disk_usage": {
+      "peak_disk": 406227.0,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 202.89757999999998,
+      "memory_increment": -0.02098
+    }
+  },
+  {
+    "code": "list = ['mainroad', 'guestroom', 'basement', 'hotwaterheating', 'airconditioning', 'prefarea', 'furnishingstatus']\nfor str in list:\n    pandas.core.frame.DataFrame[i] = sklearn.preprocessing._label.LabelEncoder.fit_transform(pandas.core.frame.DataFrame[i])",
+    "actual_code": "cat_data = ['mainroad','guestroom','basement','hotwaterheating','airconditioning','prefarea','furnishingstatus']\nfor i in cat_data:\n    h_d[i] = lb.fit_transform(h_d[i])\n",
+    "ip_variables": {
+      "cat_data": null,
+      "i": null,
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 257776,
+        "sliced": true
+      },
+      "lb": {
+        "id": "sklearn.preprocessing._label.LabelEncoder",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "cat_data": {
+        "id": "list",
+        "shape": 7,
+        "size": 120,
+        "sliced": false
+      },
+      "i": {
+        "id": "str",
+        "shape": 16,
+        "size": 65,
+        "sliced": false
+      },
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 56824,
+        "sliced": true
+      },
+      "lb": {
+        "id": "sklearn.preprocessing._label.LabelEncoder",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0010669231414794922,
+    "disk_usage": {
+      "peak_disk": 406227.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 202.66679999999997,
+      "memory_increment": 0.12588
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.head()",
+    "actual_code": "h_d.head()\n",
+    "ip_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 56824,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 56824,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0001201629638671875,
+    "disk_usage": {
+      "peak_disk": 406227.08203125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 202.13180999999997,
+      "memory_increment": -0.54548
+    }
+  },
+  {
+    "code": "def eval(model):\n    print('The training score is,', model.score(x_train, y_train))\n    print('The testing score is,', model.score(x_test, y_test))",
+    "actual_code": "def eval(model):\n    print(\"The training score is,\",model.score(x_train,y_train))\n    print(\"The testing score is,\",model.score(x_test,y_test))\n",
+    "ip_variables": {
+      "model": null,
+      "x_train": null,
+      "y_train": null,
+      "x_test": null,
+      "y_test": null
+    },
+    "op_variables": {
+      "model": null,
+      "x_train": null,
+      "y_train": null,
+      "x_test": null,
+      "y_test": null
+    },
+    "imports": {},
+    "execution_time": 1.1920928955078125e-05,
+    "disk_usage": {
+      "peak_disk": 406227.1015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 202.16328,
+      "memory_increment": 0.03147
+    }
+  },
+  {
+    "code": "def metric_score(ypred, y_test):\n    print('The mean absolute error is: ', mean_absolute_error(ypred, y_test))\n    print('The mean squared error is: ', mean_squared_error(ypred, y_test))\n    print('The R2 score is: ', r2_score(ypred, y_test))",
+    "actual_code": "def metric_score(ypred,y_test):\n    print(\"The mean absolute error is: \",mean_absolute_error(ypred,y_test))\n    print(\"The mean squared error is: \",mean_squared_error(ypred,y_test))\n    print(\"The R2 score is: \",r2_score(ypred,y_test))\n",
+    "ip_variables": {
+      "mean_absolute_error": null,
+      "ypred": null,
+      "y_test": null,
+      "mean_squared_error": null,
+      "r2_score": null
+    },
+    "op_variables": {
+      "mean_absolute_error": null,
+      "ypred": null,
+      "y_test": null,
+      "mean_squared_error": null,
+      "r2_score": null
+    },
+    "imports": {},
+    "execution_time": 2.6226043701171875e-06,
+    "disk_usage": {
+      "peak_disk": 406227.10546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 202.14229999999998,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.core.frame.DataFrame.drop('price', axis=1)\npandas.core.series.Series = pandas.core.frame.DataFrame.price",
+    "actual_code": "x=h_d.drop('price',axis=1)\ny=h_d.price\n",
+    "ip_variables": {
+      "x": null,
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 56824,
+        "sliced": false
+      },
+      "y": null
+    },
+    "op_variables": {
+      "x": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          12
+        ],
+        "size": 52464,
+        "sliced": false
+      },
+      "h_d": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          13
+        ],
+        "size": 56824,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          545
+        ],
+        "size": 4504,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0004780292510986328,
+    "disk_usage": {
+      "peak_disk": 406227.1484375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 200.78909,
+      "memory_increment": -1.11194
+    }
+  },
+  {
+    "code": "print(pandas.core.frame.DataFrame.head())\nprint(pandas.core.series.Series.head())\nprint(type(pandas.core.frame.DataFrame))\nprint(type(pandas.core.series.Series))",
+    "actual_code": "print(x.head())\nprint(y.head())\nprint(type(x))\nprint(type(y))\n",
+    "ip_variables": {
+      "x": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          12
+        ],
+        "size": 52464,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          545
+        ],
+        "size": 4504,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "x": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          12
+        ],
+        "size": 52464,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          545
+        ],
+        "size": 4504,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0027658939361572266,
+    "disk_usage": {
+      "peak_disk": 406227.0859375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 199.27853,
+      "memory_increment": -1.3637
+    }
+  },
+  {
+    "code": "from sklearn.model_selection import train_test_split\nfrom sklearn.metrics import mean_absolute_error, mean_squared_error, confusion_matrix, r2_score",
+    "actual_code": "from sklearn.model_selection import train_test_split\nfrom sklearn.metrics import mean_absolute_error, mean_squared_error,confusion_matrix,r2_score\n",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.07270383834838867,
+    "disk_usage": {
+      "peak_disk": 406227.10546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 203.30669,
+      "memory_increment": 4.0491399999999995
+    }
+  },
+  {
+    "code": "(pandas.core.frame.DataFrame, pandas.core.frame.DataFrame, pandas.core.series.Series, pandas.core.series.Series) = sklearn.model_selection.train_test_split(pandas.core.frame.DataFrame, pandas.core.series.Series, test_size=0.3, random_state=5)",
+    "actual_code": "x_train, x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state = 5)\n",
+    "ip_variables": {
+      "x_train": null,
+      "x_test": null,
+      "y_train": null,
+      "y_test": null,
+      "x": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          12
+        ],
+        "size": 52464,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          545
+        ],
+        "size": 4504,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "x_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          381,
+          12
+        ],
+        "size": 39640,
+        "sliced": false
+      },
+      "x_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          164,
+          12
+        ],
+        "size": 17072,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          381
+        ],
+        "size": 6112,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          164
+        ],
+        "size": 2640,
+        "sliced": false
+      },
+      "x": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          545,
+          12
+        ],
+        "size": 52464,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          545
+        ],
+        "size": 4504,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "train_test_split": "sklearn.model_selection.train_test_split"
+    },
+    "execution_time": 0.0016298294067382812,
+    "disk_usage": {
+      "peak_disk": 406227.14453125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 203.39060999999998,
+      "memory_increment": 0.09441
+    }
+  },
+  {
+    "code": "print(pandas.core.frame.DataFrame.shape, '', type(pandas.core.frame.DataFrame))\nprint(pandas.core.series.Series.shape, '\\t ', type(pandas.core.series.Series))\nprint(pandas.core.frame.DataFrame.shape, '', type(pandas.core.frame.DataFrame))\nprint(pandas.core.series.Series.shape, '\\t ', type(pandas.core.series.Series))",
+    "actual_code": "print(x_train.shape,\"\",type(x_train))\nprint(y_train.shape,\"\t \",type(y_train))\nprint(x_test.shape,\"\",type(x_test))\nprint(y_test.shape,\"\t \",type(y_test))\n",
+    "ip_variables": {
+      "x_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          381,
+          12
+        ],
+        "size": 39640,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          381
+        ],
+        "size": 6112,
+        "sliced": false
+      },
+      "x_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          164,
+          12
+        ],
+        "size": 17072,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          164
+        ],
+        "size": 2640,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "x_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          381,
+          12
+        ],
+        "size": 39640,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          381
+        ],
+        "size": 6112,
+        "sliced": false
+      },
+      "x_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          164,
+          12
+        ],
+        "size": 17072,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          164
+        ],
+        "size": 2640,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0001227855682373047,
+    "disk_usage": {
+      "peak_disk": 406227.171875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 203.41159,
+      "memory_increment": 0.03147
+    }
+  },
+  {
+    "code": "from sklearn.tree import DecisionTreeRegressor",
+    "actual_code": "from sklearn.tree import DecisionTreeRegressor\n",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.15045928955078125,
+    "disk_usage": {
+      "peak_disk": 406227.1484375,
+      "increment": 0.1875
+    },
+    "memory_usage": {
+      "peak_memory": 176.03269,
+      "memory_increment": -27.39988
+    }
+  },
+  {
+    "code": "sklearn.tree._classes.DecisionTreeRegressor = sklearn.tree.DecisionTreeRegressor(criterion='squared_error', splitter='best', max_depth=10, min_samples_split=20, random_state=42)\nsklearn.tree._classes.DecisionTreeRegressor.fit(pandas.core.frame.DataFrame, pandas.core.series.Series)",
+    "actual_code": "DTRmodel = DecisionTreeRegressor(criterion='squared_error',splitter='best',max_depth = 10, min_samples_split=20,random_state=42)\nDTRmodel.fit(x_train,y_train)\n",
+    "ip_variables": {
+      "DTRmodel": null,
+      "x_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          381,
+          12
+        ],
+        "size": 39640,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          381
+        ],
+        "size": 6112,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "DTRmodel": {
+        "id": "sklearn.tree._classes.DecisionTreeRegressor",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "x_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          381,
+          12
+        ],
+        "size": 39640,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          381
+        ],
+        "size": 6112,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "DecisionTreeRegressor": "sklearn.tree.DecisionTreeRegressor"
+    },
+    "execution_time": 0.002936124801635742,
+    "disk_usage": {
+      "peak_disk": 406227.1953125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 206.50614,
+      "memory_increment": -4.1330599999999995
+    }
+  },
+  {
+    "code": "eval(sklearn.tree._classes.DecisionTreeRegressor)",
+    "actual_code": "eval(DTRmodel)\n",
+    "ip_variables": {
+      "DTRmodel": {
+        "id": "sklearn.tree._classes.DecisionTreeRegressor",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "DTRmodel": {
+        "id": "sklearn.tree._classes.DecisionTreeRegressor",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0026748180389404297,
+    "disk_usage": {
+      "peak_disk": 406227.20703125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 206.42221999999998,
+      "memory_increment": -0.06294
+    }
+  },
+  {
+    "code": "numpy.ndarray = sklearn.tree._classes.DecisionTreeRegressor.predict(pandas.core.frame.DataFrame)",
+    "actual_code": "ypred = DTRmodel.predict(x_test)\n",
+    "ip_variables": {
+      "ypred": null,
+      "DTRmodel": {
+        "id": "sklearn.tree._classes.DecisionTreeRegressor",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "x_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          164,
+          12
+        ],
+        "size": 17072,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "ypred": {
+        "id": "numpy.ndarray",
+        "shape": [
+          164
+        ],
+        "size": 112,
+        "sliced": false
+      },
+      "DTRmodel": {
+        "id": "sklearn.tree._classes.DecisionTreeRegressor",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "x_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          164,
+          12
+        ],
+        "size": 17072,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0007009506225585938,
+    "disk_usage": {
+      "peak_disk": 406227.2109375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 206.42221999999998,
+      "memory_increment": 0.02098
+    }
+  },
+  {
+    "code": "metric_score(numpy.ndarray, pandas.core.series.Series)",
+    "actual_code": "metric_score(ypred,y_test)\n",
+    "ip_variables": {
+      "ypred": {
+        "id": "numpy.ndarray",
+        "shape": [
+          164
+        ],
+        "size": 112,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          164
+        ],
+        "size": 2640,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "ypred": {
+        "id": "numpy.ndarray",
+        "shape": [
+          164
+        ],
+        "size": 112,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          164
+        ],
+        "size": 2640,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0009248256683349609,
+    "disk_usage": {
+      "peak_disk": 406227.2421875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 206.42221999999998,
+      "memory_increment": 0.02098
+    }
+  },
+  {
+    "code": "from sklearn.ensemble import RandomForestRegressor",
+    "actual_code": "from sklearn.ensemble import RandomForestRegressor\n",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.05697011947631836,
+    "disk_usage": {
+      "peak_disk": 406223.41796875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 210.79654999999997,
+      "memory_increment": 4.37433
+    }
+  },
+  {
+    "code": "sklearn.ensemble._forest.RandomForestRegressor = sklearn.ensemble.RandomForestRegressor(n_estimators=100, max_depth=10, min_samples_split=10, random_state=42, criterion='squared_error')\nsklearn.ensemble._forest.RandomForestRegressor.fit(pandas.core.frame.DataFrame, pandas.core.series.Series)",
+    "actual_code": "RFRmodel = RandomForestRegressor(n_estimators=100,max_depth = 10, min_samples_split=10,random_state=42,criterion='squared_error')\nRFRmodel.fit(x_train,y_train)\n",
+    "ip_variables": {
+      "RFRmodel": null,
+      "x_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          381,
+          12
+        ],
+        "size": 39640,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          381
+        ],
+        "size": 6112,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "RFRmodel": {
+        "id": "sklearn.ensemble._forest.RandomForestRegressor",
+        "shape": 100,
+        "size": 48,
+        "sliced": false
+      },
+      "x_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          381,
+          12
+        ],
+        "size": 39640,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          381
+        ],
+        "size": 6112,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "RandomForestRegressor": "sklearn.ensemble.RandomForestRegressor"
+    },
+    "execution_time": 0.06169295310974121,
+    "disk_usage": {
+      "peak_disk": 406224.42578125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 212.54837999999998,
+      "memory_increment": 1.7728099999999998
+    }
+  },
+  {
+    "code": "eval(sklearn.ensemble._forest.RandomForestRegressor)",
+    "actual_code": "eval(RFRmodel)\n",
+    "ip_variables": {
+      "RFRmodel": {
+        "id": "sklearn.ensemble._forest.RandomForestRegressor",
+        "shape": 100,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "RFRmodel": {
+        "id": "sklearn.ensemble._forest.RandomForestRegressor",
+        "shape": 100,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.01160287857055664,
+    "disk_usage": {
+      "peak_disk": 406224.4296875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 212.62180999999998,
+      "memory_increment": 0.05245
+    }
+  },
+  {
+    "code": "numpy.ndarray = sklearn.ensemble._forest.RandomForestRegressor.predict(pandas.core.frame.DataFrame)",
+    "actual_code": "ypred2 = RFRmodel.predict(x_test)\n",
+    "ip_variables": {
+      "ypred2": null,
+      "RFRmodel": {
+        "id": "sklearn.ensemble._forest.RandomForestRegressor",
+        "shape": 100,
+        "size": 48,
+        "sliced": false
+      },
+      "x_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          164,
+          12
+        ],
+        "size": 17072,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "ypred2": {
+        "id": "numpy.ndarray",
+        "shape": [
+          164
+        ],
+        "size": 1424,
+        "sliced": false
+      },
+      "RFRmodel": {
+        "id": "sklearn.ensemble._forest.RandomForestRegressor",
+        "shape": 100,
+        "size": 48,
+        "sliced": false
+      },
+      "x_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          164,
+          12
+        ],
+        "size": 17072,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.003914833068847656,
+    "disk_usage": {
+      "peak_disk": 406224.4609375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 212.62180999999998,
+      "memory_increment": 0.02098
+    }
+  },
+  {
+    "code": "metric_score(numpy.ndarray, pandas.core.series.Series)",
+    "actual_code": "metric_score(ypred2,y_test)\n",
+    "ip_variables": {
+      "ypred2": {
+        "id": "numpy.ndarray",
+        "shape": [
+          164
+        ],
+        "size": 1424,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          164
+        ],
+        "size": 2640,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "ypred2": {
+        "id": "numpy.ndarray",
+        "shape": [
+          164
+        ],
+        "size": 1424,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          164
+        ],
+        "size": 2640,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0009131431579589844,
+    "disk_usage": {
+      "peak_disk": 406224.4609375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 212.62180999999998,
+      "memory_increment": 0.02098
+    }
+  },
+  {
+    "code": "from sklearn.linear_model import LinearRegression",
+    "actual_code": "from sklearn.linear_model import LinearRegression\n",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 2.9325485229492188e-05,
+    "disk_usage": {
+      "peak_disk": 406224.46875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 212.62180999999998,
+      "memory_increment": 0.02098
+    }
+  },
+  {
+    "code": "sklearn.linear_model._base.LinearRegression = sklearn.linear_model.LinearRegression()\nsklearn.linear_model._base.LinearRegression.fit(pandas.core.frame.DataFrame, pandas.core.series.Series)",
+    "actual_code": "LRmodel = LinearRegression()\nLRmodel.fit(x_train,y_train)\n",
+    "ip_variables": {
+      "LRmodel": null,
+      "x_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          381,
+          12
+        ],
+        "size": 39640,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          381
+        ],
+        "size": 6112,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "LRmodel": {
+        "id": "sklearn.linear_model._base.LinearRegression",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "x_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          381,
+          12
+        ],
+        "size": 39640,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          381
+        ],
+        "size": 6112,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "LinearRegression": "sklearn.linear_model.LinearRegression"
+    },
+    "execution_time": 0.004536151885986328,
+    "disk_usage": {
+      "peak_disk": 406224.60546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 213.00994,
+      "memory_increment": 0.40911
+    }
+  },
+  {
+    "code": "eval(sklearn.linear_model._base.LinearRegression)",
+    "actual_code": "eval(LRmodel)\n",
+    "ip_variables": {
+      "LRmodel": {
+        "id": "sklearn.linear_model._base.LinearRegression",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "LRmodel": {
+        "id": "sklearn.linear_model._base.LinearRegression",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0023381710052490234,
+    "disk_usage": {
+      "peak_disk": 406224.6171875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 213.03092,
+      "memory_increment": 0.03147
+    }
+  },
+  {
+    "code": "numpy.ndarray = sklearn.linear_model._base.LinearRegression.predict(pandas.core.frame.DataFrame)",
+    "actual_code": "ypred3 = LRmodel.predict(x_test)\n",
+    "ip_variables": {
+      "ypred3": null,
+      "LRmodel": {
+        "id": "sklearn.linear_model._base.LinearRegression",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "x_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          164,
+          12
+        ],
+        "size": 17072,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "ypred3": {
+        "id": "numpy.ndarray",
+        "shape": [
+          164
+        ],
+        "size": 1424,
+        "sliced": false
+      },
+      "LRmodel": {
+        "id": "sklearn.linear_model._base.LinearRegression",
+        "shape": null,
+        "size": 48,
+        "sliced": false
+      },
+      "x_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          164,
+          12
+        ],
+        "size": 17072,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0007779598236083984,
+    "disk_usage": {
+      "peak_disk": 406224.6171875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 213.00994,
+      "memory_increment": 0.02098
+    }
+  },
+  {
+    "code": "metric_score(numpy.ndarray, pandas.core.series.Series)",
+    "actual_code": "metric_score(ypred3,y_test)\n",
+    "ip_variables": {
+      "ypred3": {
+        "id": "numpy.ndarray",
+        "shape": [
+          164
+        ],
+        "size": 1424,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          164
+        ],
+        "size": 2640,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "ypred3": {
+        "id": "numpy.ndarray",
+        "shape": [
+          164
+        ],
+        "size": 1424,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          164
+        ],
+        "size": 2640,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0007660388946533203,
+    "disk_usage": {
+      "peak_disk": 406224.62109375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 213.03092,
+      "memory_increment": 0.03147
+    }
+  },
+  {
+    "code": "import matplotlib.pyplot\nlist = ['Decision Tree', 'Random Forest', 'Linear Regression']\nlist = [35.5, 50.3, 56.1]\nmatplotlib.pyplot.pie(list, labels=list)\nmatplotlib.pyplot.show()",
+    "actual_code": "import matplotlib.pyplot as plt\n\nmodels = ['Decision Tree','Random Forest','Linear Regression']\nscores = [35.5,50.3,56.1]\n\nplt.pie(scores,labels=models)\nplt.show()\n",
+    "ip_variables": {
+      "models": null,
+      "scores": null
+    },
+    "op_variables": {
+      "models": {
+        "id": "list",
+        "shape": 3,
+        "size": 120,
+        "sliced": false
+      },
+      "scores": {
+        "id": "list",
+        "shape": 3,
+        "size": 120,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "plt": "matplotlib.pyplot"
+    },
+    "execution_time": 0.026525020599365234,
+    "disk_usage": {
+      "peak_disk": 406224.62890625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 219.73403,
+      "memory_increment": 6.6401699999999995
+    }
+  },
+  {
+    "code": "",
+    "actual_code": "\n",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 1.1920928955078125e-06,
+    "disk_usage": {
+      "peak_disk": 406224.43359375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 219.74451999999997,
+      "memory_increment": -0.09441
+    }
+  }
+]
