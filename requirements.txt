@@ -1,1 +1,3 @@
 memory_profiler
+kaggle
+python-dotenv

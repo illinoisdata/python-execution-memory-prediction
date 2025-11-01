@@ -1,4 +1,5 @@
 from ProfilerClient import ProfilerClient
+from KaggleAdapter import KaggleAdapter
 import json
 import nbformat
 import os
@@ -17,15 +18,24 @@ def run_notebook_with_hooks(filepath):
 
 
 if __name__ == "__main__":
-    notebooks_dir = "./dataset/notebooks"
-    output_dir = "./dataset/output"
+    competition_name = "digit-recognizer"
+    max_notebooks = 10
+    adapter = KaggleAdapter(competition_name, max_notebooks)
+    adapter.execute()
 
-    for nb in os.listdir(notebooks_dir):
-        print(f"Running {nb}")
+    final_results = []
+
+    for nb in os.listdir(adapter.notebook_dir):
+        print(f"Running {competition_name}/{nb}")
         filename, extension = os.path.splitext(nb)
-        results = run_notebook_with_hooks(
-            os.path.join(notebooks_dir, nb))
-        output_file = os.path.join(output_dir, f"{filename}.json")
-        with open(output_file, "w") as f:
-            json.dump(results, f, indent=2)
-        print(f"Execution complete. Results saved to {output_file}")
+        try:
+            results = run_notebook_with_hooks(
+                os.path.join(adapter.notebook_dir, nb))
+            final_results = [*final_results, *results]
+        except Exception as e:
+            print(f"An unexpected error occurred while executing {nb}: {e}")
+
+    output_file = os.path.join(adapter.output_dir, f"{competition_name}.json")
+    with open(output_file, "w") as f:
+        json.dump(final_results, f, indent=2)
+    print(f"Execution complete. Results saved to {output_file}")
