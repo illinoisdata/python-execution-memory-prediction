@@ -7,14 +7,23 @@ from multiprocessing.pool import ThreadPool
 from multiprocessing import Lock
 
 
-def run_notebook_with_hooks(filepath):
-    nb = nbformat.read(filepath, as_version=4)
-    results = []
+def load_file(path):
+    with open(path, 'r', encoding='utf-8') as file:
+        file_content = file.read()
+    return file_content
 
-    client = ProfilerClient(nb, record_list=results)
-    cell_count = client.execute()
 
-    print(f"Executed {cell_count} cells, results for {len(results)} cells")
+parser_code = load_file("./TreeParser.py")
+disk_profiler_code = load_file("./DiskProfiler.py")
+load_profiler_code = "%load_ext memory_profiler" + "\n"
+
+
+def run_notebook_with_hooks(notebook):
+    nb = nbformat.read(notebook, as_version=4)
+
+    client = ProfilerClient(nb, parser_code=parser_code,
+                            disk_profiler_code=disk_profiler_code, load_profiler_code=load_profiler_code)
+    results = client.execute()
 
     return results
 
@@ -22,8 +31,7 @@ def run_notebook_with_hooks(filepath):
 def start_worker(wl, final_results, competition_name: str, notebook_dir: str, nb: str):
     print(f"Running {competition_name}/{nb}")
     try:
-        results = run_notebook_with_hooks(
-            os.path.join(notebook_dir, nb))
+        results = run_notebook_with_hooks(nb)
         wl.acquire()
         try:
             final_results.extend(results)
@@ -42,9 +50,12 @@ if __name__ == "__main__":
     final_results = []
     wl = Lock()
 
+    root_dir = os.getcwd()
+    os.chdir(adapter.notebook_dir)
     with ThreadPool() as pool:
         pool.starmap(start_worker, [tuple([wl, final_results, competition_name,
                      adapter.notebook_dir, nb]) for nb in os.listdir(adapter.notebook_dir)])
+    os.chdir(root_dir)
 
     output_file = os.path.join(adapter.output_dir, f"{competition_name}.json")
     with open(output_file, "w") as f:

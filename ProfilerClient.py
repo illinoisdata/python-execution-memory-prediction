@@ -4,6 +4,7 @@ from nbclient.exceptions import CellExecutionError
 from IPython.core.inputtransformer2 import TransformerManager
 import re
 import ast
+import os
 
 PROFILER_DATA_STARTS = "PROFILER_DATA_STARTS"
 PROFILER_DATA_ENDS = "PROFILER_DATA_ENDS"
@@ -12,28 +13,15 @@ PROFILER_MEMORY_INCREMENT = "increment:"
 
 
 class ProfilerClient(NotebookClient):
-    def __init__(self, nb, record_list):
-        self.records = record_list  # shared list to store results
+    def __init__(self, nb, parser_code, disk_profiler_code, load_profiler_code):
+        self.results = []
         self.imports = {}
-        parser_cell = nbformat.v4.new_code_cell(
-            self.load_file("./TreeParser.py"))
-        disk_profiler_cell = nbformat.v4.new_code_cell(
-            self.load_file("./DiskProfiler.py"))
-        load_profiler_cell = nbformat.v4.new_code_cell(self.load_profilers())
-        new_cells = [parser_cell, disk_profiler_cell,
-                     load_profiler_cell]
+        new_cells = [nbformat.v4.new_code_cell(parser_code), nbformat.v4.new_code_cell(
+            disk_profiler_code), nbformat.v4.new_code_cell(load_profiler_code)]
         self.new_cell_count = len(new_cells)
         nb.cells = new_cells + nb.cells
         super().__init__(nb)
         print("Initialized ProfilerClient")
-
-    def load_file(self, path):
-        with open(path, 'r', encoding='utf-8') as file:
-            file_content = file.read()
-        return file_content
-
-    def load_profilers(self):
-        return "%load_ext memory_profiler" + "\n"
 
     def get_cell_profiler_code(self):
         return "%%memit" + "\n"
@@ -76,7 +64,9 @@ print("{PROFILER_DATA_ENDS}")
                     continue
                 self.execute_cell(cell, i)
                 cell_count += 1
-        return cell_count - self.new_cell_count
+        print(
+            f"Executed {cell_count - self.new_cell_count} cells, results for {len(self.results)} cells")
+        return self.results
 
     def execute_cell(self, cell, cell_index, execution_count=None, store_history=True):
         should_profile = cell_index >= self.new_cell_count
@@ -144,5 +134,5 @@ print("{PROFILER_DATA_ENDS}")
                     }
 
                 if len(list(output.keys())) > 0:
-                    self.records.append(output)
+                    self.results.append(output)
         return result
