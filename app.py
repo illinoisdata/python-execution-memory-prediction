@@ -54,14 +54,14 @@ def process_multithread(final_results, notebook_dir, notebooks):
 
 
 if __name__ == "__main__":
-    competition_name = sys.argv[1] if len(sys.argv) else None
+    competition_name = sys.argv[1] if len(sys.argv) > 1 else None
 
     if (competition_name is not None):
         adapter = KaggleAdapter(competition_name)
 
         page = 0
-        page_size = 10
-        max_notebooks = 10
+        page_size = 50
+        max_notebooks = int(sys.argv[2]) if len(sys.argv) > 2 else 50
 
         final_results = []
 
