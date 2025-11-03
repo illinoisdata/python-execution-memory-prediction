@@ -1,6 +1,6 @@
 FROM kaggle/python
-WORKDIR /workspace
-COPY ./src /workspace
+WORKDIR /kaggle
+COPY ./src/. /kaggle
 
 RUN pip install --no-cache-dir -r requirements.txt
 ENTRYPOINT ["python", "app.py"]
