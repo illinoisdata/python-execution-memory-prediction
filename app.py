@@ -28,7 +28,7 @@ def run_notebook_with_hooks(notebook):
     return results
 
 
-def start_worker(wl, final_results, competition_name: str, notebook_dir: str, nb: str):
+def start_worker(wl, final_results, competition_name: str, nb: str):
     print(f"Running {competition_name}/{nb}")
     try:
         results = run_notebook_with_hooks(nb)
@@ -41,21 +41,35 @@ def start_worker(wl, final_results, competition_name: str, notebook_dir: str, nb
         print(f"An unexpected error occurred while executing {nb}: {e}")
 
 
-if __name__ == "__main__":
-    competition_name = "digit-recognizer"
-    max_notebooks = 10
-    adapter = KaggleAdapter(competition_name, max_notebooks)
-    adapter.execute()
-
-    final_results = []
+def process_multithread(final_results, notebook_dir, notebooks):
     wl = Lock()
 
     root_dir = os.getcwd()
-    os.chdir(adapter.notebook_dir)
+    os.chdir(notebook_dir)
     with ThreadPool() as pool:
-        pool.starmap(start_worker, [tuple([wl, final_results, competition_name,
-                     adapter.notebook_dir, nb]) for nb in os.listdir(adapter.notebook_dir)])
+        pool.starmap(start_worker, [tuple(
+            [wl, final_results, competition_name, nb]) for nb in notebooks])
     os.chdir(root_dir)
+
+
+if __name__ == "__main__":
+    competition_name = "digit-recognizer"
+    adapter = KaggleAdapter(competition_name)
+
+    page = 0
+    page_size = 10
+    max_notebooks = 10
+    
+    final_results = []
+
+    while (len(final_results) < max_notebooks):
+        page += 1
+        notebooks = adapter.execute(page, page_size)
+
+        if (len(notebooks) == 0):
+            break
+
+        process_multithread(final_results, adapter.notebook_dir, notebooks)
 
     output_file = os.path.join(adapter.output_dir, f"{competition_name}.json")
     with open(output_file, "w") as f:

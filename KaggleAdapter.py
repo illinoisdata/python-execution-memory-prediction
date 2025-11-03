@@ -14,9 +14,8 @@ api.authenticate()
 
 
 class KaggleAdapter():
-    def __init__(self, competition_name: str, max_notebooks: int = 50):
+    def __init__(self, competition_name: str):
         self.competition_name = competition_name
-        self.max_notebooks = max_notebooks
         self.main_dir = "./dataset"
         self.competition_dir = os.path.join(
             self.main_dir, self.competition_name)
@@ -58,15 +57,17 @@ class KaggleAdapter():
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
 
-    def __download_notebooks(self):
+    def __download_notebooks(self, page=1, page_size=50):
+        downloaded_notebooks = []
         try:
             notebooks = api.kernels_list(
-                competition=self.competition_name, sort_by='voteCount', page_size=self.max_notebooks)
+                competition=self.competition_name, sort_by='voteCount', page=page, page_size=page_size)
             kernel_count = 0
             for kernel in notebooks:
                 if (not kernel._is_private and not kernel._enable_tpu):
-                    api.kernels_pull(kernel=kernel._ref,
+                    file_path = api.kernels_pull(kernel=kernel._ref,
                                      path=self.notebook_dir)
+                    downloaded_notebooks.append(os.path.basename(file_path))
                     kernel_count += 1
             print(
                 f"Successfully downloaded {kernel_count} notebooks from {len(notebooks)} available to '{self.notebook_dir}'")
@@ -76,7 +77,9 @@ class KaggleAdapter():
                     os.remove(file_path)
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
+        finally:
+            return downloaded_notebooks
 
-    def execute(self):
+    def execute(self, page=1, page_size=50):
         self.__download_input_data()
-        self.__download_notebooks()
+        return self.__download_notebooks(page, page_size)
