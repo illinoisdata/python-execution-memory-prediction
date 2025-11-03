@@ -4,7 +4,6 @@ from nbclient.exceptions import CellExecutionError
 from IPython.core.inputtransformer2 import TransformerManager
 import re
 import ast
-import os
 
 PROFILER_DATA_STARTS = "PROFILER_DATA_STARTS"
 PROFILER_DATA_ENDS = "PROFILER_DATA_ENDS"
@@ -29,7 +28,7 @@ class ProfilerClient(NotebookClient):
 
     def get_start_parse_code(self, code):
         return f"""
-parser.start(ast.parse(\"\"\"{code}\"\"\"))
+parser.start(\"\"\"{code}\"\"\")
 diskProfiler.start()
 start = time.time()
         """
@@ -38,13 +37,12 @@ start = time.time()
         return f"""
 end = time.time()
 diskProfiler.stop()
-tree = ast.parse(\"\"\"{code}\"\"\")
-parser.exit(tree)
+actual_code, code = parser.exit()
 
 print("{PROFILER_DATA_STARTS}")
 print({{
-    "code": ast.unparse(tree),
-    "actual_code": \"\"\"{code}\"\"\",
+    "code": code,
+    "actual_code": actual_code,
     "ip_variables": parser.variables_ip,
     "op_variables": parser.variables_op,
     "imports": parser.local_imports,

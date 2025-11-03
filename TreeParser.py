@@ -1,7 +1,9 @@
 import builtins
 import ast
 import sys
-import time
+import io
+import tokenize
+import re
 from IPython import get_ipython
 
 
@@ -105,21 +107,54 @@ class TreeParser(ast.NodeTransformer):
         self.generic_visit(node)
         return node
 
-    def start(self, node):
+    def _clean_cell_for_ast(self, code):
+        lines = code.splitlines()
+        cleaned_lines = []
+
+        for line in lines:
+            stripped = line.strip()
+            if stripped.startswith("%") or stripped.startswith("!") or stripped.startswith("?"):
+                continue
+            if stripped.startswith("%%"):
+                continue
+            cleaned_lines.append(line)
+
+        code_no_magics = "\n".join(cleaned_lines)
+
+        io_obj = io.StringIO(code_no_magics)
+        output_tokens = []
+        for tok_type, tok_string, _, _, _ in tokenize.generate_tokens(io_obj.readline):
+            if tok_type == tokenize.COMMENT:
+                continue
+            output_tokens.append(tok_string)
+
+        clean_code = "".join(output_tokens)
+        clean_code = re.sub(r'\n\s*\n+', '\n', clean_code).strip()
+
+        return clean_code
+
+    def start(self, code):
         self.local_imports = {}
+        self.cell_code = self._clean_cell_for_ast(code)
+        node = ast.parse(self.cell_code)
         self.generic_visit(node)
         self.variables_ip = self.variables.copy()
         self.variables = {}
 
-    def exit(self, node):
+    def exit(self):
         self.local_imports = {}
+        node = ast.parse(self.cell_code)
         self.generic_visit(node)
         self.variables_op = self.variables.copy()
         self.variables = {}
+        cell_code = self.cell_code
+        self.cell_code = None
+        return cell_code, ast.unparse(node)
 
     def __init__(self):
         self.imports = {}
         self.variables = {}
+        self.cell_code = None
 
 
 parser = TreeParser()
