@@ -3,6 +3,7 @@ from KaggleAdapter import KaggleAdapter
 import json
 import nbformat
 import os
+import sys
 from multiprocessing.pool import ThreadPool
 from multiprocessing import Lock
 
@@ -53,25 +54,28 @@ def process_multithread(final_results, notebook_dir, notebooks):
 
 
 if __name__ == "__main__":
-    competition_name = "digit-recognizer"
-    adapter = KaggleAdapter(competition_name)
+    competition_name = sys.argv[1] if len(sys.argv) else None
 
-    page = 0
-    page_size = 10
-    max_notebooks = 10
-    
-    final_results = []
+    if (competition_name is not None):
+        adapter = KaggleAdapter(competition_name)
 
-    while (len(final_results) < max_notebooks):
-        page += 1
-        notebooks = adapter.execute(page, page_size)
+        page = 0
+        page_size = 10
+        max_notebooks = 10
 
-        if (len(notebooks) == 0):
-            break
+        final_results = []
 
-        process_multithread(final_results, adapter.notebook_dir, notebooks)
+        while (len(final_results) < max_notebooks):
+            page += 1
+            notebooks = adapter.execute(page, page_size)
 
-    output_file = os.path.join(adapter.output_dir, f"{competition_name}.json")
-    with open(output_file, "w") as f:
-        json.dump(final_results, f, indent=2)
-    print(f"Execution complete. Results saved to {output_file}")
+            if (len(notebooks) == 0):
+                break
+
+            process_multithread(final_results, adapter.notebook_dir, notebooks)
+
+        output_file = os.path.join(
+            adapter.output_dir, f"{competition_name}.json")
+        with open(output_file, "w") as f:
+            json.dump(final_results, f, indent=2)
+        print(f"Execution complete. Results saved to {output_file}")
