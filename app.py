@@ -59,9 +59,9 @@ if __name__ == "__main__":
     if (competition_name is not None):
         adapter = KaggleAdapter(competition_name)
 
-        page = 0
-        page_size = 50
         max_notebooks = int(sys.argv[2]) if len(sys.argv) > 2 else 50
+        page = 0
+        page_size = min(max_notebooks, 50)
 
         final_results = []
 
