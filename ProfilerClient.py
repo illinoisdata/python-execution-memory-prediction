@@ -13,9 +13,10 @@ PROFILER_MEMORY_INCREMENT = "increment:"
 
 
 class ProfilerClient(NotebookClient):
-    def __init__(self, nb, parser_code, disk_profiler_code, load_profiler_code):
+    def __init__(self, nb, competition_name, parser_code, disk_profiler_code, load_profiler_code):
         self.results = []
         self.imports = {}
+        self.competition_name = competition_name
         new_cells = [nbformat.v4.new_code_cell(parser_code), nbformat.v4.new_code_cell(
             disk_profiler_code), nbformat.v4.new_code_cell(load_profiler_code)]
         self.new_cell_count = len(new_cells)
@@ -56,6 +57,13 @@ print({{
 print("{PROFILER_DATA_ENDS}")
         """
 
+    def clean_cell_for_input(self, code):
+        path = f'/kaggle/input/{self.competition_name}'
+        if path in code:
+            return code.replace(path, '../input')
+        else:
+            return code
+
     def execute(self):
         cell_count = 0
         with self.setup_kernel():
@@ -75,7 +83,7 @@ print("{PROFILER_DATA_ENDS}")
             tm = TransformerManager()
             cell_code = tm.transform_cell(cell['source'])
 
-            cell['source'] = cell_code
+            cell['source'] = self.clean_cell_for_input(cell_code)
 
             cell['source'] = self.get_cell_profiler_code() + self.get_start_parse_code(
                 cell_code) + "\n" + cell['source'] + "\n" + self.get_exit_parse_code(cell_code)

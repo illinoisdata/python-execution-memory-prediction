@@ -19,10 +19,10 @@ disk_profiler_code = load_file("./DiskProfiler.py")
 load_profiler_code = "%load_ext memory_profiler" + "\n"
 
 
-def run_notebook_with_hooks(notebook):
+def run_notebook_with_hooks(notebook, competition_name):
     nb = nbformat.read(notebook, as_version=4)
 
-    client = ProfilerClient(nb, parser_code=parser_code,
+    client = ProfilerClient(nb, competition_name, parser_code=parser_code,
                             disk_profiler_code=disk_profiler_code, load_profiler_code=load_profiler_code)
     results = client.execute()
 
@@ -32,7 +32,7 @@ def run_notebook_with_hooks(notebook):
 def start_worker(wl, final_results, competition_name: str, nb: str):
     print(f"Running {competition_name}/{nb}")
     try:
-        results = run_notebook_with_hooks(nb)
+        results = run_notebook_with_hooks(nb, competition_name)
         wl.acquire()
         try:
             final_results.extend(results)
@@ -65,9 +65,11 @@ if __name__ == "__main__":
 
         final_results = []
 
+        adapter.download_input_data()
+
         while (len(final_results) < max_notebooks):
             page += 1
-            notebooks = adapter.execute(page, page_size)
+            notebooks = adapter.download_notebooks(page, page_size)
 
             if (len(notebooks) == 0):
                 break

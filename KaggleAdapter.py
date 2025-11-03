@@ -39,7 +39,7 @@ class KaggleAdapter():
         os.makedirs(self.notebook_dir, exist_ok=True)
         os.makedirs(self.output_dir, exist_ok=True)
 
-    def __download_input_data(self):
+    def download_input_data(self):
         zip_file_path = os.path.join(
             self.input_dir, f"{self.competition_name}.zip")
         try:
@@ -57,7 +57,7 @@ class KaggleAdapter():
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
 
-    def __download_notebooks(self, page=1, page_size=50):
+    def download_notebooks(self, page=1, page_size=50):
         downloaded_notebooks = []
         try:
             notebooks = api.kernels_list(
@@ -79,7 +79,3 @@ class KaggleAdapter():
             print(f"An unexpected error occurred: {e}")
         finally:
             return downloaded_notebooks
-
-    def execute(self, page=1, page_size=50):
-        self.__download_input_data()
-        return self.__download_notebooks(page, page_size)
