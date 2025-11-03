@@ -61,20 +61,20 @@ class KaggleAdapter():
         downloaded_notebooks = []
         try:
             notebooks = api.kernels_list(
-                competition=self.competition_name, sort_by='voteCount', page=page, page_size=page_size)
+                competition=self.competition_name, sort_by='hotness', page=page, page_size=page_size)
             kernel_count = 0
             for kernel in notebooks:
                 if (not kernel._is_private and not kernel._enable_tpu):
                     file_path = api.kernels_pull(kernel=kernel._ref,
                                      path=self.notebook_dir)
-                    downloaded_notebooks.append(os.path.basename(file_path))
-                    kernel_count += 1
+                    filename = os.path.basename(file_path)
+                    if filename.endswith(".ipynb"):
+                        downloaded_notebooks.append(filename)
+                        kernel_count += 1
+                    else:
+                        os.remove(file_path)
             print(
                 f"Successfully downloaded {kernel_count} notebooks from {len(notebooks)} available to '{self.notebook_dir}'")
-            for filename in os.listdir(self.notebook_dir):
-                if not filename.endswith(".ipynb"):
-                    file_path = os.path.join(self.notebook_dir, filename)
-                    os.remove(file_path)
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
         finally:
