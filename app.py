@@ -29,28 +29,41 @@ def run_notebook_with_hooks(notebook, competition_name):
     return results
 
 
-def start_worker(wl, final_results, competition_name: str, nb: str):
+def start_worker(final_results, competition_name: str, nb: str, wl=None):
     print(f"Running {competition_name}/{nb}")
     try:
         results = run_notebook_with_hooks(nb, competition_name)
-        wl.acquire()
+        if wl is not None:
+            wl.acquire()
         try:
             final_results.extend(results)
         finally:
-            wl.release()
+            if wl is not None:
+                wl.release()
     except Exception as e:
         print(f"An unexpected error occurred while executing {nb}: {e}")
 
 
-def process_multithread(final_results, notebook_dir, notebooks):
-    wl = Lock()
-
+def process_multithread(final_results, notebook_dir, notebooks, multithread=True):
     root_dir = os.getcwd()
     os.chdir(notebook_dir)
-    with ThreadPool() as pool:
-        pool.starmap(start_worker, [tuple(
-            [wl, final_results, competition_name, nb]) for nb in notebooks])
+
+    if multithread:
+        wl = Lock()
+        with ThreadPool() as pool:
+            pool.starmap(start_worker, [tuple(
+                [final_results, competition_name, nb, wl]) for nb in notebooks])
+    else:
+        for nb in notebooks:
+            start_worker(final_results, competition_name, nb)
     os.chdir(root_dir)
+
+
+def save_output(competition_name, final_results, output_dir):
+    output_file = os.path.join(output_dir, f"{competition_name}.json")
+    with open(output_file, "w") as f:
+        json.dump(final_results, f, indent=2)
+    print(f"Execution complete. Results saved to {output_file}")
 
 
 if __name__ == "__main__":
@@ -62,22 +75,23 @@ if __name__ == "__main__":
         max_notebooks = int(sys.argv[2]) if len(sys.argv) > 2 else 50
         page = 0
         page_size = min(max_notebooks, 50)
+        multithread = True if len(
+            sys.argv) > 3 and sys.argv[3] == "multithread" else False
 
         final_results = []
 
         adapter.download_input_data()
 
-        while (len(final_results) < max_notebooks):
-            page += 1
-            notebooks = adapter.download_notebooks(page, page_size)
+        try:
+            while (len(final_results) < max_notebooks):
+                page += 1
+                notebooks = adapter.download_notebooks(page, page_size)
 
-            if (len(notebooks) == 0):
-                break
+                if (len(notebooks) == 0):
+                    break
 
-            process_multithread(final_results, adapter.notebook_dir, notebooks)
-
-        output_file = os.path.join(
-            adapter.output_dir, f"{competition_name}.json")
-        with open(output_file, "w") as f:
-            json.dump(final_results, f, indent=2)
-        print(f"Execution complete. Results saved to {output_file}")
+                process_multithread(
+                    final_results, adapter.notebook_dir, notebooks, multithread=multithread)
+            save_output(competition_name, final_results, adapter.output_dir)
+        except KeyboardInterrupt:
+            save_output(competition_name, final_results, adapter.output_dir)

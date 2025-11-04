@@ -23,6 +23,13 @@ cd python-execution-dataset
 docker run -v $(pwd):/workspace -w /workspace kaggle-profiler <competition-name> <max-notebooks>
 ```
 
+**Multithreading**
+
+```bash
+cd python-execution-dataset
+docker run -v $(pwd):/workspace -w /workspace kaggle-profiler <competition-name> <max-notebooks> multithread
+```
+
 ### Paths
 
 All downloads and outputs are stored in the `dataset` directory. Most paths on the downloaded notebooks are modified at runtime to follow these conventions.
