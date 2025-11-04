@@ -14,19 +14,21 @@ api.authenticate()
 
 
 class KaggleAdapter():
-    def __init__(self, competition_name: str):
+    def __init__(self, competition_name: str, deleteExisting = False):
         self.competition_name = competition_name
         self.main_dir = "./dataset"
         self.competition_dir = os.path.join(
             self.main_dir, self.competition_name)
 
         if os.path.exists(self.competition_dir):
-            try:
-                # shutil.rmtree(self.competition_dir)
-                print(
-                    f"Directory '{self.competition_dir}' and its contents removed successfully.")
-            except OSError as e:
-                print(f"Error: {self.competition_dir} : {e.strerror}")
+            print(f"Directory '{self.competition_dir}' exists.")
+            if (deleteExisting):
+                try:
+                    shutil.rmtree(self.competition_dir)
+                    print(
+                        f"Directory '{self.competition_dir}' and its contents removed successfully.")
+                except OSError as e:
+                    print(f"Error: {self.competition_dir} : {e.strerror}")
         else:
             print(f"Directory '{self.competition_dir}' does not exist.")
 

@@ -6,6 +6,7 @@ import os
 import sys
 from multiprocessing.pool import ThreadPool
 from multiprocessing import Lock
+import argparse
 
 
 def load_file(path):
@@ -44,7 +45,7 @@ def start_worker(final_results, competition_name: str, nb: str, wl=None):
         print(f"An unexpected error occurred while executing {nb}: {e}")
 
 
-def process_multithread(final_results, root_dir, notebook_dir, notebooks, multithread=True):
+def process_notebooks(final_results, root_dir, competition_name, notebook_dir, notebooks, multithread=True):
     os.chdir(notebook_dir)
 
     if multithread:
@@ -65,34 +66,68 @@ def save_output(competition_name, final_results, output_dir):
     print(f"Execution complete. Results saved to {output_file}")
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "-c", "--competition",
+        type=str,
+        required=True,
+        help="Name of the Kaggle competition"
+    )
+
+    parser.add_argument(
+        "-nb", "--notebooks",
+        type=int,
+        default=50,
+        help="Number of notebooks to process (default: 50)"
+    )
+
+    parser.add_argument(
+        "-m", "--multithreading",
+        action="store_true",
+        default=False,
+        help="Enable multithreading"
+    )
+
+    parser.add_argument(
+        "-o", "--overwrite",
+        action="store_true",
+        default=False,
+        help="Overwrite existing notebooks and inputs for this competition"
+    )
+
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    competition_name = sys.argv[1] if len(sys.argv) > 1 else None
+    args = parse_args()
 
-    if (competition_name is not None):
-        adapter = KaggleAdapter(competition_name)
+    adapter = KaggleAdapter(
+        competition_name=args.competition, deleteExisting=args.overwrite)
 
-        max_notebooks = int(sys.argv[2]) if len(sys.argv) > 2 else 50
-        page = 0
-        page_size = min(max_notebooks, 50)
-        multithread = True if len(
-            sys.argv) > 3 and sys.argv[3] == "multithread" else False
+    max_notebooks = args.notebooks
+    page = 0
+    page_size = min(max_notebooks, 50)
 
-        final_results = []
+    final_results = []
 
-        adapter.download_input_data()
-        root_dir = os.getcwd()
+    adapter.download_input_data()
+    root_dir = os.getcwd()
 
-        try:
-            while (len(final_results) < max_notebooks):
-                page += 1
-                notebooks = adapter.download_notebooks(page, page_size)
+    try:
+        while (len(final_results) < max_notebooks):
+            page += 1
+            notebooks = adapter.download_notebooks(page, page_size)
 
-                if (len(notebooks) == 0):
-                    break
+            if (len(notebooks) == 0):
+                break
 
-                process_multithread(
-                    final_results, root_dir, adapter.notebook_dir, notebooks, multithread=multithread)
-            save_output(competition_name, final_results, adapter.output_dir)
-        except Exception:
-            os.chdir(root_dir)
-            save_output(competition_name, final_results, adapter.output_dir)
+            process_notebooks(
+                final_results, root_dir, adapter.competition_name, adapter.notebook_dir, notebooks, multithread=args.multithreading)
+        save_output(adapter.competition_name,
+                    final_results, adapter.output_dir)
+    except Exception:
+        os.chdir(root_dir)
+        save_output(adapter.competition_name,
+                    final_results, adapter.output_dir)
