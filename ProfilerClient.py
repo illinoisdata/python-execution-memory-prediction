@@ -5,13 +5,16 @@ from IPython.core.inputtransformer2 import TransformerManager
 import re
 import ast
 import signal
+from utils import load_file
+
+parser_code = load_file("./TreeParser.py")
+disk_profiler_code = load_file("./DiskProfiler.py")
+load_profiler_code = "%load_ext memory_profiler" + "\n"
 
 PROFILER_DATA_STARTS = "PROFILER_DATA_STARTS"
 PROFILER_DATA_ENDS = "PROFILER_DATA_ENDS"
 PROFILER_PEAK_MEMORY = "peak memory:"
 PROFILER_MEMORY_INCREMENT = "increment:"
-
-TIMEOUT_SECONDS = 8 * 60
 
 
 def timeout_handler():
@@ -19,10 +22,11 @@ def timeout_handler():
 
 
 class ProfilerClient(NotebookClient):
-    def __init__(self, nb, competition_name, notebook_name, parser_code, disk_profiler_code, load_profiler_code):
+    def __init__(self, nb, competition_name, notebook_name, timeout):
         self.results = []
         self.imports = {}
         self.competition_name = competition_name
+        self.timeout = timeout
         self.notebook_name = notebook_name
         new_cells = [nbformat.v4.new_code_cell(parser_code), nbformat.v4.new_code_cell(
             disk_profiler_code), nbformat.v4.new_code_cell(load_profiler_code)]
@@ -41,7 +45,7 @@ diskProfiler.start()
 start = time.time()
         """
 
-    def get_exit_parse_code(self, code):
+    def get_exit_parse_code(self):
         return f"""
 end = time.time()
 diskProfiler.stop()
@@ -93,7 +97,7 @@ print("{PROFILER_DATA_ENDS}")
                     continue
                 try:
                     signal.signal(signal.SIGALRM, timeout_handler)
-                    signal.alarm(TIMEOUT_SECONDS)
+                    signal.alarm(self.timeout)
 
                     print(f"{self.notebook_name}: Executing cell {i}")
                     self.execute_cell(cell, i)
@@ -119,7 +123,7 @@ print("{PROFILER_DATA_ENDS}")
             cell['source'] = self.clean_cell_for_input(cell_code)
 
             cell['source'] = self.get_cell_profiler_code() + self.get_start_parse_code(
-                cell_code) + "\n" + cell['source'] + "\n" + self.get_exit_parse_code(cell_code)
+                cell_code) + "\n" + cell['source'] + "\n" + self.get_exit_parse_code()
 
         result = super().execute_cell(cell, cell_index, execution_count, store_history)
 

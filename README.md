@@ -31,6 +31,7 @@ docker run -v $(pwd):/workspace -w /workspace kaggle-profiler -c <competition-na
 -   `-nb or --notebooks`: Number of notebooks to process (default: 50). More notebooks are downloaded if the initial download does not meet this requirement.
 -   `-m or --multithreading`: Enable multithreading.
 -   `-o or --overwrite`: Overwrite existing notebooks and inputs for this competition.
+-   `-t or --timeout`: Timeout in seconds for each cell to complete execution (including AST parsing) after which it is stopped and further processing of the notebook is abandoned (default: 7 minutes).
 
 ### Paths
 
@@ -38,9 +39,9 @@ All downloads and outputs are stored in the `dataset` directory. Most paths on t
 
 -   Inputs are stored in `datasets/competition-name/input` directory.
 -   Notebooks are stored in `datasets/competition-name/notebooks` directory.
--   Outputs are stored in `datasets/competition-name/output/competition-name.json` file.
+-   Outputs are stored in `datasets/competition-name/output` directory.
 
 ### Miscellaneous
 
--   There is a time limit of 8 minutes for each cell to complete execution. At timeout, the current notebook is stopped and the next notebook begins execution.
+-   There is a time limit specified by the `--timeout` argument (defaults to 7 minutes) for each cell to complete execution. At timeout, the current notebook is stopped and the next notebook begins execution.
 -   On recieving a KeyboardInterrupt, all executions are aborted and the last set of results are stored in the output file.
