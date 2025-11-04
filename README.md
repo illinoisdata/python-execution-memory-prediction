@@ -37,3 +37,8 @@ All downloads and outputs are stored in the `dataset` directory. Most paths on t
 -   Inputs are stored in `datasets/competition-name/input` directory.
 -   Notebooks are stored in `datasets/competition-name/notebooks` directory.
 -   Outputs are stored in `datasets/competition-name/output/competition-name.json` file.
+
+### Miscellaneous
+
+-   There is a time limit of 8 minutes for each cell to complete execution. At timeout, the current notebook is stopped and the next notebook begins execution.
+-   On recieving a KeyboardInterrupt, all executions are aborted and the last set of results are stored in the output file.
