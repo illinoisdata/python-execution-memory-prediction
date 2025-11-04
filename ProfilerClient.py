@@ -12,10 +12,11 @@ PROFILER_MEMORY_INCREMENT = "increment:"
 
 
 class ProfilerClient(NotebookClient):
-    def __init__(self, nb, competition_name, parser_code, disk_profiler_code, load_profiler_code):
+    def __init__(self, nb, competition_name, notebook_name, parser_code, disk_profiler_code, load_profiler_code):
         self.results = []
         self.imports = {}
         self.competition_name = competition_name
+        self.notebook_name = notebook_name
         new_cells = [nbformat.v4.new_code_cell(parser_code), nbformat.v4.new_code_cell(
             disk_profiler_code), nbformat.v4.new_code_cell(load_profiler_code)]
         self.new_cell_count = len(new_cells)
@@ -83,10 +84,12 @@ print("{PROFILER_DATA_ENDS}")
             for i, cell in enumerate(self.nb.cells):
                 if cell.cell_type != "code":
                     continue
+                print(f"{self.notebook_name}: Executing cell {i}")
                 self.execute_cell(cell, i)
                 cell_count += 1
+                print(f"{self.notebook_name}: Complete cell {i}")
         print(
-            f"Executed {cell_count - self.new_cell_count} cells, results for {len(self.results)} cells")
+            f"{self.notebook_name}: Executed {cell_count - self.new_cell_count} cells, results for {len(self.results)} cells")
         return self.results
 
     def execute_cell(self, cell, cell_index, execution_count=None, store_history=True):

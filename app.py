@@ -22,7 +22,7 @@ load_profiler_code = "%load_ext memory_profiler" + "\n"
 def run_notebook_with_hooks(notebook, competition_name):
     nb = nbformat.read(notebook, as_version=4)
 
-    client = ProfilerClient(nb, competition_name, parser_code=parser_code,
+    client = ProfilerClient(nb, competition_name, notebook, parser_code=parser_code,
                             disk_profiler_code=disk_profiler_code, load_profiler_code=load_profiler_code)
     results = client.execute()
 
