@@ -28,7 +28,7 @@ class ProfilerClient(NotebookClient):
 
     def get_start_parse_code(self, code):
         return f"""
-parser.start(\"\"\"{self.clean_cell_for_ast(code)}\"\"\")
+parser.start({self.clean_cell_for_ast(code)})
 diskProfiler.start()
 start = time.time()
         """
@@ -75,7 +75,7 @@ print("{PROFILER_DATA_ENDS}")
                 continue
             cleaned_lines.append(line)
 
-        return "\n".join(cleaned_lines)
+        return repr("\n".join(cleaned_lines))
 
     def execute(self):
         cell_count = 0
