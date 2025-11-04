@@ -77,6 +77,20 @@ def parse_args():
     )
 
     parser.add_argument(
+        "-p", "--page",
+        type=int,
+        default=1,
+        help="Page number (1-indexed) to fetch (default: 1)"
+    )
+
+    parser.add_argument(
+        "-ps", "--page-size",
+        type=int,
+        default=50,
+        help="Number of notebooks to fetch in each page (default: 50)"
+    )
+
+    parser.add_argument(
         "-nb", "--notebooks",
         type=int,
         default=50,
@@ -107,8 +121,8 @@ if __name__ == "__main__":
         competition_name=args.competition, deleteExisting=args.overwrite)
 
     max_notebooks = args.notebooks
-    page = 0
-    page_size = min(max_notebooks, 50)
+    page = args.page - 1
+    page_size = min(max_notebooks, args.page_size)
 
     final_results = []
 

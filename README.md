@@ -20,12 +20,14 @@ docker build -t kaggle-profiler .
 
 ```bash
 cd python-execution-dataset
-docker run -v $(pwd):/workspace -w /workspace kaggle-profiler -c <competition-name> -nb <max-notebooks>
+docker run -v $(pwd):/workspace -w /workspace kaggle-profiler -c <competition-name>
 ```
 
 **Command line arguments**
 
 -   `-c or --competition` **(Required)**: Name of the Kaggle competition.
+-   `-p or --page`: Page number (1-indexed) to fetch (default: 1).
+-   `-ps or --page-size`: Number of notebooks to fetch in each page (default: 50). Minimum of this value and number of notebooks to process.
 -   `-nb or --notebooks`: Number of notebooks to process (default: 50). More notebooks are downloaded if the initial download does not meet this requirement.
 -   `-m or --multithreading`: Enable multithreading.
 -   `-o or --overwrite`: Overwrite existing notebooks and inputs for this competition.
