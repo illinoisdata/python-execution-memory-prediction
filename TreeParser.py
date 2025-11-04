@@ -1,9 +1,6 @@
 import builtins
 import ast
 import sys
-import io
-import tokenize
-import re
 from IPython import get_ipython
 
 
