@@ -30,7 +30,7 @@ class ProfilerClient(NotebookClient):
 
     def get_start_parse_code(self, code):
         return f"""
-parser.start(\"\"\"{self.clean_cell_for_ast(code)}\"\"\")
+parser.start({self.clean_cell_for_ast(code)})
 diskProfiler.start()
 start = time.time()
         """
@@ -65,6 +65,7 @@ print("{PROFILER_DATA_ENDS}")
             return code
 
     def clean_cell_for_ast(self, code):
+        code = code.replace('"""', '\"\"\"')
         lines = code.splitlines()
         cleaned_lines = []
 
@@ -76,19 +77,7 @@ print("{PROFILER_DATA_ENDS}")
                 continue
             cleaned_lines.append(line)
 
-        code_no_magics = "\n".join(cleaned_lines)
-
-        io_obj = io.StringIO(code_no_magics)
-        output_tokens = []
-        for tok_type, tok_string, _, _, _ in tokenize.generate_tokens(io_obj.readline):
-            if tok_type == tokenize.COMMENT:
-                continue
-            output_tokens.append(tok_string)
-
-        clean_code = "".join(output_tokens)
-        clean_code = re.sub(r'\n\s*\n+', '\n', clean_code).strip()
-
-        return clean_code
+        return "\n".join(cleaned_lines)
 
     def execute(self):
         cell_count = 0
