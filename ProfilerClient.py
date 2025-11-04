@@ -4,11 +4,18 @@ from nbclient.exceptions import CellExecutionError
 from IPython.core.inputtransformer2 import TransformerManager
 import re
 import ast
+import signal
 
 PROFILER_DATA_STARTS = "PROFILER_DATA_STARTS"
 PROFILER_DATA_ENDS = "PROFILER_DATA_ENDS"
 PROFILER_PEAK_MEMORY = "peak memory:"
 PROFILER_MEMORY_INCREMENT = "increment:"
+
+TIMEOUT_SECONDS = 8 * 60
+
+
+def timeout_handler():
+    raise Exception
 
 
 class ProfilerClient(NotebookClient):
@@ -85,6 +92,9 @@ print("{PROFILER_DATA_ENDS}")
                 if cell.cell_type != "code":
                     continue
                 try:
+                    signal.signal(signal.SIGALRM, timeout_handler)
+                    signal.alarm(TIMEOUT_SECONDS)
+
                     print(f"{self.notebook_name}: Executing cell {i}")
                     self.execute_cell(cell, i)
                     cell_count += 1
@@ -96,6 +106,8 @@ print("{PROFILER_DATA_ENDS}")
                     print(e)
                     print(f"{self.notebook_name}: Error cell {i}")
                     break
+                finally:
+                    signal.alarm(0)
         print(
             f"{self.notebook_name}: Total {len(self.nb.cells)} cells, executed {cell_count - self.new_cell_count} cells, results for {len(self.results)} cells")
         return self.results

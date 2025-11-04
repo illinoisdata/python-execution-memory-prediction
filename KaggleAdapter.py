@@ -22,7 +22,7 @@ class KaggleAdapter():
 
         if os.path.exists(self.competition_dir):
             try:
-                shutil.rmtree(self.competition_dir)
+                # shutil.rmtree(self.competition_dir)
                 print(
                     f"Directory '{self.competition_dir}' and its contents removed successfully.")
             except OSError as e:
