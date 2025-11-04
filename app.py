@@ -44,8 +44,7 @@ def start_worker(final_results, competition_name: str, nb: str, wl=None):
         print(f"An unexpected error occurred while executing {nb}: {e}")
 
 
-def process_multithread(final_results, notebook_dir, notebooks, multithread=True):
-    root_dir = os.getcwd()
+def process_multithread(final_results, root_dir, notebook_dir, notebooks, multithread=True):
     os.chdir(notebook_dir)
 
     if multithread:
@@ -55,7 +54,10 @@ def process_multithread(final_results, notebook_dir, notebooks, multithread=True
                 [final_results, competition_name, nb, wl]) for nb in notebooks])
     else:
         for nb in notebooks:
-            start_worker(final_results, competition_name, nb)
+            try:
+                start_worker(final_results, competition_name, nb)
+            except KeyboardInterrupt:
+                continue
     os.chdir(root_dir)
 
 
@@ -81,6 +83,7 @@ if __name__ == "__main__":
         final_results = []
 
         adapter.download_input_data()
+        root_dir = os.getcwd()
 
         try:
             while (len(final_results) < max_notebooks):
@@ -91,7 +94,8 @@ if __name__ == "__main__":
                     break
 
                 process_multithread(
-                    final_results, adapter.notebook_dir, notebooks, multithread=multithread)
+                    final_results, root_dir, adapter.notebook_dir, notebooks, multithread=multithread)
             save_output(competition_name, final_results, adapter.output_dir)
         except KeyboardInterrupt:
+            os.chdir(root_dir)
             save_output(competition_name, final_results, adapter.output_dir)
