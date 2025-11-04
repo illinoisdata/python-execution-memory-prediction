@@ -127,6 +127,10 @@ if __name__ == "__main__":
                 final_results, root_dir, adapter.competition_name, adapter.notebook_dir, notebooks, multithread=args.multithreading)
         save_output(adapter.competition_name,
                     final_results, adapter.output_dir)
+    except KeyboardInterrupt:
+        os.chdir(root_dir)
+        save_output(adapter.competition_name,
+                    final_results, adapter.output_dir)
     except Exception:
         os.chdir(root_dir)
         save_output(adapter.competition_name,

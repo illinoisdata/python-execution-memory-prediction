@@ -99,9 +99,6 @@ print("{PROFILER_DATA_ENDS}")
                     self.execute_cell(cell, i)
                     cell_count += 1
                     print(f"{self.notebook_name}: Complete cell {i}")
-                except KeyboardInterrupt:
-                    print(f"{self.notebook_name}: KeyboardInterrupt at cell {i}")
-                    break
                 except Exception as e:
                     print(e)
                     print(f"{self.notebook_name}: Error cell {i}")
