@@ -84,12 +84,20 @@ print("{PROFILER_DATA_ENDS}")
             for i, cell in enumerate(self.nb.cells):
                 if cell.cell_type != "code":
                     continue
-                print(f"{self.notebook_name}: Executing cell {i}")
-                self.execute_cell(cell, i)
-                cell_count += 1
-                print(f"{self.notebook_name}: Complete cell {i}")
+                try:
+                    print(f"{self.notebook_name}: Executing cell {i}")
+                    self.execute_cell(cell, i)
+                    cell_count += 1
+                    print(f"{self.notebook_name}: Complete cell {i}")
+                except KeyboardInterrupt:
+                    print(f"{self.notebook_name}: KeyboardInterrupt at cell {i}")
+                    break
+                except Exception as e:
+                    print(e)
+                    print(f"{self.notebook_name}: Error cell {i}")
+                    break
         print(
-            f"{self.notebook_name}: Executed {cell_count - self.new_cell_count} cells, results for {len(self.results)} cells")
+            f"{self.notebook_name}: Total {len(self.nb.cells)} cells, executed {cell_count - self.new_cell_count} cells, results for {len(self.results)} cells")
         return self.results
 
     def execute_cell(self, cell, cell_index, execution_count=None, store_history=True):

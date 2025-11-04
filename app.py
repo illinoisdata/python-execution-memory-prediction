@@ -31,17 +31,14 @@ def run_notebook_with_hooks(notebook, competition_name):
 
 def start_worker(final_results, competition_name: str, nb: str, wl=None):
     print(f"Running {competition_name}/{nb}")
+    results = run_notebook_with_hooks(nb, competition_name)
+    if wl is not None:
+        wl.acquire()
     try:
-        results = run_notebook_with_hooks(nb, competition_name)
+        final_results.extend(results)
+    finally:
         if wl is not None:
-            wl.acquire()
-        try:
-            final_results.extend(results)
-        finally:
-            if wl is not None:
-                wl.release()
-    except Exception as e:
-        print(f"An unexpected error occurred while executing {nb}: {e}")
+            wl.release()
 
 
 def process_multithread(final_results, root_dir, notebook_dir, notebooks, multithread=True):
@@ -54,10 +51,7 @@ def process_multithread(final_results, root_dir, notebook_dir, notebooks, multit
                 [final_results, competition_name, nb, wl]) for nb in notebooks])
     else:
         for nb in notebooks:
-            try:
-                start_worker(final_results, competition_name, nb)
-            except KeyboardInterrupt:
-                continue
+            start_worker(final_results, competition_name, nb)
     os.chdir(root_dir)
 
 
