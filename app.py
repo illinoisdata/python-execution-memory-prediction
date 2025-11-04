@@ -93,6 +93,6 @@ if __name__ == "__main__":
                 process_multithread(
                     final_results, root_dir, adapter.notebook_dir, notebooks, multithread=multithread)
             save_output(competition_name, final_results, adapter.output_dir)
-        except KeyboardInterrupt:
+        except Exception:
             os.chdir(root_dir)
             save_output(competition_name, final_results, adapter.output_dir)
