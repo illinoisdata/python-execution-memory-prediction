@@ -18,10 +18,23 @@ docker build -t kaggle-profiler .
 
 ### Running the image
 
+**As root**
+All generated files are owned by `root` user and cannot be written or deleted outside the Docker container.
+
 ```bash
 cd python-execution-dataset
 docker run -v $(pwd):/workspace -w /workspace kaggle-profiler -c <competition-name>
 ```
+
+**As user**
+To own and allow editing of files that were created inside of the Docker container, pass the current user to the `docker run` command.
+
+```bash
+cd python-execution-dataset
+docker run -u $(id -u):$(id -g) -v $(pwd):/workspace -w /workspace kaggle-profiler -c <competition-name>
+```
+
+dataset/nlp-getting-started/notebooks/ettin-encoder-1b/pytorch_model.bin
 
 **Command line arguments**
 
