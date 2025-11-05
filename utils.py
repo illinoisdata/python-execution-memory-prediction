@@ -47,13 +47,6 @@ def parse_args():
     )
 
     parser.add_argument(
-        "-nb", "--notebooks",
-        type=int,
-        default=50,
-        help="Number of notebooks to process (default: 50)"
-    )
-
-    parser.add_argument(
         "-m", "--multithreading",
         action="store_true",
         default=False,

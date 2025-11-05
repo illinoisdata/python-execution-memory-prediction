@@ -44,9 +44,10 @@ class KaggleAdapter():
     def download_input_data(self):
         zip_file_path = os.path.join(
             self.input_dir, f"{self.competition_name}.zip")
+
+        api.competition_download_files(competition=self.competition_name, path=self.input_dir)
+
         try:
-            api.competition_download_files(
-                competition=self.competition_name, path=self.input_dir)
             with zipfile.ZipFile(zip_file_path, 'r') as zf:
                 zf.extractall(self.input_dir)
             os.remove(zip_file_path)
