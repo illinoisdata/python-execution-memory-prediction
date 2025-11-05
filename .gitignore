@@ -23,6 +23,6 @@ venv.bak/
 # MacOS
 .DS_Store
 
-dataset/**/notebooks
+core
 dataset/**/input
-
+*.bin
