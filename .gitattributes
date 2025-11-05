@@ -1,1 +1,1 @@
-dataset/notebooks/*.ipynb linguist-vendored
+dataset/**/notebooks/*.ipynb linguist-vendored

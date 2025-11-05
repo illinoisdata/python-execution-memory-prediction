@@ -23,4 +23,6 @@ venv.bak/
 # MacOS
 .DS_Store
 
-dataset
+dataset/**/notebooks
+dataset/**/input
+

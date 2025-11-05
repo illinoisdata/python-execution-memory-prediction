@@ -1,0 +1,2386 @@
+[
+  {
+    "code": "import numpy\nimport pandas\nimport seaborn\nimport os\nfor dirname, str, filenames in os.walk('/kaggle/input'):\n    for filename in filenames:\n        print(os.path.join(dirname, filename))",
+    "actual_code": "# This Python 3 environment comes with many helpful analytics libraries installed\n# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python\n# For example, here's several helpful packages to load\n\nimport numpy as np # linear algebra\nimport pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)\nimport seaborn as sns\n# Input data files are available in the read-only \"../input/\" directory\n# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory\n\nimport os\nfor dirname, _, filenames in os.walk('/kaggle/input'):\n    for filename in filenames:\n        print(os.path.join(dirname, filename))\n\n# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using \"Save & Run All\" \n# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session",
+    "ip_variables": {
+      "dirname": null,
+      "_": {
+        "id": "str",
+        "shape": 0,
+        "size": 49,
+        "sliced": false
+      },
+      "filenames": null,
+      "filename": null
+    },
+    "op_variables": {
+      "dirname": null,
+      "_": {
+        "id": "str",
+        "shape": 0,
+        "size": 49,
+        "sliced": false
+      },
+      "filenames": null,
+      "filename": null
+    },
+    "imports": {
+      "os": "os"
+    },
+    "execution_time": 1.5938427448272705,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 266.67678,
+      "memory_increment": 132.76144
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/breast-cancer-detection/train.csv')",
+    "actual_code": "X_raw = pd.read_csv('/kaggle/input/breast-cancer-detection/train.csv')",
+    "ip_variables": {
+      "X_raw": null
+    },
+    "op_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.009606599807739258,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 268.52302,
+      "memory_increment": 1.51056
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['diagnosis'].value_counts()",
+    "actual_code": "X_raw['diagnosis'].value_counts()",
+    "ip_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0014133453369140625,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 268.98458,
+      "memory_increment": 0.46155999999999997
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.describe()",
+    "actual_code": "X_raw.describe()",
+    "ip_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.030333280563354492,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 268.98458,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.core.frame.DataFrame.drop('Unnamed: 32', axis=1)\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.drop('id', axis=1)",
+    "actual_code": "X_raw = X_raw.drop('Unnamed: 32', axis=1)\nX_raw = X_raw.drop('id', axis=1)",
+    "ip_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          31
+        ],
+        "size": 118768,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0019683837890625,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 267.79920999999996,
+      "memory_increment": 0.32519
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.dtypes",
+    "actual_code": "X_raw.dtypes",
+    "ip_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          31
+        ],
+        "size": 118768,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          31
+        ],
+        "size": 118768,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.00016069412231445312,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 267.79920999999996,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['diagnosis'].unique()",
+    "actual_code": "X_raw['diagnosis'].unique()",
+    "ip_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          31
+        ],
+        "size": 118768,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          31
+        ],
+        "size": 118768,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.00030303001403808594,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 267.93557999999996,
+      "memory_increment": 0.13637
+    }
+  },
+  {
+    "code": "from sklearn.preprocessing import OrdinalEncoder\nsklearn.preprocessing._encoders.OrdinalEncoder = sklearn.preprocessing.OrdinalEncoder()\npandas.core.frame.DataFrame['diagnosis_e'] = sklearn.preprocessing._encoders.OrdinalEncoder.fit_transform(pandas.core.frame.DataFrame[['diagnosis']])\npandas.core.frame.DataFrame[['diagnosis', 'diagnosis_e']].head()",
+    "actual_code": "from sklearn.preprocessing import  OrdinalEncoder\nenc = OrdinalEncoder()\nX_raw['diagnosis_e'] = enc.fit_transform(X_raw[['diagnosis']])\nX_raw[['diagnosis', 'diagnosis_e']].head()",
+    "ip_variables": {
+      "enc": null,
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          31
+        ],
+        "size": 118768,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "enc": {
+        "id": "sklearn.preprocessing._encoders.OrdinalEncoder",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "OrdinalEncoder": "sklearn.preprocessing.OrdinalEncoder"
+    },
+    "execution_time": 0.03857278823852539,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 270.69445,
+      "memory_increment": 2.74838
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.core.frame.DataFrame.select_dtypes(include=['float64', 'int64']).corr().round(2)\nseaborn.heatmap(pandas.core.frame.DataFrame, linewidth=0.5)",
+    "actual_code": "corr = X_raw.select_dtypes(include=['float64', 'int64']).corr().round(2)\n#px.imshow(corr, text_auto=True).show() #plotly not showing image on Kaggle\n#So using seaborn\nsns.heatmap(corr,  linewidth=.5)",
+    "ip_variables": {
+      "corr": null,
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "corr": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          31,
+          31
+        ],
+        "size": 10995,
+        "sliced": false
+      },
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "sns": "seaborn"
+    },
+    "execution_time": 0.11675786972045898,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 275.38347999999996,
+      "memory_increment": 4.67854
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.core.frame.DataFrame.drop(['diagnosis', 'diagnosis_e'], axis=1)\npandas.core.series.Series = pandas.core.frame.DataFrame['diagnosis']",
+    "actual_code": "X_train = X_raw.drop(['diagnosis', 'diagnosis_e'], axis=1)\ny_train = X_raw['diagnosis']",
+    "ip_variables": {
+      "X_train": null,
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": true
+      },
+      "y_train": null
+    },
+    "op_variables": {
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          30
+        ],
+        "size": 95684,
+        "sliced": false
+      },
+      "X_raw": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": true
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 23248,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0009725093841552734,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 279.3487,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "from sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import cross_validate\nsklearn.ensemble._forest.RandomForestClassifier = sklearn.ensemble.RandomForestClassifier(max_depth=2, random_state=42)\ndict = sklearn.model_selection.cross_validate(sklearn.ensemble._forest.RandomForestClassifier, pandas.core.frame.DataFrame, pandas.core.series.Series, cv=4)\ndict",
+    "actual_code": "from sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import cross_validate\nclf = RandomForestClassifier(max_depth=2, random_state=42)\ncv_results = cross_validate(clf, X_train, y_train, cv=4)\ncv_results",
+    "ip_variables": {
+      "clf": null,
+      "cv_results": null,
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          30
+        ],
+        "size": 95684,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 23248,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "clf": {
+        "id": "sklearn.ensemble._forest.RandomForestClassifier",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "cv_results": {
+        "id": "dict",
+        "shape": 3,
+        "size": 184,
+        "sliced": false
+      },
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          30
+        ],
+        "size": 95684,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 23248,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "RandomForestClassifier": "sklearn.ensemble.RandomForestClassifier",
+      "cross_validate": "sklearn.model_selection.cross_validate"
+    },
+    "execution_time": 0.6070857048034668,
+    "disk_usage": {
+      "peak_disk": 1510135.015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 290.76182,
+      "memory_increment": 11.33969
+    }
+  },
+  {
+    "code": "from sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import AdaBoostClassifier\nfrom sklearn.model_selection import GridSearchCV\ndict = {'n_estimators': [150, 200, 300], 'learning_rate': [2, 1, 0.5], 'estimator__max_depth': [None, 1, 2, 3]}\nsklearn.tree._classes.DecisionTreeClassifier = sklearn.tree.DecisionTreeClassifier(max_depth=2, random_state=42)\nsklearn.ensemble._weight_boosting.AdaBoostClassifier = sklearn.ensemble.AdaBoostClassifier(estimator=sklearn.tree._classes.DecisionTreeClassifier, n_estimators=50, learning_rate=0.5, random_state=42)\nsklearn.model_selection._search.GridSearchCV = sklearn.model_selection.GridSearchCV(sklearn.ensemble._weight_boosting.AdaBoostClassifier, dict, cv=4, scoring='accuracy')\nsklearn.model_selection._search.GridSearchCV.fit(pandas.core.frame.DataFrame, pandas.core.series.Series)\nprint('Best Parameters:', sklearn.model_selection._search.GridSearchCV.best_params_)\nprint('Best Score:', sklearn.model_selection._search.GridSearchCV.best_score_)\nsklearn.ensemble._weight_boosting.AdaBoostClassifier = sklearn.model_selection._search.GridSearchCV.best_estimator_\ndict = sklearn.model_selection.cross_validate(sklearn.ensemble._weight_boosting.AdaBoostClassifier, pandas.core.frame.DataFrame, pandas.core.series.Series, cv=4)\ndict",
+    "actual_code": "from sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import AdaBoostClassifier\nfrom sklearn.model_selection import GridSearchCV\nparam_grid = {\n    'n_estimators': [   150, 200, 300],\n    'learning_rate': [2, 1, 0.5 ],\n    'estimator__max_depth': [None, 1,  2, 3]\n   # 'base_estimator__min_samples_split': [2, 5, 10]\n}\ntree_clf = DecisionTreeClassifier(max_depth=2, random_state=42)\nada_clf = AdaBoostClassifier(estimator=tree_clf, n_estimators=50, learning_rate=0.5, random_state=42)\ngrid_search = GridSearchCV(ada_clf, param_grid, cv=4, scoring='accuracy')\ngrid_search.fit(X_train, y_train)\nprint(\"Best Parameters:\", grid_search.best_params_)\nprint(\"Best Score:\", grid_search.best_score_)\nada_clf = grid_search.best_estimator_\ncv_results = cross_validate(ada_clf, X_train, y_train, cv=4)\ncv_results",
+    "ip_variables": {
+      "param_grid": null,
+      "tree_clf": null,
+      "ada_clf": null,
+      "grid_search": null,
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          30
+        ],
+        "size": 95684,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 23248,
+        "sliced": false
+      },
+      "cv_results": {
+        "id": "dict",
+        "shape": 3,
+        "size": 184,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "param_grid": {
+        "id": "dict",
+        "shape": 3,
+        "size": 184,
+        "sliced": false
+      },
+      "tree_clf": {
+        "id": "sklearn.tree._classes.DecisionTreeClassifier",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "ada_clf": {
+        "id": "sklearn.ensemble._weight_boosting.AdaBoostClassifier",
+        "shape": 150,
+        "size": 56,
+        "sliced": false
+      },
+      "grid_search": {
+        "id": "sklearn.model_selection._search.GridSearchCV",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          30
+        ],
+        "size": 95684,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 23248,
+        "sliced": false
+      },
+      "cv_results": {
+        "id": "dict",
+        "shape": 3,
+        "size": 184,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "DecisionTreeClassifier": "sklearn.tree.DecisionTreeClassifier",
+      "AdaBoostClassifier": "sklearn.ensemble.AdaBoostClassifier",
+      "GridSearchCV": "sklearn.model_selection.GridSearchCV",
+      "cross_validate": "sklearn.model_selection.cross_validate"
+    },
+    "execution_time": 66.4669246673584,
+    "disk_usage": {
+      "peak_disk": 1510135.03515625,
+      "increment": 0.01953125
+    },
+    "memory_usage": {
+      "peak_memory": 291.07652,
+      "memory_increment": 0.3147
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/breast-cancer-detection/test.csv')\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.drop('Unnamed: 32', axis=1)\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.drop('id', axis=1)",
+    "actual_code": "X_test_full = pd.read_csv('/kaggle/input/breast-cancer-detection/test.csv')\nX_test = X_test_full.drop('Unnamed: 32', axis=1)\nX_test = X_test.drop('id', axis=1)",
+    "ip_variables": {
+      "X_test_full": null,
+      "X_test": null
+    },
+    "op_variables": {
+      "X_test_full": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      },
+      "X_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          30
+        ],
+        "size": 41204,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.00539088249206543,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 291.29681,
+      "memory_increment": 0.22028999999999999
+    }
+  },
+  {
+    "code": "import pandas\nimport numpy\nimport matplotlib.pyplot\nget_ipython().run_line_magic('matplotlib', 'inline')\nimport seaborn\nimport warnings\nwarnings.filterwarnings('ignore')\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.svm import SVC\nfrom sklearn.neighbors import KNeighborsClassifier",
+    "actual_code": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nget_ipython().run_line_magic('matplotlib', 'inline')\nimport seaborn as sns\nimport warnings\nwarnings.filterwarnings('ignore')\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.svm import SVC\nfrom sklearn.neighbors import KNeighborsClassifier",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {
+      "warnings": "warnings"
+    },
+    "execution_time": 0.7536046504974365,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 270.63151,
+      "memory_increment": 144.47876999999997
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/breast-cancer-detection/train.csv')\npandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/breast-cancer-detection/test.csv')",
+    "actual_code": "train = pd.read_csv('/kaggle/input/breast-cancer-detection/train.csv')\ntest = pd.read_csv('/kaggle/input/breast-cancer-detection/test.csv')",
+    "ip_variables": {
+      "train": null,
+      "test": null
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.009902238845825195,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 272.86588,
+      "memory_increment": 1.94065
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.head(5)",
+    "actual_code": "train.head(5)",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0002899169921875,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 273.14910999999995,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.info()",
+    "actual_code": "train.info()",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.006134748458862305,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 274.1037,
+      "memory_increment": 0.9440999999999999
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['diagnosis'].value_counts()",
+    "actual_code": "train['diagnosis'].value_counts()",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0006136894226074219,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 274.14565999999996,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.describe()",
+    "actual_code": "train.describe()",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.029429912567138672,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 274.71211999999997,
+      "memory_increment": 0.56646
+    }
+  },
+  {
+    "code": "pandas.DataFrame(pandas.core.frame.DataFrame.isnull().sum().sort_values(ascending=False)).head(3)",
+    "actual_code": "pd.DataFrame(train.isnull().sum().sort_values(ascending=False)).head(3)",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.0013518333435058594,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 274.71211999999997,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.drop('Unnamed: 32', axis=1, inplace=True)\npandas.core.frame.DataFrame.drop('Unnamed: 32', axis=1, inplace=True)",
+    "actual_code": "train.drop('Unnamed: 32',axis = 1,inplace=True)\ntest.drop('Unnamed: 32',axis = 1,inplace=True)",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          31
+        ],
+        "size": 42572,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0017931461334228516,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 274.98485999999997,
+      "memory_increment": 0.26225
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.info()",
+    "actual_code": "test.info()",
+    "ip_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          31
+        ],
+        "size": 42572,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          31
+        ],
+        "size": 42572,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.004733562469482422,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 274.98485999999997,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "",
+    "actual_code": "#columns = train.columns\n#columns.tolist\n#for i in range(len(columns)):\n#    if columns[i] != 'diagnosis' and columns[i] != 'id':\n#       sns.histplot(data = train, x=columns[i],hue='diagnosis',kde=True, multiple='stack')\n#      plt.show()\n#     print(columns[i])",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.24249267578125e-05,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 275.00584000000003,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.indexes.base.Index = pandas.core.frame.DataFrame.columns\npandas.core.indexes.base.Index.tolist\nfor int in range(len(pandas.core.indexes.base.Index)):\n    if pandas.core.indexes.base.Index[i] != 'diagnosis' and pandas.core.indexes.base.Index[i] != 'id':\n        seaborn.catplot(data=pandas.core.frame.DataFrame, x=pandas.core.indexes.base.Index[i], hue='diagnosis', height=3, aspect=1)",
+    "actual_code": "columns = train.columns\ncolumns.tolist\nfor i in range(len(columns)):\n    if columns[i] != 'diagnosis' and columns[i] != 'id':\n       sns.catplot(data = train, x=columns[i] ,hue= 'diagnosis',height=3, aspect=1)",
+    "ip_variables": {
+      "columns": null,
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      },
+      "i": null
+    },
+    "op_variables": {
+      "columns": {
+        "id": "pandas.core.indexes.base.Index",
+        "shape": [
+          32
+        ],
+        "size": 3364,
+        "sliced": true
+      },
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      },
+      "i": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "sns": "seaborn"
+    },
+    "execution_time": 3.6937255859375,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 326.73203,
+      "memory_increment": 51.71569999999999
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.columns",
+    "actual_code": "train.columns",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 3.266334533691406e-05,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 332.37565,
+      "memory_increment": 0.03147
+    }
+  },
+  {
+    "code": "list = ['smoothness_mean', 'symmetry_worst', 'symmetry_mean', 'fractal_dimension_se', 'smoothness_se', 'fractal_dimension_worst', 'fractal_dimension_mean', 'texture_se', 'compactness_se', 'smoothness_worst']",
+    "actual_code": "column = ['smoothness_mean','symmetry_worst','symmetry_mean','fractal_dimension_se','smoothness_se'\n          ,'fractal_dimension_worst','fractal_dimension_mean','texture_se','compactness_se','smoothness_worst']",
+    "ip_variables": {
+      "column": null
+    },
+    "op_variables": {
+      "column": {
+        "id": "list",
+        "shape": 10,
+        "size": 136,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 3.528594970703125e-05,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.0223,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.drop(columns=list, axis=1, inplace=True)\npandas.core.frame.DataFrame.drop(columns=list, axis=1, inplace=True)",
+    "actual_code": "train.drop(columns = column, axis = 1 , inplace = True)\ntest.drop(columns = column , axis = 1, inplace = True)",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      },
+      "column": {
+        "id": "list",
+        "shape": 10,
+        "size": 136,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          31
+        ],
+        "size": 42572,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          22
+        ],
+        "size": 90112,
+        "sliced": false
+      },
+      "column": {
+        "id": "list",
+        "shape": 10,
+        "size": 136,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          21
+        ],
+        "size": 28892,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0018062591552734375,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.0223,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.columns",
+    "actual_code": "test.columns",
+    "ip_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          21
+        ],
+        "size": 28892,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          21
+        ],
+        "size": 28892,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 3.695487976074219e-05,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.0223,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.series.Series = pandas.core.frame.DataFrame['id']",
+    "actual_code": "ids = test['id']",
+    "ip_variables": {
+      "ids": null,
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          21
+        ],
+        "size": 28892,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "ids": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          171
+        ],
+        "size": 1532,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          21
+        ],
+        "size": 28892,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.00011897087097167969,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.0223,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.drop('id', axis=1, inplace=True)\npandas.core.frame.DataFrame.drop('id', axis=1, inplace=True)",
+    "actual_code": "train.drop('id', axis = 1 , inplace = True)\ntest.drop('id', axis = 1 , inplace = True)",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          22
+        ],
+        "size": 90112,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          21
+        ],
+        "size": 28892,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          21
+        ],
+        "size": 86928,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          20
+        ],
+        "size": 27524,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0016109943389892578,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.0223,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['diagnosis'] = pandas.core.frame.DataFrame['diagnosis'].replace({'M': 1, 'B': 0})",
+    "actual_code": "train['diagnosis'] = train['diagnosis'].replace({'M':1,'B':0})",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          21
+        ],
+        "size": 86928,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          21
+        ],
+        "size": 67028,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0013473033905029297,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.07475,
+      "memory_increment": 0.05245
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.core.frame.DataFrame.drop('diagnosis', axis=1)\npandas.core.series.Series = pandas.core.frame.DataFrame['diagnosis']",
+    "actual_code": "X = train.drop('diagnosis',axis = 1)\ny = train['diagnosis']",
+    "ip_variables": {
+      "X": null,
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          21
+        ],
+        "size": 67028,
+        "sliced": true
+      },
+      "y": null
+    },
+    "op_variables": {
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          20
+        ],
+        "size": 63844,
+        "sliced": false
+      },
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          21
+        ],
+        "size": 67028,
+        "sliced": true
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 3348,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0008416175842285156,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.07475,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.info()",
+    "actual_code": "train.info()",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          21
+        ],
+        "size": 67028,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          21
+        ],
+        "size": 67028,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.004789113998413086,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.1272,
+      "memory_increment": 0.05245
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame, pandas.core.frame.DataFrame, pandas.core.series.Series, pandas.core.series.Series = sklearn.model_selection.train_test_split(pandas.core.frame.DataFrame, pandas.core.series.Series, test_size=0.1, random_state=23, stratify=pandas.core.series.Series)",
+    "actual_code": "X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.1,random_state=23,stratify=y)",
+    "ip_variables": {
+      "X_train": null,
+      "X_test": null,
+      "y_train": null,
+      "y_test": null,
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          20
+        ],
+        "size": 63844,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 3348,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          358,
+          20
+        ],
+        "size": 60176,
+        "sliced": false
+      },
+      "X_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          40,
+          20
+        ],
+        "size": 6752,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          358
+        ],
+        "size": 5760,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          40
+        ],
+        "size": 672,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          20
+        ],
+        "size": 63844,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 3348,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "train_test_split": "sklearn.model_selection.train_test_split"
+    },
+    "execution_time": 0.002920389175415039,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.21112,
+      "memory_increment": 0.08392
+    }
+  },
+  {
+    "code": "def scalling(df):\n    scalerstandard = sklearn.preprocessing.StandardScaler()\n    x1 = scalerstandard.fit_transform(df)\n    x2 = pandas.DataFrame(x1, columns=df.columns)\n    return x2",
+    "actual_code": "def scalling(df) :\n    scalerstandard = StandardScaler()\n    x1 = scalerstandard.fit_transform(df)\n    x2 = pd.DataFrame(x1,columns = df.columns)\n    return x2",
+    "ip_variables": {
+      "scalerstandard": null,
+      "x1": null,
+      "df": null,
+      "x2": null
+    },
+    "op_variables": {
+      "scalerstandard": null,
+      "x1": null,
+      "df": null,
+      "x2": null
+    },
+    "imports": {
+      "StandardScaler": "sklearn.preprocessing.StandardScaler",
+      "pd": "pandas"
+    },
+    "execution_time": 7.152557373046875e-06,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.21112,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = scalling(pandas.core.frame.DataFrame)",
+    "actual_code": "X_train = scalling(X_train)",
+    "ip_variables": {
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          358,
+          20
+        ],
+        "size": 60176,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          358,
+          20
+        ],
+        "size": 57444,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0035729408264160156,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.21112,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = scalling(pandas.core.frame.DataFrame)",
+    "actual_code": "X_test = scalling(X_test)",
+    "ip_variables": {
+      "X_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          40,
+          20
+        ],
+        "size": 6752,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "X_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          40,
+          20
+        ],
+        "size": 6564,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0031991004943847656,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 328.21112,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "sklearn.neighbors._classification.KNeighborsClassifier = sklearn.neighbors.KNeighborsClassifier(n_neighbors=5, metric='cosine')\nsklearn.neighbors._classification.KNeighborsClassifier.fit(pandas.core.frame.DataFrame, pandas.core.series.Series)\nsklearn.neighbors._classification.KNeighborsClassifier.score(pandas.core.frame.DataFrame, pandas.core.series.Series)",
+    "actual_code": "KNN = KNeighborsClassifier(n_neighbors=5,metric='cosine')\nKNN.fit(X_train,y_train)\nKNN.score(X_test,y_test)",
+    "ip_variables": {
+      "KNN": null,
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          358,
+          20
+        ],
+        "size": 57444,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          358
+        ],
+        "size": 5760,
+        "sliced": false
+      },
+      "X_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          40,
+          20
+        ],
+        "size": 6564,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          40
+        ],
+        "size": 672,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "KNN": {
+        "id": "sklearn.neighbors._classification.KNeighborsClassifier",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          358,
+          20
+        ],
+        "size": 57444,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          358
+        ],
+        "size": 5760,
+        "sliced": false
+      },
+      "X_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          40,
+          20
+        ],
+        "size": 6564,
+        "sliced": false
+      },
+      "y_test": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          40
+        ],
+        "size": 672,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "KNeighborsClassifier": "sklearn.neighbors.KNeighborsClassifier"
+    },
+    "execution_time": 0.03701019287109375,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 329.09228,
+      "memory_increment": 0.8811599999999999
+    }
+  },
+  {
+    "code": "sklearn.neighbors._classification.KNeighborsClassifier.fit(pandas.core.frame.DataFrame, pandas.core.series.Series)",
+    "actual_code": "KNN.fit(X,y)",
+    "ip_variables": {
+      "KNN": {
+        "id": "sklearn.neighbors._classification.KNeighborsClassifier",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          20
+        ],
+        "size": 63844,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 3348,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "KNN": {
+        "id": "sklearn.neighbors._classification.KNeighborsClassifier",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          20
+        ],
+        "size": 63844,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          398
+        ],
+        "size": 3348,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.002651214599609375,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 329.09228,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "numpy.ndarray = sklearn.neighbors._classification.KNeighborsClassifier.predict(pandas.core.frame.DataFrame)",
+    "actual_code": "y_pred = KNN.predict(test)",
+    "ip_variables": {
+      "y_pred": null,
+      "KNN": {
+        "id": "sklearn.neighbors._classification.KNeighborsClassifier",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          20
+        ],
+        "size": 27524,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "y_pred": {
+        "id": "numpy.ndarray",
+        "shape": [
+          171
+        ],
+        "size": 112,
+        "sliced": false
+      },
+      "KNN": {
+        "id": "sklearn.neighbors._classification.KNeighborsClassifier",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          20
+        ],
+        "size": 27524,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.027782440185546875,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 329.20766999999995,
+      "memory_increment": 0.11538999999999999
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.DataFrame({'id': pandas.core.series.Series, 'diagnosis': numpy.ndarray})",
+    "actual_code": "submission_1 = pd.DataFrame({\n    'id' : ids,\n    'diagnosis' : y_pred\n})",
+    "ip_variables": {
+      "submission_1": null,
+      "ids": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          171
+        ],
+        "size": 1532,
+        "sliced": false
+      },
+      "y_pred": {
+        "id": "numpy.ndarray",
+        "shape": [
+          171
+        ],
+        "size": 112,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "submission_1": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          2
+        ],
+        "size": 2900,
+        "sliced": false
+      },
+      "ids": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          171
+        ],
+        "size": 1532,
+        "sliced": false
+      },
+      "y_pred": {
+        "id": "numpy.ndarray",
+        "shape": [
+          171
+        ],
+        "size": 112,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.0009274482727050781,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 329.20766999999995,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['diagnosis'] = pandas.core.frame.DataFrame['diagnosis'].replace({1: 'M', 0: 'B'})",
+    "actual_code": "submission_1['diagnosis'] = submission_1['diagnosis'].replace({1:'M',0:'B'})",
+    "ip_variables": {
+      "submission_1": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          2
+        ],
+        "size": 2900,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "submission_1": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          2
+        ],
+        "size": 11450,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.001383066177368164,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 329.20766999999995,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "import pandas\nimport numpy\nimport matplotlib.pyplot\nimport seaborn\nprint('Priyatama is ready!')",
+    "actual_code": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nprint('Priyatama is ready!')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.6991958618164062,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 255.86158999999998,
+      "memory_increment": 129.38366
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('../input/breast-cancer-detection/train.csv')\npandas.core.frame.DataFrame = pandas.read_csv('../input/breast-cancer-detection/test.csv')",
+    "actual_code": "train = pd.read_csv('../input/breast-cancer-detection/train.csv')\ntest = pd.read_csv('../input/breast-cancer-detection/test.csv')",
+    "ip_variables": {
+      "train": null,
+      "test": null
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.010117053985595703,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 257.77076999999997,
+      "memory_increment": 1.8042799999999999
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.head()",
+    "actual_code": "train.head()",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0002856254577636719,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 257.99106,
+      "memory_increment": 0.01049
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.head()",
+    "actual_code": "test.head()",
+    "ip_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.00025916099548339844,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 258.00154999999995,
+      "memory_increment": 0.01049
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.columns = ['_'.join(col.split(' ')).lower() for col in pandas.core.frame.DataFrame.columns]\npandas.core.frame.DataFrame.columns = ['_'.join(col.split(' ')).lower() for col in pandas.core.frame.DataFrame.columns]",
+    "actual_code": "# Strip column names of all spaces and add underscore wherever required.\n\ntrain.columns = ['_'.join(col.split(' ')).lower() for col in train.columns]\ntest.columns = ['_'.join(col.split(' ')).lower() for col in test.columns]",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      },
+      "col": null,
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      },
+      "col": null,
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0005123615264892578,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 258.03301999999996,
+      "memory_increment": 0.01049
+    }
+  },
+  {
+    "code": "print('Columns in train dataset are as follows:\\n')\npandas.core.indexes.base.Index = pandas.core.frame.DataFrame.columns\nprint(*pandas.core.indexes.base.Index, sep=', ')\nprint('\\n', '$' * 100, '\\n')\nprint('Columns in test dataset are as follows:\\n')\npandas.core.indexes.base.Index = pandas.core.frame.DataFrame.columns\nprint(*pandas.core.indexes.base.Index, sep=', ')",
+    "actual_code": "print('Columns in train dataset are as follows:' '\\n')\na = (train.columns)\nprint(*a, sep = \", \")\nprint('\\n','$'*100,'\\n')\nprint('Columns in test dataset are as follows:' '\\n')\nb = (test.columns)\nprint(*b, sep = \", \")",
+    "ip_variables": {
+      "a": null,
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      },
+      "b": null,
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "a": {
+        "id": "pandas.core.indexes.base.Index",
+        "shape": [
+          33
+        ],
+        "size": 3432,
+        "sliced": false
+      },
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      },
+      "b": {
+        "id": "pandas.core.indexes.base.Index",
+        "shape": [
+          32
+        ],
+        "size": 3366,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0003910064697265625,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 258.20086,
+      "memory_increment": 0.13637
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.core.frame.DataFrame.drop('unnamed:_32', axis=1)\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.drop('unnamed:_32', axis=1)",
+    "actual_code": "train = train.drop('unnamed:_32', axis = 1)\ntest = test.drop('unnamed:_32', axis = 1)",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          33
+        ],
+        "size": 125136,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          32
+        ],
+        "size": 43940,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          31
+        ],
+        "size": 42572,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0019054412841796875,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 258.72535999999997,
+      "memory_increment": 0.5245
+    }
+  },
+  {
+    "code": "print('Object type columns in Train dataset as follows:\\n')\nprint(pandas.core.frame.DataFrame.select_dtypes(exclude='float64'))\nprint('\\n', '$' * 100, '\\n')\nprint('Object type columns in Test dataset as follows:\\n')\nprint(pandas.core.frame.DataFrame.select_dtypes(exclude='float64'))",
+    "actual_code": "print('Object type columns in Train dataset as follows:' '\\n')\nprint(train.select_dtypes(exclude = 'float64'))\nprint('\\n','$' * 100, '\\n')\nprint('Object type columns in Test dataset as follows:' '\\n')\nprint(test.select_dtypes(exclude = 'float64'))",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          31
+        ],
+        "size": 42572,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          31
+        ],
+        "size": 42572,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.00799560546875,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 259.21839,
+      "memory_increment": 0.48253999999999997
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.diagnosis.value_counts().plot(kind='bar')",
+    "actual_code": "train.diagnosis.value_counts().plot(kind = 'bar')",
+    "ip_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0652766227722168,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 265.57532999999995,
+      "memory_increment": 6.346449999999999
+    }
+  },
+  {
+    "code": "print('Null values in Train dataset are as follows:\\n')\npandas.core.series.Series = pandas.core.frame.DataFrame.isnull().sum()\nprint(pandas.core.series.Series[a > 0])\nprint('\\n', 'o' * 80, '\\n')\nprint('Null values in Train dataset are as follows:\\n')\npandas.core.series.Series = pandas.core.frame.DataFrame.isnull().sum()\nprint(pandas.core.series.Series[b > 0])",
+    "actual_code": "print('Null values in Train dataset are as follows:' '\\n')\na = train.isnull().sum()\nprint(a[a>0])\nprint('\\n','o' * 80, '\\n')\nprint('Null values in Train dataset are as follows:' '\\n')\nb = test.isnull().sum()\nprint(b[b>0])",
+    "ip_variables": {
+      "a": {
+        "id": "pandas.core.indexes.base.Index",
+        "shape": [
+          33
+        ],
+        "size": 3432,
+        "sliced": true
+      },
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      },
+      "b": {
+        "id": "pandas.core.indexes.base.Index",
+        "shape": [
+          32
+        ],
+        "size": 3366,
+        "sliced": true
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          31
+        ],
+        "size": 42572,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "a": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          32
+        ],
+        "size": 3620,
+        "sliced": true
+      },
+      "train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          398,
+          32
+        ],
+        "size": 121952,
+        "sliced": false
+      },
+      "b": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31
+        ],
+        "size": 3546,
+        "sliced": true
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          171,
+          31
+        ],
+        "size": 42572,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.003073453903198242,
+    "disk_usage": {
+      "peak_disk": 1510135.0390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 268.0195,
+      "memory_increment": 0.01049
+    }
+  }
+]
