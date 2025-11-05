@@ -68,11 +68,13 @@ print("{PROFILER_DATA_ENDS}")
         """
 
     def clean_cell_for_input(self, code):
-        path = f'/kaggle/input/{self.competition_name}'
-        if path in code:
-            return code.replace(path, '../input')
-        else:
-            return code
+        kaggle_path = f'/kaggle/input/{self.competition_name}'
+        competition_path = f'../input/{self.competition_name}'
+        if kaggle_path in code:
+            code = code.replace(kaggle_path, '../input')
+        if competition_path in code:
+            code = code.replace(competition_path, '../input')
+        return code
 
     def clean_cell_for_ast(self, code):
         code = code.replace('"""', '\"\"\"')
