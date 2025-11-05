@@ -23,6 +23,4 @@ venv.bak/
 # MacOS
 .DS_Store
 
-core
 dataset/**/input
-*.bin
