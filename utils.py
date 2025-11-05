@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+from pathlib import Path
 
 
 def load_file(path):
@@ -9,17 +10,25 @@ def load_file(path):
     return file_content
 
 
-def get_output_file_path(output_dir, competiton_name, page, page_size):
-    return os.path.join(output_dir, f"{competiton_name}-{page}-{page_size}.json")
-
-
-def save_output(path, data):
+def save_output(notebook_dir, output_dir, competition_name, page, page_size, data):
+    output_path = os.path.join(
+        output_dir, f"{competition_name}-{page}-{page_size}.json")
     if (len(data) > 0):
-        with open(path, "w") as f:
+        with open(output_path, "w") as f:
             json.dump(data, f, indent=2)
-        print(f"Execution complete. Results saved to {path}")
+        print(f"Execution complete. Results saved to {output_path}")
     else:
         print(f"Execution complete. No results to save")
+
+    root = Path(notebook_dir)
+    for path in root.rglob("*"):
+        if path.is_file() and path.suffix != ".ipynb":
+            print(f"Removing: {path}")
+            path.unlink()
+
+    for dirpath, dirnames, filenames in os.walk(notebook_dir, topdown=False):
+        if not dirnames and not filenames:
+            os.rmdir(dirpath)
 
 
 def parse_args():

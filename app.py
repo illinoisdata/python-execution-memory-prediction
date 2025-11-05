@@ -4,7 +4,7 @@ import nbformat
 import os
 from multiprocessing.pool import ThreadPool
 from multiprocessing import Lock
-from utils import parse_args, get_output_file_path, save_output
+from utils import parse_args, save_output
 
 
 def run_notebook_with_hooks(notebook, competition_name):
@@ -65,15 +65,15 @@ if __name__ == "__main__":
             notebooks = adapter.download_notebooks(page, page_size)
             process_notebooks(
                 final_results, root_dir, adapter.competition_name, adapter.notebook_dir, notebooks, multithread=args.multithreading)
-            save_output(get_output_file_path(
-                adapter.output_dir, adapter.competition_name, page, page_size), final_results)
+            save_output(adapter.notebook_dir, adapter.output_dir, adapter.competition_name,
+                        page, page_size, final_results)
         except KeyboardInterrupt:
             os.chdir(root_dir)
-            save_output(get_output_file_path(
-                adapter.output_dir, adapter.competition_name, page, page_size), final_results)
+            save_output(adapter.notebook_dir, adapter.output_dir, adapter.competition_name,
+                        page, page_size, final_results)
         except Exception:
             os.chdir(root_dir)
-            save_output(get_output_file_path(
-                adapter.output_dir, adapter.competition_name, page, page_size), final_results)
+            save_output(adapter.notebook_dir, adapter.output_dir, adapter.competition_name,
+                        page, page_size, final_results)
     except Exception as e:
         print(f"An unexpected error occurred while downloading datasets: {e}")
