@@ -36,8 +36,6 @@ cd python-execution-dataset
 docker run -u $(id -u):$(id -g) -v $(pwd):/workspace -w /workspace kaggle-profiler -c <competition-name>
 ```
 
-dataset/nlp-getting-started/notebooks/ettin-encoder-1b/pytorch_model.bin
-
 **Command line arguments**
 
 -   `-c or --competition` **(Required)**: Name of the Kaggle competition.
