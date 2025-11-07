@@ -8,6 +8,8 @@ load_dotenv()
 # autopep8: off
 from kaggle.api.kaggle_api_extended import KaggleApi
 import kaggle
+import logging
+logging.getLogger("kaggle").disabled = True
 
 api = KaggleApi()
 api.authenticate()
