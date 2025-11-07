@@ -19,6 +19,7 @@ docker build -t kaggle-profiler .
 ### Running the image
 
 **As root**
+
 All generated files are owned by `root` user and cannot be written or deleted outside the Docker container.
 
 ```bash
@@ -27,6 +28,7 @@ docker run -v $(pwd):/workspace -w /workspace kaggle-profiler -c <competition-na
 ```
 
 **As user**
+
 To own and allow editing of files that were created inside of the Docker container, pass the current user to the `docker run` command.
 
 ```bash
