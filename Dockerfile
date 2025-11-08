@@ -3,6 +3,6 @@ WORKDIR /workspace
 COPY . /workspace
 
 RUN pip install --no-cache-dir -r requirements.txt
-RUN chmod +x ./entrypoint.sh
+RUN chmod +x ./execute.sh
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["execute.sh"]
