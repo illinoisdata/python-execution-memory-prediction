@@ -33,7 +33,7 @@ To own and allow editing of files that were created inside of the Docker contain
 
 ```bash
 cd python-execution-dataset
-docker run -u $(id -u):$(id -g) -v $(pwd):/workspace -w /workspace kaggle-profiler -c <competition-name>
+docker run -e HOST_UID=$(id -u) -e HOST_GID=$(id -g) -v $(pwd):/workspace -w /workspace kaggle-profiler -c <competition-name>
 ```
 
 **Command line arguments**
