@@ -5,4 +5,4 @@ COPY . /workspace
 RUN pip install --no-cache-dir -r requirements.txt
 RUN chmod +x ./execute.sh
 
-ENTRYPOINT ["execute.sh"]
+ENTRYPOINT ["./execute.sh"]
