@@ -42,6 +42,9 @@ class KaggleAdapter():
         os.makedirs(self.output_dir, exist_ok=True)
 
     def download_input_data(self):
+        if len(os.listdir(self.input_dir)) > 0:
+            return
+        
         zip_file_path = os.path.join(
             self.input_dir, f"{self.competition_name}.zip")
 
