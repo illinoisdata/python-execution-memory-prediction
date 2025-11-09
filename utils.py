@@ -10,6 +10,20 @@ def load_file(path):
     return file_content
 
 
+def keep_files_by_extension(path_to_dir, ext):
+    for _file in os.listdir(path_to_dir):
+        try:
+            path = os.path.join(path_to_dir, _file)
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+            else:
+                filename = os.path.basename(path)
+                if not filename.endswith(ext):
+                    os.remove(path)
+        except Exception:
+            continue
+
+
 def save_output(notebook_dir, output_dir, data_source_name, page, page_size, data):
     output_path = os.path.join(
         output_dir, f"{data_source_name}-{page}-{page_size}.json")
@@ -20,17 +34,7 @@ def save_output(notebook_dir, output_dir, data_source_name, page, page_size, dat
     else:
         print(f"Execution complete. No results to save")
 
-    for _file in os.listdir(notebook_dir):
-        try:
-            path = os.path.join(notebook_dir, _file)
-            if os.path.isdir(path):
-                shutil.rmtree(path)
-            else:
-                filename = os.path.basename(path)
-                if not filename.endswith(".ipynb"):
-                    os.remove(path)
-        except Exception:
-            continue
+    keep_files_by_extension(notebook_dir, ".ipynb")
 
 
 def parse_args():

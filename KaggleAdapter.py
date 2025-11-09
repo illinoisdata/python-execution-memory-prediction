@@ -3,6 +3,7 @@ import os
 import shutil
 from dotenv import load_dotenv
 from enum import Enum
+from utils import keep_files_by_extension
 
 load_dotenv()
 
@@ -62,35 +63,41 @@ class KaggleAdapter():
         if len(os.listdir(self.input_dir)) > 0:
             return
 
-        zip_file_path = os.path.join(
-            self.input_dir, f"{self.data_source}.zip")
+        zip_file_path = ''
 
         if (self.data_source_type == DataSourceType.COMPETITION):
+            zip_file_path = os.path.join(self.input_dir, f"{self.data_source}.zip")
             api.competition_download_files(competition=self.data_source, path=self.input_dir)
         else:
+            zip_file_path = os.path.join(self.input_dir, f"{self.data_source.split('/')[-1]}.zip")
             api.dataset_download_files(dataset=self.data_source, path=self.input_dir)
 
         try:
             with zipfile.ZipFile(zip_file_path, 'r') as zf:
                 zf.extractall(self.input_dir)
             os.remove(zip_file_path)
+            keep_files_by_extension(self.input_dir, ".csv")
             print(
                 f"Successfully downloaded and unzipped '{zip_file_path}' to '{self.input_dir}'")
         except zipfile.BadZipFile:
             print(f"Error: '{zip_file_path}' is not a valid ZIP file.")
+            raise
         except FileNotFoundError:
             print(f"Error: ZIP file not found at '{zip_file_path}'.")
+            raise
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
+            raise
 
     def download_notebooks(self, page=1, page_size=50):
         downloaded_notebooks = []
         try:
+            # Valid options are ['hotness', 'commentCount', 'dateCreated', 'dateRun', 'relevance', 'scoreAscending', 'scoreDescending', 'viewCount', 'voteCount']
             notebooks = []
             if (self.data_source_type == DataSourceType.COMPETITION):
                 notebooks = api.kernels_list(competition=self.data_source, sort_by='hotness', page=page, page_size=page_size)
             else:
-                notebooks = api.kernels_list(dataset=self.data_source, sort_by='votes', page=page, page_size=page_size)
+                notebooks = api.kernels_list(dataset=self.data_source, sort_by='voteCount', page=page, page_size=page_size)
 
             kernel_count = 0
             for kernel in notebooks:
