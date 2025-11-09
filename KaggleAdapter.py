@@ -18,7 +18,7 @@ class DataSourceType(Enum):
     COMPETITION = 1
 
 class KaggleAdapter():
-    def __init__(self, dataset_name: str | None, competition_name: str | None, deleteExisting = False):
+    def __init__(self, dataset_name: str = None, competition_name: str = None, deleteExisting = False):
         """
         data_source_type: Either one of DATASET or COMPETITION
         main_dir: Top level directory for storage (dataset/competition)
