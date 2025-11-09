@@ -25,18 +25,19 @@ class KaggleAdapter():
         main_dir: Top level directory for storage (dataset/competition)
         data_source: Name of the competition or dataset slug
         data_source_name: Human readable name for the competition or dataset for file/directory names and logging
+        data_source_dir: Top level directory for that dataset/competition
         """
         self.data_source_type = DataSourceType.COMPETITION if competition_name is not None else DataSourceType.DATASET
         if self.data_source_type == DataSourceType.COMPETITION:
             self.main_dir = "./competitions"
             self.data_source = competition_name
             self.data_source_name = competition_name
+            self.data_source_dir = os.path.join(self.main_dir, self.data_source_name)
         else:
             self.main_dir = "./datasets"
             self.data_source = dataset_name
-            self.data_source_name = "_".join(dataset_name.split("/"))
-
-        self.data_source_dir = os.path.join(self.main_dir, self.data_source_name)
+            self.data_source_name = dataset_name.split('/')[-1]
+            self.data_source_dir = os.path.join(self.main_dir, "_".join(dataset_name.split("/")))
 
         if os.path.exists(self.data_source_dir):
             print(f"Directory '{self.data_source_dir}' exists.")
@@ -63,13 +64,11 @@ class KaggleAdapter():
         if len(os.listdir(self.input_dir)) > 0:
             return
 
-        zip_file_path = ''
+        zip_file_path = os.path.join(self.input_dir, f"{self.data_source}.zip")
 
         if (self.data_source_type == DataSourceType.COMPETITION):
-            zip_file_path = os.path.join(self.input_dir, f"{self.data_source}.zip")
             api.competition_download_files(competition=self.data_source, path=self.input_dir)
         else:
-            zip_file_path = os.path.join(self.input_dir, f"{self.data_source.split('/')[-1]}.zip")
             api.dataset_download_files(dataset=self.data_source, path=self.input_dir)
 
         try:
