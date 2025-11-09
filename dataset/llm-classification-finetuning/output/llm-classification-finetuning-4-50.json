@@ -1,0 +1,2731 @@
+[
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 121.83974051475525,
+    "disk_usage": {
+      "peak_disk": 1536711.39453125,
+      "increment": 0.3046875
+    },
+    "memory_usage": {
+      "peak_memory": 134.91189,
+      "memory_increment": 0.48253999999999997
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 30.43081259727478,
+    "disk_usage": {
+      "peak_disk": 1536711.40234375,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 126.72968999999999,
+      "memory_increment": 0.47204999999999997
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 22.771217584609985,
+    "disk_usage": {
+      "peak_disk": 1536711.40234375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.91850999999998,
+      "memory_increment": 0.57695
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 23.507139205932617,
+    "disk_usage": {
+      "peak_disk": 1536711.41015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.74017999999998,
+      "memory_increment": 0.57695
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 29.644606113433838,
+    "disk_usage": {
+      "peak_disk": 1536711.4140625,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 127.06536999999999,
+      "memory_increment": 0.59793
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 28.98230290412903,
+    "disk_usage": {
+      "peak_disk": 1536711.41796875,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 126.76115999999999,
+      "memory_increment": 0.5874400000000001
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 30.57771611213684,
+    "disk_usage": {
+      "peak_disk": 1536711.42578125,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 126.65625999999999,
+      "memory_increment": 0.5874400000000001
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 22.223485946655273,
+    "disk_usage": {
+      "peak_disk": 1536711.43359375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.76115999999999,
+      "memory_increment": 0.57695
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 28.115514755249023,
+    "disk_usage": {
+      "peak_disk": 1536711.4375,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 126.86605999999999,
+      "memory_increment": 0.57695
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 31.808233737945557,
+    "disk_usage": {
+      "peak_disk": 1536711.4453125,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 126.85557,
+      "memory_increment": 0.5874400000000001
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 30.616332054138184,
+    "disk_usage": {
+      "peak_disk": 1536711.82421875,
+      "increment": 0.01953125
+    },
+    "memory_usage": {
+      "peak_memory": 126.96046999999999,
+      "memory_increment": 0.57695
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 23.286301374435425,
+    "disk_usage": {
+      "peak_disk": 1536711.48046875,
+      "increment": 0.01171875
+    },
+    "memory_usage": {
+      "peak_memory": 126.79263,
+      "memory_increment": 0.56646
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 28.83950114250183,
+    "disk_usage": {
+      "peak_disk": 1536713.5,
+      "increment": -0.94921875
+    },
+    "memory_usage": {
+      "peak_memory": 127.12830999999998,
+      "memory_increment": 0.65038
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 27.842939615249634,
+    "disk_usage": {
+      "peak_disk": 1538092.50390625,
+      "increment": 1381.97265625
+    },
+    "memory_usage": {
+      "peak_memory": 127.11782,
+      "memory_increment": 0.7238099999999998
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 27.44093132019043,
+    "disk_usage": {
+      "peak_disk": 1538092.9921875,
+      "increment": 0.23828125
+    },
+    "memory_usage": {
+      "peak_memory": 126.83458999999999,
+      "memory_increment": 0.57695
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.45.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 21.93395709991455,
+    "disk_usage": {
+      "peak_disk": 1538093.01171875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.79263,
+      "memory_increment": 0.45106999999999997
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.43.1')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 28.682640314102173,
+    "disk_usage": {
+      "peak_disk": 1538093.0,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 126.55135999999999,
+      "memory_increment": 0.55597
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 31.199145793914795,
+    "disk_usage": {
+      "peak_disk": 1538093.00390625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.88703999999998,
+      "memory_increment": 0.71332
+    }
+  },
+  {
+    "code": "import os\nimport gc\nimport random\nimport numpy\nimport pandas\nimport torch\nimport torch.nn\nfrom torch.utils.data import Dataset, DataLoader\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig, get_linear_schedule_with_warmup\nfrom torch.optim import AdamW\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import log_loss\nimport torch._dynamo\ntorch._dynamo.config.suppress_errors = True",
+    "actual_code": "import os\nimport gc\nimport random\n\nimport numpy as np\nimport pandas as pd\nimport torch\nimport torch.nn as nn\nfrom torch.utils.data import Dataset, DataLoader\nfrom transformers import (\n    AutoTokenizer,\n    AutoModelForSequenceClassification,\n    AutoConfig,\n    get_linear_schedule_with_warmup,\n)\nfrom torch.optim import AdamW\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import log_loss\n\nimport torch._dynamo\n\ntorch._dynamo.config.suppress_errors = True",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 4.048661947250366,
+    "disk_usage": {
+      "peak_disk": 1538093.046875,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 571.86235,
+      "memory_increment": 445.56275
+    }
+  },
+  {
+    "code": "class CFG:\n    MODEL_NAME = '/kaggle/input/modernbert/transformers/base/1/modernbert-base'\n    MAX_LENGTH = 1024\n    BATCH_SIZE = 8\n    EPOCHS = 2\n    LEARNING_RATE = 2e-05\n    WEIGHT_DECAY = 0.01\n    WARMUP_RATIO = 0.1\n    NUM_CLASSES = 3\n    DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\n    SEED = 42\n    TRAIN_FILE = '/kaggle/input/llm-classification-finetuning/train.csv'\n    TEST_FILE = '/kaggle/input/llm-classification-finetuning/test.csv'\n    SAMPLE_SUBMISSION = '/kaggle/input/llm-classification-finetuning/sample_submission.csv'\n    OUTPUT_DIR = '/kaggle/working/'\n    USE_FULL_DATA = True\n\ndef seed_everything(seed):\n    random.seed(seed)\n    os.environ['PYTHONHASHSEED'] = str(seed)\n    numpy.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n    torch.backends.cudnn.deterministic = True\n    torch.backends.cudnn.benchmark = False\nseed_everything(type.SEED)",
+    "actual_code": "# --- \u041a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446 ---\nclass CFG:\n    MODEL_NAME = '/kaggle/input/modernbert/transformers/base/1/modernbert-base'\n    MAX_LENGTH = 1024\n    BATCH_SIZE = 8\n    EPOCHS = 2  \n    LEARNING_RATE = 2e-5\n    WEIGHT_DECAY = 0.01\n    WARMUP_RATIO = 0.1\n    NUM_CLASSES = 3\n    DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\n    SEED = 42\n    TRAIN_FILE = '/kaggle/input/llm-classification-finetuning/train.csv'\n    TEST_FILE = '/kaggle/input/llm-classification-finetuning/test.csv'\n    SAMPLE_SUBMISSION = '/kaggle/input/llm-classification-finetuning/sample_submission.csv'\n    OUTPUT_DIR = '/kaggle/working/'\n    USE_FULL_DATA = True\n    \n# --- \u0423\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0430 SEED \u0434\u043b\u044f \u0432\u043e\u0441\u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438 ---\ndef seed_everything(seed):\n    random.seed(seed)\n    os.environ['PYTHONHASHSEED'] = str(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n    torch.backends.cudnn.deterministic = True\n    torch.backends.cudnn.benchmark = False\n\nseed_everything(CFG.SEED)",
+    "ip_variables": {
+      "MODEL_NAME": null,
+      "MAX_LENGTH": null,
+      "BATCH_SIZE": null,
+      "EPOCHS": null,
+      "LEARNING_RATE": null,
+      "WEIGHT_DECAY": null,
+      "WARMUP_RATIO": null,
+      "NUM_CLASSES": null,
+      "DEVICE": null,
+      "SEED": null,
+      "TRAIN_FILE": null,
+      "TEST_FILE": null,
+      "SAMPLE_SUBMISSION": null,
+      "OUTPUT_DIR": null,
+      "USE_FULL_DATA": null,
+      "seed": null,
+      "seed_everything": null,
+      "CFG": null
+    },
+    "op_variables": {
+      "MODEL_NAME": null,
+      "MAX_LENGTH": null,
+      "BATCH_SIZE": null,
+      "EPOCHS": null,
+      "LEARNING_RATE": null,
+      "WEIGHT_DECAY": null,
+      "WARMUP_RATIO": null,
+      "NUM_CLASSES": null,
+      "DEVICE": null,
+      "SEED": null,
+      "TRAIN_FILE": null,
+      "TEST_FILE": null,
+      "SAMPLE_SUBMISSION": null,
+      "OUTPUT_DIR": null,
+      "USE_FULL_DATA": null,
+      "seed": null,
+      "CFG": {
+        "id": "type",
+        "shape": null,
+        "size": 1688,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "torch": "torch",
+      "random": "random",
+      "os": "os",
+      "np": "numpy"
+    },
+    "execution_time": 0.002353191375732422,
+    "disk_usage": {
+      "peak_disk": 1538093.046875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 571.94627,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv(type.TRAIN_FILE)\npandas.core.frame.DataFrame = pandas.read_csv(type.TEST_FILE)\npandas.core.frame.DataFrame = pandas.read_csv(type.SAMPLE_SUBMISSION)\ndict = {'winner_model_a': 0, 'winner_model_b': 1, 'winner_tie': 2}\npandas.core.frame.DataFrame['label_encoded'] = pandas.core.frame.DataFrame['winner_model_a'].astype(int) * 0 + pandas.core.frame.DataFrame['winner_model_b'].astype(int) * 1 + pandas.core.frame.DataFrame['winner_tie'].astype(int) * 2",
+    "actual_code": "# --- \u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u0438 \u043f\u0440\u0435\u0434\u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0430 \u0434\u0430\u043d\u043d\u044b\u0445 ---\ntrain_df = pd.read_csv(CFG.TRAIN_FILE)\ntest_df = pd.read_csv(CFG.TEST_FILE)\nsample_submission_df = pd.read_csv(CFG.SAMPLE_SUBMISSION)\n\n# \u041e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043a\u043b\u0430\u0441\u0441\u043e\u0432 \u0432 \u0447\u0438\u0441\u043b\u0430\nlabel_mapping = {'winner_model_a': 0, 'winner_model_b': 1, 'winner_tie': 2}\ntrain_df['label_encoded'] = train_df['winner_model_a'].astype(int) * 0 + \\\n                            train_df['winner_model_b'].astype(int) * 1 + \\\n                            train_df['winner_tie'].astype(int) * 2",
+    "ip_variables": {
+      "train_df": null,
+      "CFG": {
+        "id": "type",
+        "shape": null,
+        "size": 1688,
+        "sliced": false
+      },
+      "test_df": null,
+      "sample_submission_df": null,
+      "label_mapping": null
+    },
+    "op_variables": {
+      "train_df": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          57477,
+          10
+        ],
+        "size": 200418893,
+        "sliced": true
+      },
+      "CFG": {
+        "id": "type",
+        "shape": null,
+        "size": 1688,
+        "sliced": false
+      },
+      "test_df": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11254,
+        "sliced": false
+      },
+      "sample_submission_df": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 260,
+        "sliced": false
+      },
+      "label_mapping": {
+        "id": "dict",
+        "shape": 3,
+        "size": 184,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 1.7072465419769287,
+    "disk_usage": {
+      "peak_disk": 1538093.046875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 948.51629,
+      "memory_increment": 376.8008
+    }
+  },
+  {
+    "code": "import kagglehub\nstr = kagglehub.competition_download('llm-classification-finetuning')\nprint('Data source import complete.')",
+    "actual_code": "import kagglehub\nllm_classification_finetuning_path = kagglehub.competition_download('llm-classification-finetuning')\nprint('Data source import complete.')",
+    "ip_variables": {
+      "llm_classification_finetuning_path": null
+    },
+    "op_variables": {
+      "llm_classification_finetuning_path": {
+        "id": "str",
+        "shape": 65,
+        "size": 114,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "kagglehub": "kagglehub"
+    },
+    "execution_time": 2.8770716190338135,
+    "disk_usage": {
+      "peak_disk": 1538093.046875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 145.03473999999997,
+      "memory_increment": 18.75612
+    }
+  },
+  {
+    "code": "import numpy\nimport pandas",
+    "actual_code": "import numpy as np # linear algebra\nimport pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.2804286479949951,
+    "disk_usage": {
+      "peak_disk": 1538093.046875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 207.34534,
+      "memory_increment": 64.85967
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.631171703338623,
+    "disk_usage": {
+      "peak_disk": 1538093.05078125,
+      "increment": -0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 126.81361,
+      "memory_increment": 0.50352
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.6970863342285156,
+    "disk_usage": {
+      "peak_disk": 1538093.046875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.77164999999998,
+      "memory_increment": 0.50352
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.6505448818206787,
+    "disk_usage": {
+      "peak_disk": 1538093.046875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.45694999999999,
+      "memory_increment": 0.4930299999999999
+    }
+  },
+  {
+    "code": "import pandas\nimport os\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import log_loss\nfrom sklearn.preprocessing import StandardScaler\nstr = '/kaggle/input/llm-classification-finetuning'\npandas.core.frame.DataFrame = pandas.read_csv(os.path.join(str, 'train.csv'))\nset = set(pandas.core.frame.DataFrame['model_a']).union(set(pandas.core.frame.DataFrame['model_b']))\ndict = {str: 0 for str in set}\ndict = {str: 0 for str in set}\ndict = {str: 0 for str in set}\nfor int, pandas.core.series.Series in pandas.core.frame.DataFrame.iterrows():\n    str, str = (pandas.core.series.Series['model_a'], pandas.core.series.Series['model_b'])\n    dict[a] += 1\n    dict[b] += 1\n    if pandas.core.series.Series['winner_model_a'] == 1:\n        dict[a] += 1\n    elif pandas.core.series.Series['winner_model_b'] == 1:\n        dict[b] += 1\n    elif pandas.core.series.Series['winner_tie'] == 1:\n        dict[a] += 0.5\n        dict[b] += 0.5\nlist = []\nfor str in set:\n    int = dict[modelo]\n    float = dict[modelo] + dict[modelo]\n    float = float / int\n    list.append((str, dict[modelo], dict[modelo], int, round(float * 100, 2)))\npandas.core.frame.DataFrame = pandas.DataFrame(list, columns=['modelo', 'vitorias', 'empates', 'aparicoes', 'win_rate'])\npandas.core.frame.DataFrame.sort_values('win_rate', ascending=False, inplace=True)\n\ndef get_model_stats(row, win_rate_dict):\n    return pandas.Series({'model_a_win_rate': dict.get(pandas.core.series.Series['model_a'], 50), 'model_b_win_rate': dict.get(pandas.core.series.Series['model_b'], 50), 'win_rate_diff': dict.get(pandas.core.series.Series['model_a'], 50) - dict.get(pandas.core.series.Series['model_b'], 50)})\n\ndef get_vitorias(row, vitorias_dict):\n    return pandas.Series({'model_a_vitorias': dict.get(pandas.core.series.Series['model_a'], 0), 'model_b_vitorias': dict.get(pandas.core.series.Series['model_b'], 0), 'vitorias_diff': dict.get(pandas.core.series.Series['model_a'], 0) - dict.get(pandas.core.series.Series['model_b'], 0)})\n\ndef get_aparicoes(row, aparicoes_dict):\n    return pandas.Series({'model_a_aparicoes': dict.get(pandas.core.series.Series['model_a'], 0), 'model_b_aparicoes': dict.get(pandas.core.series.Series['model_b'], 0), 'aparicoes_diff': dict.get(pandas.core.series.Series['model_a'], 0) - dict.get(pandas.core.series.Series['model_b'], 0)})\ndict = pandas.core.frame.DataFrame.set_index('modelo')['win_rate'].to_dict()\ndict = dict\ndict = dict\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.copy()\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.join(pandas.core.frame.DataFrame.apply(lambda row: get_model_stats(pandas.core.series.Series, dict), axis=1))\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.join(pandas.core.frame.DataFrame.apply(lambda row: get_vitorias(pandas.core.series.Series, dict), axis=1))\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.join(pandas.core.frame.DataFrame.apply(lambda row: get_aparicoes(pandas.core.series.Series, dict), axis=1))\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame[train_features['winner_tie'] == 0].copy()\npandas.core.frame.DataFrame['target'] = pandas.core.frame.DataFrame['winner_model_a']\nlist = ['model_a_aparicoes', 'model_b_aparicoes', 'aparicoes_diff', 'model_a_vitorias', 'model_b_vitorias', 'vitorias_diff', 'model_a_win_rate', 'model_b_win_rate', 'win_rate_diff']\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame[features]\npandas.core.series.Series = pandas.core.frame.DataFrame['target']\npandas.core.frame.DataFrame, pandas.core.frame.DataFrame, pandas.core.series.Series, pandas.core.series.Series = sklearn.model_selection.train_test_split(pandas.core.frame.DataFrame, pandas.core.series.Series, test_size=0.2, random_state=42)\nsklearn.preprocessing._data.StandardScaler = sklearn.preprocessing.StandardScaler()\npandas.core.frame.DataFrame = pandas.DataFrame(sklearn.preprocessing._data.StandardScaler.fit_transform(pandas.core.frame.DataFrame), columns=pandas.core.frame.DataFrame.columns)\npandas.core.frame.DataFrame = pandas.DataFrame(sklearn.preprocessing._data.StandardScaler.transform(pandas.core.frame.DataFrame), columns=pandas.core.frame.DataFrame.columns)\nsklearn.linear_model._logistic.LogisticRegression = sklearn.linear_model.LogisticRegression(solver='liblinear', penalty='l1', C=1.0)\nsklearn.linear_model._logistic.LogisticRegression.fit(pandas.core.frame.DataFrame, pandas.core.series.Series)\nnumpy.ndarray = sklearn.linear_model._logistic.LogisticRegression.predict_proba(pandas.core.frame.DataFrame)[:, 1]\nprint('Log Loss:', sklearn.metrics.log_loss(pandas.core.series.Series, numpy.ndarray))\npandas.core.frame.DataFrame = pandas.read_csv(os.path.join(str, 'test.csv'))\n\ndef extract_model_name(response):\n    return response.split(':')[0].strip()\npandas.core.frame.DataFrame['model_a'] = pandas.core.frame.DataFrame['response_a'].apply(extract_model_name)\npandas.core.frame.DataFrame['model_b'] = pandas.core.frame.DataFrame['response_b'].apply(extract_model_name)\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.copy()\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.join(pandas.core.frame.DataFrame.apply(lambda row: get_model_stats(pandas.core.series.Series, dict), axis=1))\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.join(pandas.core.frame.DataFrame.apply(lambda row: get_vitorias(pandas.core.series.Series, dict), axis=1))\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame.join(pandas.core.frame.DataFrame.apply(lambda row: get_aparicoes(pandas.core.series.Series, dict), axis=1))\npandas.core.frame.DataFrame = pandas.core.frame.DataFrame[features]\npandas.core.frame.DataFrame = pandas.DataFrame(sklearn.preprocessing._data.StandardScaler.transform(pandas.core.frame.DataFrame), columns=pandas.core.frame.DataFrame.columns)\nnumpy.ndarray = sklearn.linear_model._logistic.LogisticRegression.predict_proba(pandas.core.frame.DataFrame)[:, 1]\nnumpy.float64 = pandas.core.frame.DataFrame['winner_tie'].mean()\npandas.core.frame.DataFrame = pandas.DataFrame({'id': pandas.core.frame.DataFrame['id'], 'winner_model_a': numpy.ndarray * (1 - numpy.float64), 'winner_model_b': (1 - numpy.ndarray) * (1 - numpy.float64), 'winner_tie': numpy.float64})\npandas.core.frame.DataFrame.to_csv('submission.csv', index=False)\nprint(\"Submiss\u00e3o salva como 'submission.csv'\")",
+    "actual_code": "import pandas as pd\nimport os\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import log_loss\nfrom sklearn.preprocessing import StandardScaler\n\nDIR = '/kaggle/input/llm-classification-finetuning'\n\n# Carregar o train.csv\ntrain_data = pd.read_csv(os.path.join(DIR, 'train.csv'))\n\n# Todos os modelos \u00fanicos\ntodos_modelos = set(train_data['model_a']).union(set(train_data['model_b']))\n\n# Inicializar contadores\nvitorias = {modelo: 0 for modelo in todos_modelos}\nempates = {modelo: 0 for modelo in todos_modelos}\naparicoes = {modelo: 0 for modelo in todos_modelos}\n\n# Contabilizar vit\u00f3rias, empates e apari\u00e7\u00f5es\nfor idx, row in train_data.iterrows():\n    a, b = row['model_a'], row['model_b']\n    aparicoes[a] += 1\n    aparicoes[b] += 1\n    if row['winner_model_a'] == 1:\n        vitorias[a] += 1\n    elif row['winner_model_b'] == 1:\n        vitorias[b] += 1\n    elif row['winner_tie'] == 1:\n        empates[a] += 0.5\n        empates[b] += 0.5\n\n# Criar ranking\nresultados = []\nfor modelo in todos_modelos:\n    total = aparicoes[modelo]\n    win = vitorias[modelo] + empates[modelo]\n    taxa = win / total\n    resultados.append((modelo, vitorias[modelo], empates[modelo], total, round(taxa * 100, 2)))\n\nranking_df = pd.DataFrame(resultados, columns=['modelo', 'vitorias', 'empates', 'aparicoes', 'win_rate'])\nranking_df.sort_values('win_rate', ascending=False, inplace=True)\n\n# Fun\u00e7\u00f5es auxiliares\ndef get_model_stats(row, win_rate_dict):\n    return pd.Series({\n        'model_a_win_rate': win_rate_dict.get(row['model_a'], 50),\n        'model_b_win_rate': win_rate_dict.get(row['model_b'], 50),\n        'win_rate_diff': win_rate_dict.get(row['model_a'], 50) - win_rate_dict.get(row['model_b'], 50)\n    })\n\ndef get_vitorias(row, vitorias_dict):\n    return pd.Series({\n        'model_a_vitorias': vitorias_dict.get(row['model_a'], 0),\n        'model_b_vitorias': vitorias_dict.get(row['model_b'], 0),\n        'vitorias_diff': vitorias_dict.get(row['model_a'], 0) - vitorias_dict.get(row['model_b'], 0)\n    })\n\ndef get_aparicoes(row, aparicoes_dict):\n    return pd.Series({\n        'model_a_aparicoes': aparicoes_dict.get(row['model_a'], 0),\n        'model_b_aparicoes': aparicoes_dict.get(row['model_b'], 0),\n        'aparicoes_diff': aparicoes_dict.get(row['model_a'], 0) - aparicoes_dict.get(row['model_b'], 0)\n    })\n\n# Criar features no train\nwin_rate_dict = ranking_df.set_index('modelo')['win_rate'].to_dict()\nvitorias_dict = vitorias\naparicoes_dict = aparicoes\n\ntrain_features = train_data.copy()\ntrain_features = train_features.join(train_features.apply(lambda row: get_model_stats(row, win_rate_dict), axis=1))\ntrain_features = train_features.join(train_features.apply(lambda row: get_vitorias(row, vitorias_dict), axis=1))\ntrain_features = train_features.join(train_features.apply(lambda row: get_aparicoes(row, aparicoes_dict), axis=1))\n\n# Separar bin\u00e1rio\ntrain_binary = train_features[train_features['winner_tie'] == 0].copy()\ntrain_binary['target'] = train_binary['winner_model_a']\n\n# Sele\u00e7\u00e3o de features\nfeatures = ['model_a_aparicoes', 'model_b_aparicoes', 'aparicoes_diff',\n            'model_a_vitorias', 'model_b_vitorias', 'vitorias_diff',\n            'model_a_win_rate', 'model_b_win_rate', 'win_rate_diff']\n\nX = train_binary[features]\ny = train_binary['target']\n\nX_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Escalar\nscaler = StandardScaler()\nX_train_scaled = pd.DataFrame(scaler.fit_transform(X_train), columns=X.columns)\nX_val_scaled = pd.DataFrame(scaler.transform(X_val), columns=X.columns)\n\n# Modelo\nmodel = LogisticRegression(solver='liblinear', penalty='l1', C=1.0)\nmodel.fit(X_train_scaled, y_train)\n\n# Avalia\u00e7\u00e3o\ny_val_pred = model.predict_proba(X_val_scaled)[:, 1]\nprint('Log Loss:', log_loss(y_val, y_val_pred))\n\n# Carregar test.csv\ntest_data = pd.read_csv(os.path.join(DIR, 'test.csv'))\n\n# Extrair nomes dos modelos das respostas\ndef extract_model_name(response):\n    return response.split(':')[0].strip()\n\ntest_data['model_a'] = test_data['response_a'].apply(extract_model_name)\ntest_data['model_b'] = test_data['response_b'].apply(extract_model_name)\n\n# Criar features no test (mesmo processo!)\ntest_features = test_data.copy()\ntest_features = test_features.join(test_features.apply(lambda row: get_model_stats(row, win_rate_dict), axis=1))\ntest_features = test_features.join(test_features.apply(lambda row: get_vitorias(row, vitorias_dict), axis=1))\ntest_features = test_features.join(test_features.apply(lambda row: get_aparicoes(row, aparicoes_dict), axis=1))\n\n# Criar X_test com as MESMAS features\nX_test = test_features[features]\n\n# Escalar\nX_test_scaled = pd.DataFrame(scaler.transform(X_test), columns=X.columns)\n\n# Prever\npreds = model.predict_proba(X_test_scaled)[:, 1]\n\n# Taxa m\u00e9dia de empate\nmean_tie_rate = train_data['winner_tie'].mean()\n\n# Submiss\u00e3o\nsubmission = pd.DataFrame({\n    'id': test_data['id'],\n    'winner_model_a': preds * (1 - mean_tie_rate),\n    'winner_model_b': (1 - preds) * (1 - mean_tie_rate),\n    'winner_tie': mean_tie_rate\n})\n\nsubmission.to_csv('submission.csv', index=False)\nprint(\"Submiss\u00e3o salva como 'submission.csv'\")",
+    "ip_variables": {
+      "DIR": null,
+      "train_data": null,
+      "todos_modelos": null,
+      "vitorias": null,
+      "modelo": null,
+      "empates": null,
+      "aparicoes": null,
+      "idx": null,
+      "row": null,
+      "a": null,
+      "b": null,
+      "resultados": null,
+      "total": null,
+      "win": null,
+      "taxa": null,
+      "ranking_df": null,
+      "win_rate_dict": null,
+      "vitorias_dict": null,
+      "aparicoes_dict": null,
+      "train_features": null,
+      "get_model_stats": null,
+      "get_vitorias": null,
+      "get_aparicoes": null,
+      "train_binary": null,
+      "features": null,
+      "X": null,
+      "y": null,
+      "X_train": null,
+      "X_val": null,
+      "y_train": null,
+      "y_val": null,
+      "scaler": null,
+      "X_train_scaled": null,
+      "X_val_scaled": null,
+      "model": null,
+      "y_val_pred": null,
+      "test_data": null,
+      "response": null,
+      "extract_model_name": null,
+      "test_features": null,
+      "X_test": null,
+      "X_test_scaled": null,
+      "preds": null,
+      "mean_tie_rate": null,
+      "submission": null
+    },
+    "op_variables": {
+      "DIR": {
+        "id": "str",
+        "shape": 8,
+        "size": 57,
+        "sliced": false
+      },
+      "train_data": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          57477,
+          9
+        ],
+        "size": 199959077,
+        "sliced": true
+      },
+      "todos_modelos": {
+        "id": "set",
+        "shape": 64,
+        "size": 4312,
+        "sliced": false
+      },
+      "vitorias": {
+        "id": "dict",
+        "shape": 64,
+        "size": 1584,
+        "sliced": false
+      },
+      "modelo": {
+        "id": "str",
+        "shape": 16,
+        "size": 65,
+        "sliced": false
+      },
+      "empates": {
+        "id": "dict",
+        "shape": 64,
+        "size": 1584,
+        "sliced": true
+      },
+      "aparicoes": {
+        "id": "dict",
+        "shape": 64,
+        "size": 1584,
+        "sliced": false
+      },
+      "idx": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "row": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          9
+        ],
+        "size": 2028,
+        "sliced": false
+      },
+      "a": {
+        "id": "str",
+        "shape": 18,
+        "size": 67,
+        "sliced": false
+      },
+      "b": {
+        "id": "str",
+        "shape": 18,
+        "size": 67,
+        "sliced": false
+      },
+      "resultados": {
+        "id": "list",
+        "shape": 64,
+        "size": 568,
+        "sliced": false
+      },
+      "total": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "win": {
+        "id": "float",
+        "shape": null,
+        "size": 24,
+        "sliced": false
+      },
+      "taxa": {
+        "id": "float",
+        "shape": null,
+        "size": 24,
+        "sliced": false
+      },
+      "ranking_df": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          64,
+          5
+        ],
+        "size": 7219,
+        "sliced": false
+      },
+      "win_rate_dict": {
+        "id": "dict",
+        "shape": 64,
+        "size": 1584,
+        "sliced": false
+      },
+      "vitorias_dict": {
+        "id": "dict",
+        "shape": 64,
+        "size": 1584,
+        "sliced": false
+      },
+      "aparicoes_dict": {
+        "id": "dict",
+        "shape": 64,
+        "size": 1584,
+        "sliced": false
+      },
+      "train_features": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          57477,
+          18
+        ],
+        "size": 204097421,
+        "sliced": true
+      },
+      "train_binary": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          39716,
+          19
+        ],
+        "size": 145609808,
+        "sliced": true
+      },
+      "features": {
+        "id": "list",
+        "shape": 9,
+        "size": 136,
+        "sliced": false
+      },
+      "X": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          39716,
+          9
+        ],
+        "size": 3177312,
+        "sliced": false
+      },
+      "y": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          39716
+        ],
+        "size": 635488,
+        "sliced": false
+      },
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          31772,
+          9
+        ],
+        "size": 2541792,
+        "sliced": false
+      },
+      "X_val": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          7944,
+          9
+        ],
+        "size": 635552,
+        "sliced": false
+      },
+      "y_train": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          31772
+        ],
+        "size": 508384,
+        "sliced": false
+      },
+      "y_val": {
+        "id": "pandas.core.series.Series",
+        "shape": [
+          7944
+        ],
+        "size": 127136,
+        "sliced": false
+      },
+      "scaler": {
+        "id": "sklearn.preprocessing._data.StandardScaler",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "X_train_scaled": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          31772,
+          9
+        ],
+        "size": 2287748,
+        "sliced": false
+      },
+      "X_val_scaled": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          7944,
+          9
+        ],
+        "size": 572132,
+        "sliced": false
+      },
+      "model": {
+        "id": "sklearn.linear_model._logistic.LogisticRegression",
+        "shape": null,
+        "size": 56,
+        "sliced": false
+      },
+      "y_val_pred": {
+        "id": "numpy.ndarray",
+        "shape": [
+          7944
+        ],
+        "size": 112,
+        "sliced": false
+      },
+      "test_data": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          6
+        ],
+        "size": 13854,
+        "sliced": true
+      },
+      "response": null,
+      "test_features": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          15
+        ],
+        "size": 14070,
+        "sliced": true
+      },
+      "X_test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          9
+        ],
+        "size": 380,
+        "sliced": false
+      },
+      "X_test_scaled": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          9
+        ],
+        "size": 380,
+        "sliced": false
+      },
+      "preds": {
+        "id": "numpy.ndarray",
+        "shape": [
+          3
+        ],
+        "size": 112,
+        "sliced": false
+      },
+      "mean_tie_rate": {
+        "id": "numpy.float64",
+        "shape": null,
+        "size": 32,
+        "sliced": false
+      },
+      "submission": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 260,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas",
+      "os": "os",
+      "train_test_split": "sklearn.model_selection.train_test_split",
+      "StandardScaler": "sklearn.preprocessing.StandardScaler",
+      "LogisticRegression": "sklearn.linear_model.LogisticRegression",
+      "log_loss": "sklearn.metrics.log_loss"
+    },
+    "execution_time": 37.949737787246704,
+    "disk_usage": {
+      "peak_disk": 1538093.05859375,
+      "increment": 0.01171875
+    },
+    "memory_usage": {
+      "peak_memory": 687.1159799999999,
+      "memory_increment": 560.44923
+    }
+  },
+  {
+    "code": "print(pandas.core.frame.DataFrame.dtypes)",
+    "actual_code": "print(train_features.dtypes)",
+    "ip_variables": {
+      "train_features": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          57477,
+          18
+        ],
+        "size": 204097421,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "train_features": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          57477,
+          18
+        ],
+        "size": 204097421,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0026764869689941406,
+    "disk_usage": {
+      "peak_disk": 1538093.05859375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 536.4585999999999,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "import seaborn\nimport matplotlib.pyplot\nfrom scipy.stats import skew, kurtosis\nprint('Assimetria:', scipy.stats.skew(pandas.core.frame.DataFrame['win_rate_diff']))\nprint('Curtose:', scipy.stats.kurtosis(pandas.core.frame.DataFrame['win_rate_diff']))\nseaborn.displot(pandas.core.frame.DataFrame['win_rate_diff'], kde=True)\nmatplotlib.pyplot.show()",
+    "actual_code": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\n\nfrom scipy.stats import skew, kurtosis\n\nprint(\"Assimetria:\", skew(X_train['win_rate_diff']))\nprint(\"Curtose:\", kurtosis(X_train['win_rate_diff']))\n\n\nsns.displot(X_train['win_rate_diff'], kde=True)\nplt.show()",
+    "ip_variables": {
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          31772,
+          9
+        ],
+        "size": 2541792,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "X_train": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          31772,
+          9
+        ],
+        "size": 2541792,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "skew": "scipy.stats.skew",
+      "kurtosis": "scipy.stats.kurtosis",
+      "sns": "seaborn",
+      "plt": "matplotlib.pyplot"
+    },
+    "execution_time": 0.7821602821350098,
+    "disk_usage": {
+      "peak_disk": 1538093.05859375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 541.00077,
+      "memory_increment": 4.97226
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.160614490509033,
+    "disk_usage": {
+      "peak_disk": 1538093.0625,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 127.00242999999999,
+      "memory_increment": 0.7343
+    }
+  },
+  {
+    "code": "import torch\nimport sklearn\nimport numpy\nimport pandas\nimport time\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\nif not torch.cuda.is_available():\n    print('Sorry - GPU required!')",
+    "actual_code": "import torch\nimport sklearn\nimport numpy as np\nimport pandas as pd\nimport time\n\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\n\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\n\nif (not torch.cuda.is_available()): print(\"Sorry - GPU required!\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 4.577900409698486,
+    "disk_usage": {
+      "peak_disk": 1538093.06640625,
+      "increment": -0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 693.9554599999999,
+      "memory_increment": 566.93205
+    }
+  },
+  {
+    "code": "str = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nstr = '/kaggle/input/1-10-training-llama-lora-16-5/llama_3_finetuned_model.pth'\nint = 1024\nint = 8\ntorch.device = torch.device('cuda')",
+    "actual_code": "MODEL_NAME = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nWEIGHTS_PATH = '/kaggle/input/1-10-training-llama-lora-16-5/llama_3_finetuned_model.pth'\nMAX_LENGTH = 1024\nBATCH_SIZE = 8\nDEVICE = torch.device(\"cuda\")    ",
+    "ip_variables": {
+      "MODEL_NAME": null,
+      "WEIGHTS_PATH": null,
+      "MAX_LENGTH": null,
+      "BATCH_SIZE": null,
+      "DEVICE": null
+    },
+    "op_variables": {
+      "MODEL_NAME": {
+        "id": "str",
+        "shape": 47,
+        "size": 96,
+        "sliced": false
+      },
+      "WEIGHTS_PATH": {
+        "id": "str",
+        "shape": 71,
+        "size": 120,
+        "sliced": false
+      },
+      "MAX_LENGTH": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "BATCH_SIZE": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "DEVICE": {
+        "id": "torch.device",
+        "shape": null,
+        "size": 24,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 3.933906555175781e-05,
+    "disk_usage": {
+      "peak_disk": 1538093.0625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 693.9659499999999,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\npandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return ' '.join(sentences)\npandas.core.indexing._LocIndexer.loc[:, 'prompt'] = pandas.core.frame.DataFrame['prompt'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_a'] = pandas.core.frame.DataFrame['response_a'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_b'] = pandas.core.frame.DataFrame['response_b'].apply(process)\ndisplay(pandas.core.frame.DataFrame)\ndisplay(pandas.core.frame.DataFrame.head(5))",
+    "actual_code": "test = pd.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\nsample_sub = pd.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\n# concatenate strings in list\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return  ' '.join(sentences)\n\ntest.loc[:, 'prompt'] = test['prompt'].apply(process)\ntest.loc[:, 'response_a'] = test['response_a'].apply(process)\ntest.loc[:, 'response_b'] = test['response_b'].apply(process)\n\ndisplay(sample_sub)\ndisplay(test.head(5))",
+    "ip_variables": {
+      "test": null,
+      "sample_sub": null,
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "process": null
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": false
+      },
+      "sample_sub": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 260,
+        "sliced": false
+      },
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "test.loc": {
+        "id": "pandas.core.indexing._LocIndexer",
+        "shape": null,
+        "size": 80,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.03343057632446289,
+    "disk_usage": {
+      "peak_disk": 1538093.0625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 695.5289599999999,
+      "memory_increment": 2.05604
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['text'] = 'User prompt: ' + pandas.core.frame.DataFrame['prompt'] + '\\n\\nModel A :\\n' + pandas.core.frame.DataFrame['response_a'] + '\\n\\n--------\\n\\nModel B:\\n' + pandas.core.frame.DataFrame['response_b']\nprint(pandas.core.frame.DataFrame['text'][0])",
+    "actual_code": "# Prepare text for model\ntest['text'] = 'User prompt: ' + test['prompt'] +  '\\n\\nModel A :\\n' + test['response_a'] +'\\n\\n--------\\n\\nModel B:\\n'  + test['response_b']\nprint(test['text'][0])",
+    "ip_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          5
+        ],
+        "size": 22032,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.002198934555053711,
+    "disk_usage": {
+      "peak_disk": 1538093.0625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 695.57092,
+      "memory_increment": 0.01049
+    }
+  },
+  {
+    "code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "actual_code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.17464947700500488,
+    "disk_usage": {
+      "peak_disk": 1538093.0625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 696.10591,
+      "memory_increment": 0.5245
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.43551754951477,
+    "disk_usage": {
+      "peak_disk": 1538093.06640625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.87655,
+      "memory_increment": 0.7343
+    }
+  },
+  {
+    "code": "import torch\nimport sklearn\nimport numpy\nimport pandas\nimport time\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\nif not torch.cuda.is_available():\n    print('Sorry - GPU required!')",
+    "actual_code": "import torch\nimport sklearn\nimport numpy as np\nimport pandas as pd\nimport time\n\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\n\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\n\nif (not torch.cuda.is_available()): print(\"Sorry - GPU required!\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 4.472275733947754,
+    "disk_usage": {
+      "peak_disk": 1538093.0703125,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 692.46588,
+      "memory_increment": 565.5893299999999
+    }
+  },
+  {
+    "code": "str = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nstr = '/kaggle/input/1-12-training-llama-lora-16-2/llama_3_finetuned_model.pth'\nint = 1024\nint = 8\ntorch.device = torch.device('cuda')",
+    "actual_code": "MODEL_NAME = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nWEIGHTS_PATH = '/kaggle/input/1-12-training-llama-lora-16-2/llama_3_finetuned_model.pth'\nMAX_LENGTH = 1024\nBATCH_SIZE = 8\nDEVICE = torch.device(\"cuda\")    ",
+    "ip_variables": {
+      "MODEL_NAME": null,
+      "WEIGHTS_PATH": null,
+      "MAX_LENGTH": null,
+      "BATCH_SIZE": null,
+      "DEVICE": null
+    },
+    "op_variables": {
+      "MODEL_NAME": {
+        "id": "str",
+        "shape": 47,
+        "size": 96,
+        "sliced": false
+      },
+      "WEIGHTS_PATH": {
+        "id": "str",
+        "shape": 71,
+        "size": 120,
+        "sliced": false
+      },
+      "MAX_LENGTH": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "BATCH_SIZE": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "DEVICE": {
+        "id": "torch.device",
+        "shape": null,
+        "size": 24,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 4.3392181396484375e-05,
+    "disk_usage": {
+      "peak_disk": 1538093.06640625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 692.48686,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\npandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return ' '.join(sentences)\npandas.core.indexing._LocIndexer.loc[:, 'prompt'] = pandas.core.frame.DataFrame['prompt'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_a'] = pandas.core.frame.DataFrame['response_a'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_b'] = pandas.core.frame.DataFrame['response_b'].apply(process)\ndisplay(pandas.core.frame.DataFrame)\ndisplay(pandas.core.frame.DataFrame.head(5))",
+    "actual_code": "test = pd.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\nsample_sub = pd.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\n# concatenate strings in list\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return  ' '.join(sentences)\n\ntest.loc[:, 'prompt'] = test['prompt'].apply(process)\ntest.loc[:, 'response_a'] = test['response_a'].apply(process)\ntest.loc[:, 'response_b'] = test['response_b'].apply(process)\n\ndisplay(sample_sub)\ndisplay(test.head(5))",
+    "ip_variables": {
+      "test": null,
+      "sample_sub": null,
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "process": null
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": false
+      },
+      "sample_sub": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 260,
+        "sliced": false
+      },
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "test.loc": {
+        "id": "pandas.core.indexing._LocIndexer",
+        "shape": null,
+        "size": 80,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.027675390243530273,
+    "disk_usage": {
+      "peak_disk": 1538093.0703125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 693.4099799999999,
+      "memory_increment": 1.35321
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['text'] = 'User prompt: ' + pandas.core.frame.DataFrame['prompt'] + '\\n\\nModel A :\\n' + pandas.core.frame.DataFrame['response_a'] + '\\n\\n--------\\n\\nModel B:\\n' + pandas.core.frame.DataFrame['response_b']\nprint(pandas.core.frame.DataFrame['text'][0])",
+    "actual_code": "# Prepare text for model\ntest['text'] = 'User prompt: ' + test['prompt'] +  '\\n\\nModel A :\\n' + test['response_a'] +'\\n\\n--------\\n\\nModel B:\\n'  + test['response_b']\nprint(test['text'][0])",
+    "ip_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          5
+        ],
+        "size": 22032,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.002120494842529297,
+    "disk_usage": {
+      "peak_disk": 1538097.67578125,
+      "increment": 0.0703125
+    },
+    "memory_usage": {
+      "peak_memory": 693.4414499999999,
+      "memory_increment": 0.01049
+    }
+  },
+  {
+    "code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "actual_code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.18369579315185547,
+    "disk_usage": {
+      "peak_disk": 1538097.84765625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 694.15477,
+      "memory_increment": 0.71332
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.484840631484985,
+    "disk_usage": {
+      "peak_disk": 1538097.84765625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 127.23321,
+      "memory_increment": 0.74479
+    }
+  },
+  {
+    "code": "import torch\nimport sklearn\nimport numpy\nimport pandas\nimport time\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\nif not torch.cuda.is_available():\n    print('Sorry - GPU required!')",
+    "actual_code": "import torch\nimport sklearn\nimport numpy as np\nimport pandas as pd\nimport time\n\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\n\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\n\nif (not torch.cuda.is_available()): print(\"Sorry - GPU required!\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 5.009833812713623,
+    "disk_usage": {
+      "peak_disk": 1538097.84765625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 694.5533899999999,
+      "memory_increment": 567.32018
+    }
+  },
+  {
+    "code": "str = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nstr = '/kaggle/input/1-11-training-llama-lora-16-3/llama_3_finetuned_model.pth'\nint = 1024\nint = 8\ntorch.device = torch.device('cuda')",
+    "actual_code": "MODEL_NAME = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nWEIGHTS_PATH = '/kaggle/input/1-11-training-llama-lora-16-3/llama_3_finetuned_model.pth'\nMAX_LENGTH = 1024\nBATCH_SIZE = 8\nDEVICE = torch.device(\"cuda\")    ",
+    "ip_variables": {
+      "MODEL_NAME": null,
+      "WEIGHTS_PATH": null,
+      "MAX_LENGTH": null,
+      "BATCH_SIZE": null,
+      "DEVICE": null
+    },
+    "op_variables": {
+      "MODEL_NAME": {
+        "id": "str",
+        "shape": 47,
+        "size": 96,
+        "sliced": false
+      },
+      "WEIGHTS_PATH": {
+        "id": "str",
+        "shape": 71,
+        "size": 120,
+        "sliced": false
+      },
+      "MAX_LENGTH": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "BATCH_SIZE": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "DEVICE": {
+        "id": "torch.device",
+        "shape": null,
+        "size": 24,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 0.00012254714965820312,
+    "disk_usage": {
+      "peak_disk": 1538097.84765625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 694.5638799999999,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\npandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return ' '.join(sentences)\npandas.core.indexing._LocIndexer.loc[:, 'prompt'] = pandas.core.frame.DataFrame['prompt'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_a'] = pandas.core.frame.DataFrame['response_a'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_b'] = pandas.core.frame.DataFrame['response_b'].apply(process)\ndisplay(pandas.core.frame.DataFrame)\ndisplay(pandas.core.frame.DataFrame.head(5))",
+    "actual_code": "test = pd.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\nsample_sub = pd.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\n# concatenate strings in list\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return  ' '.join(sentences)\n\ntest.loc[:, 'prompt'] = test['prompt'].apply(process)\ntest.loc[:, 'response_a'] = test['response_a'].apply(process)\ntest.loc[:, 'response_b'] = test['response_b'].apply(process)\n\ndisplay(sample_sub)\ndisplay(test.head(5))",
+    "ip_variables": {
+      "test": null,
+      "sample_sub": null,
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "process": null
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": false
+      },
+      "sample_sub": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 260,
+        "sliced": false
+      },
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "test.loc": {
+        "id": "pandas.core.indexing._LocIndexer",
+        "shape": null,
+        "size": 80,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.024089813232421875,
+    "disk_usage": {
+      "peak_disk": 1538097.8515625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 695.3716099999999,
+      "memory_increment": 1.2902699999999998
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['text'] = 'User prompt: ' + pandas.core.frame.DataFrame['prompt'] + '\\n\\nModel A :\\n' + pandas.core.frame.DataFrame['response_a'] + '\\n\\n--------\\n\\nModel B:\\n' + pandas.core.frame.DataFrame['response_b']\nprint(pandas.core.frame.DataFrame['text'][0])",
+    "actual_code": "# Prepare text for model\ntest['text'] = 'User prompt: ' + test['prompt'] +  '\\n\\nModel A :\\n' + test['response_a'] +'\\n\\n--------\\n\\nModel B:\\n'  + test['response_b']\nprint(test['text'][0])",
+    "ip_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          5
+        ],
+        "size": 22032,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.002010822296142578,
+    "disk_usage": {
+      "peak_disk": 1538097.8515625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 695.4135699999999,
+      "memory_increment": 0.01049
+    }
+  },
+  {
+    "code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "actual_code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.17864418029785156,
+    "disk_usage": {
+      "peak_disk": 1538097.8515625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 696.12689,
+      "memory_increment": 0.71332
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.547367334365845,
+    "disk_usage": {
+      "peak_disk": 1538097.85546875,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 126.91850999999998,
+      "memory_increment": 0.74479
+    }
+  },
+  {
+    "code": "import torch\nimport sklearn\nimport numpy\nimport pandas\nimport time\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\nif not torch.cuda.is_available():\n    print('Sorry - GPU required!')",
+    "actual_code": "import torch\nimport sklearn\nimport numpy as np\nimport pandas as pd\nimport time\n\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\n\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\n\nif (not torch.cuda.is_available()): print(\"Sorry - GPU required!\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 4.9839255809783936,
+    "disk_usage": {
+      "peak_disk": 1538097.85546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 692.67568,
+      "memory_increment": 565.75717
+    }
+  },
+  {
+    "code": "str = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nstr = '/kaggle/input/1-3-training-llama-lora-4-2/llama_3_finetuned_model.pth'\nint = 1024\nint = 8\ntorch.device = torch.device('cuda')",
+    "actual_code": "MODEL_NAME = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nWEIGHTS_PATH = '/kaggle/input/1-3-training-llama-lora-4-2/llama_3_finetuned_model.pth'\nMAX_LENGTH = 1024\nBATCH_SIZE = 8\nDEVICE = torch.device(\"cuda\")    ",
+    "ip_variables": {
+      "MODEL_NAME": null,
+      "WEIGHTS_PATH": null,
+      "MAX_LENGTH": null,
+      "BATCH_SIZE": null,
+      "DEVICE": null
+    },
+    "op_variables": {
+      "MODEL_NAME": {
+        "id": "str",
+        "shape": 47,
+        "size": 96,
+        "sliced": false
+      },
+      "WEIGHTS_PATH": {
+        "id": "str",
+        "shape": 69,
+        "size": 118,
+        "sliced": false
+      },
+      "MAX_LENGTH": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "BATCH_SIZE": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "DEVICE": {
+        "id": "torch.device",
+        "shape": null,
+        "size": 24,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 3.5762786865234375e-05,
+    "disk_usage": {
+      "peak_disk": 1538097.85546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 692.71764,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\npandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return ' '.join(sentences)\npandas.core.indexing._LocIndexer.loc[:, 'prompt'] = pandas.core.frame.DataFrame['prompt'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_a'] = pandas.core.frame.DataFrame['response_a'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_b'] = pandas.core.frame.DataFrame['response_b'].apply(process)\ndisplay(pandas.core.frame.DataFrame)\ndisplay(pandas.core.frame.DataFrame.head(5))",
+    "actual_code": "test = pd.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\nsample_sub = pd.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\n# concatenate strings in list\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return  ' '.join(sentences)\n\ntest.loc[:, 'prompt'] = test['prompt'].apply(process)\ntest.loc[:, 'response_a'] = test['response_a'].apply(process)\ntest.loc[:, 'response_b'] = test['response_b'].apply(process)\n\ndisplay(sample_sub)\ndisplay(test.head(5))",
+    "ip_variables": {
+      "test": null,
+      "sample_sub": null,
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "process": null
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": false
+      },
+      "sample_sub": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 260,
+        "sliced": false
+      },
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "test.loc": {
+        "id": "pandas.core.indexing._LocIndexer",
+        "shape": null,
+        "size": 80,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.022402286529541016,
+    "disk_usage": {
+      "peak_disk": 1538097.85546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 693.7771299999999,
+      "memory_increment": 1.5000699999999998
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['text'] = 'User prompt: ' + pandas.core.frame.DataFrame['prompt'] + '\\n\\nModel A :\\n' + pandas.core.frame.DataFrame['response_a'] + '\\n\\n--------\\n\\nModel B:\\n' + pandas.core.frame.DataFrame['response_b']\nprint(pandas.core.frame.DataFrame['text'][0])",
+    "actual_code": "# Prepare text for model\ntest['text'] = 'User prompt: ' + test['prompt'] +  '\\n\\nModel A :\\n' + test['response_a'] +'\\n\\n--------\\n\\nModel B:\\n'  + test['response_b']\nprint(test['text'][0])",
+    "ip_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          5
+        ],
+        "size": 22032,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0021855831146240234,
+    "disk_usage": {
+      "peak_disk": 1538097.85546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 693.8086,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "actual_code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.17050766944885254,
+    "disk_usage": {
+      "peak_disk": 1538097.85546875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 694.53241,
+      "memory_increment": 0.71332
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.481324195861816,
+    "disk_usage": {
+      "peak_disk": 1538102.63671875,
+      "increment": 4.77734375
+    },
+    "memory_usage": {
+      "peak_memory": 126.85557,
+      "memory_increment": 0.7238099999999998
+    }
+  },
+  {
+    "code": "import torch\nimport sklearn\nimport numpy\nimport pandas\nimport time\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\nif not torch.cuda.is_available():\n    print('Sorry - GPU required!')",
+    "actual_code": "import torch\nimport sklearn\nimport numpy as np\nimport pandas as pd\nimport time\n\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\n\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\n\nif (not torch.cuda.is_available()): print(\"Sorry - GPU required!\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 4.8267598152160645,
+    "disk_usage": {
+      "peak_disk": 1538102.63671875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 693.1687099999999,
+      "memory_increment": 566.31314
+    }
+  },
+  {
+    "code": "str = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nstr = '/kaggle/input/1-1-training-llama-lora-4-5/llama_3_finetuned_model.pth'\nint = 1024\nint = 8\ntorch.device = torch.device('cuda')",
+    "actual_code": "MODEL_NAME = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nWEIGHTS_PATH = '/kaggle/input/1-1-training-llama-lora-4-5/llama_3_finetuned_model.pth'\nMAX_LENGTH = 1024\nBATCH_SIZE = 8\nDEVICE = torch.device(\"cuda\")    ",
+    "ip_variables": {
+      "MODEL_NAME": null,
+      "WEIGHTS_PATH": null,
+      "MAX_LENGTH": null,
+      "BATCH_SIZE": null,
+      "DEVICE": null
+    },
+    "op_variables": {
+      "MODEL_NAME": {
+        "id": "str",
+        "shape": 47,
+        "size": 96,
+        "sliced": false
+      },
+      "WEIGHTS_PATH": {
+        "id": "str",
+        "shape": 69,
+        "size": 118,
+        "sliced": false
+      },
+      "MAX_LENGTH": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "BATCH_SIZE": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "DEVICE": {
+        "id": "torch.device",
+        "shape": null,
+        "size": 24,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 2.8133392333984375e-05,
+    "disk_usage": {
+      "peak_disk": 1538102.63671875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 693.20018,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\npandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return ' '.join(sentences)\npandas.core.indexing._LocIndexer.loc[:, 'prompt'] = pandas.core.frame.DataFrame['prompt'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_a'] = pandas.core.frame.DataFrame['response_a'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_b'] = pandas.core.frame.DataFrame['response_b'].apply(process)\ndisplay(pandas.core.frame.DataFrame)\ndisplay(pandas.core.frame.DataFrame.head(5))",
+    "actual_code": "test = pd.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\nsample_sub = pd.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\n# concatenate strings in list\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return  ' '.join(sentences)\n\ntest.loc[:, 'prompt'] = test['prompt'].apply(process)\ntest.loc[:, 'response_a'] = test['response_a'].apply(process)\ntest.loc[:, 'response_b'] = test['response_b'].apply(process)\n\ndisplay(sample_sub)\ndisplay(test.head(5))",
+    "ip_variables": {
+      "test": null,
+      "sample_sub": null,
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "process": null
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": false
+      },
+      "sample_sub": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 260,
+        "sliced": false
+      },
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "test.loc": {
+        "id": "pandas.core.indexing._LocIndexer",
+        "shape": null,
+        "size": 80,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.02328968048095703,
+    "disk_usage": {
+      "peak_disk": 1538102.63671875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 694.1233,
+      "memory_increment": 1.40566
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['text'] = 'User prompt: ' + pandas.core.frame.DataFrame['prompt'] + '\\n\\nModel A :\\n' + pandas.core.frame.DataFrame['response_a'] + '\\n\\n--------\\n\\nModel B:\\n' + pandas.core.frame.DataFrame['response_b']\nprint(pandas.core.frame.DataFrame['text'][0])",
+    "actual_code": "# Prepare text for model\ntest['text'] = 'User prompt: ' + test['prompt'] +  '\\n\\nModel A :\\n' + test['response_a'] +'\\n\\n--------\\n\\nModel B:\\n'  + test['response_b']\nprint(test['text'][0])",
+    "ip_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          5
+        ],
+        "size": 22032,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0028913021087646484,
+    "disk_usage": {
+      "peak_disk": 1538102.63671875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 694.1967299999999,
+      "memory_increment": 0.01049
+    }
+  },
+  {
+    "code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "actual_code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.17204976081848145,
+    "disk_usage": {
+      "peak_disk": 1538102.63671875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 694.92054,
+      "memory_increment": 0.71332
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.8571395874023438,
+    "disk_usage": {
+      "peak_disk": 1538102.640625,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 126.69821999999999,
+      "memory_increment": 0.50352
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.812242269515991,
+    "disk_usage": {
+      "peak_disk": 1538102.640625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.98145,
+      "memory_increment": 0.24126999999999998
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.714261293411255,
+    "disk_usage": {
+      "peak_disk": 1538102.64453125,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 126.65625999999999,
+      "memory_increment": 0.47204999999999997
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.317330360412598,
+    "disk_usage": {
+      "peak_disk": 1538102.6484375,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 126.92899999999999,
+      "memory_increment": 0.22028999999999999
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.84991455078125,
+    "disk_usage": {
+      "peak_disk": 1538102.6484375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.59332,
+      "memory_increment": 0.50352
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 15.107797861099243,
+    "disk_usage": {
+      "peak_disk": 1538102.65234375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.99194,
+      "memory_increment": 0.07343000000000001
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.5717477798461914,
+    "disk_usage": {
+      "peak_disk": 1538102.65234375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.81361,
+      "memory_increment": 0.36715
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.522417545318604,
+    "disk_usage": {
+      "peak_disk": 1538102.65625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 127.07585999999999,
+      "memory_increment": 0.23077999999999999
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 4.070666313171387,
+    "disk_usage": {
+      "peak_disk": 1538102.65234375,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.72968999999999,
+      "memory_increment": 0.50352
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.030728101730347,
+    "disk_usage": {
+      "peak_disk": 1538102.65625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.99194,
+      "memory_increment": 0.22028999999999999
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.1620631217956543,
+    "disk_usage": {
+      "peak_disk": 1538102.66015625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.64577,
+      "memory_increment": 0.50352
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 12.664654970169067,
+    "disk_usage": {
+      "peak_disk": 1538102.6640625,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 126.94997999999998,
+      "memory_increment": 0.06294
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 23.646254062652588,
+    "disk_usage": {
+      "peak_disk": 1538102.6640625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.71919999999999,
+      "memory_increment": 0.51401
+    }
+  },
+  {
+    "code": "import pandas\npandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/train.csv')\npandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\npandas.core.frame.DataFrame['train_test'] = 1\npandas.core.frame.DataFrame['train_test'] = 0\npandas.core.frame.DataFrame = pandas.concat([pandas.core.frame.DataFrame, pandas.core.frame.DataFrame])\nprint('Import Data Complete')",
+    "actual_code": "# import the data\nimport pandas as pd\n\ntraining = pd.read_csv('/kaggle/input/llm-classification-finetuning/train.csv')\ntest = pd.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\n\ntraining['train_test'] = 1\ntest['train_test'] = 0\nall_data = pd.concat([training,test])\n\nprint(\"Import Data Complete\")",
+    "ip_variables": {
+      "training": null,
+      "test": null,
+      "all_data": null
+    },
+    "op_variables": {
+      "training": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          57477,
+          10
+        ],
+        "size": 200418893,
+        "sliced": false
+      },
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          5
+        ],
+        "size": 11278,
+        "sliced": false
+      },
+      "all_data": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          57480,
+          10
+        ],
+        "size": 200889979,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 2.0698752403259277,
+    "disk_usage": {
+      "peak_disk": 1538102.66796875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 571.01266,
+      "memory_increment": 444.9858
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame.head(10)\npandas.core.frame.DataFrame.tail(10)",
+    "actual_code": "training.head(10)\ntraining.tail(10)",
+    "ip_variables": {
+      "training": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          57477,
+          10
+        ],
+        "size": 200418893,
+        "sliced": false
+      }
+    },
+    "op_variables": {
+      "training": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          57477,
+          10
+        ],
+        "size": 200418893,
+        "sliced": false
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0003879070281982422,
+    "disk_usage": {
+      "peak_disk": 1538102.66796875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 395.33662999999996,
+      "memory_increment": 0.02098
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.521276473999023,
+    "disk_usage": {
+      "peak_disk": 1538102.67578125,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 127.11782,
+      "memory_increment": 0.7343
+    }
+  },
+  {
+    "code": "import torch\nimport sklearn\nimport numpy\nimport pandas\nimport time\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\nif not torch.cuda.is_available():\n    print('Sorry - GPU required!')",
+    "actual_code": "import torch\nimport sklearn\nimport numpy as np\nimport pandas as pd\nimport time\n\nfrom transformers import AutoTokenizer, LlamaModel, LlamaForSequenceClassification, BitsAndBytesConfig\nfrom peft import get_peft_config, PeftModel, PeftConfig, get_peft_model, LoraConfig, TaskType\nfrom torch.cuda.amp import autocast\nfrom threading import Thread\n\ntorch.backends.cuda.enable_mem_efficient_sdp(False)\ntorch.backends.cuda.enable_flash_sdp(False)\n\nif (not torch.cuda.is_available()): print(\"Sorry - GPU required!\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 4.878201723098755,
+    "disk_usage": {
+      "peak_disk": 1538102.67578125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 693.33655,
+      "memory_increment": 566.2082399999999
+    }
+  },
+  {
+    "code": "str = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nstr = '/kaggle/input/1-13-training-llama-lora-8-5/llama_3_finetuned_model.pth'\nint = 1024\nint = 8\ntorch.device = torch.device('cuda')",
+    "actual_code": "MODEL_NAME = '/kaggle/input/llama-3/transformers/8b-chat-hf/1'\nWEIGHTS_PATH = '/kaggle/input/1-13-training-llama-lora-8-5/llama_3_finetuned_model.pth'\nMAX_LENGTH = 1024\nBATCH_SIZE = 8\nDEVICE = torch.device(\"cuda\")    ",
+    "ip_variables": {
+      "MODEL_NAME": null,
+      "WEIGHTS_PATH": null,
+      "MAX_LENGTH": null,
+      "BATCH_SIZE": null,
+      "DEVICE": null
+    },
+    "op_variables": {
+      "MODEL_NAME": {
+        "id": "str",
+        "shape": 47,
+        "size": 96,
+        "sliced": false
+      },
+      "WEIGHTS_PATH": {
+        "id": "str",
+        "shape": 70,
+        "size": 119,
+        "sliced": false
+      },
+      "MAX_LENGTH": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "BATCH_SIZE": {
+        "id": "int",
+        "shape": null,
+        "size": 28,
+        "sliced": false
+      },
+      "DEVICE": {
+        "id": "torch.device",
+        "shape": null,
+        "size": 24,
+        "sliced": false
+      }
+    },
+    "imports": {
+      "torch": "torch"
+    },
+    "execution_time": 3.5762786865234375e-05,
+    "disk_usage": {
+      "peak_disk": 1538102.67578125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 693.36802,
+      "memory_increment": 0.0
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\npandas.core.frame.DataFrame = pandas.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return ' '.join(sentences)\npandas.core.indexing._LocIndexer.loc[:, 'prompt'] = pandas.core.frame.DataFrame['prompt'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_a'] = pandas.core.frame.DataFrame['response_a'].apply(process)\npandas.core.indexing._LocIndexer.loc[:, 'response_b'] = pandas.core.frame.DataFrame['response_b'].apply(process)\ndisplay(pandas.core.frame.DataFrame)\ndisplay(pandas.core.frame.DataFrame.head(5))",
+    "actual_code": "test = pd.read_csv('/kaggle/input/llm-classification-finetuning/test.csv')\nsample_sub = pd.read_csv('/kaggle/input/llm-classification-finetuning/sample_submission.csv')\n\n# concatenate strings in list\ndef process(input_str):\n    stripped_str = input_str.strip('[]')\n    sentences = [s.strip('\"') for s in stripped_str.split('\",\"')]\n    return  ' '.join(sentences)\n\ntest.loc[:, 'prompt'] = test['prompt'].apply(process)\ntest.loc[:, 'response_a'] = test['response_a'].apply(process)\ntest.loc[:, 'response_b'] = test['response_b'].apply(process)\n\ndisplay(sample_sub)\ndisplay(test.head(5))",
+    "ip_variables": {
+      "test": null,
+      "sample_sub": null,
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "process": null
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": false
+      },
+      "sample_sub": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 260,
+        "sliced": false
+      },
+      "stripped_str": null,
+      "input_str": null,
+      "sentences": null,
+      "s": null,
+      "test.loc": {
+        "id": "pandas.core.indexing._LocIndexer",
+        "shape": null,
+        "size": 80,
+        "sliced": true
+      }
+    },
+    "imports": {
+      "pd": "pandas"
+    },
+    "execution_time": 0.02143096923828125,
+    "disk_usage": {
+      "peak_disk": 1538102.67578125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 694.2911399999999,
+      "memory_increment": 1.40566
+    }
+  },
+  {
+    "code": "pandas.core.frame.DataFrame['text'] = 'User prompt: ' + pandas.core.frame.DataFrame['prompt'] + '\\n\\nModel A :\\n' + pandas.core.frame.DataFrame['response_a'] + '\\n\\n--------\\n\\nModel B:\\n' + pandas.core.frame.DataFrame['response_b']\nprint(pandas.core.frame.DataFrame['text'][0])",
+    "actual_code": "# Prepare text for model\ntest['text'] = 'User prompt: ' + test['prompt'] +  '\\n\\nModel A :\\n' + test['response_a'] +'\\n\\n--------\\n\\nModel B:\\n'  + test['response_b']\nprint(test['text'][0])",
+    "ip_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          4
+        ],
+        "size": 11212,
+        "sliced": true
+      }
+    },
+    "op_variables": {
+      "test": {
+        "id": "pandas.core.frame.DataFrame",
+        "shape": [
+          3,
+          5
+        ],
+        "size": 22032,
+        "sliced": true
+      }
+    },
+    "imports": {},
+    "execution_time": 0.0022711753845214844,
+    "disk_usage": {
+      "peak_disk": 1538102.67578125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 694.3226099999999,
+      "memory_increment": 0.01049
+    }
+  },
+  {
+    "code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "actual_code": "get_ipython().run_cell_magic('time', '', \"\\ntokenizer = AutoTokenizer.from_pretrained('/kaggle/input/lmsys-model/tokenizer')\\n\\ntokens = tokenizer(test['text'].tolist(), padding='max_length',\\n                   max_length=MAX_LENGTH, truncation=True, return_tensors='pt')\\n\\nINPUT_IDS = tokens['input_ids'].to(DEVICE, dtype=torch.int32)\\nATTENTION_MASKS = tokens['attention_mask'].to(DEVICE, dtype=torch.int32)\\n\\n# Move tensors to CPU and convert them to lists\\ninput_ids_cpu = [tensor.cpu().tolist() for tensor in INPUT_IDS]\\nattention_masks_cpu = [tensor.cpu().tolist() for tensor in ATTENTION_MASKS]\\n\\ndata = pd.DataFrame()\\ndata['INPUT_IDS'] = input_ids_cpu\\ndata['ATTENTION_MASKS'] = attention_masks_cpu\\ndata[:2]\\n\")",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 0.1636641025543213,
+    "disk_usage": {
+      "peak_disk": 1538102.67578125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 695.03593,
+      "memory_increment": 0.71332
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.8020899295806885,
+    "disk_usage": {
+      "peak_disk": 1538102.67578125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.65625999999999,
+      "memory_increment": 0.50352
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.999584197998047,
+    "disk_usage": {
+      "peak_disk": 1538102.6796875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.89752999999999,
+      "memory_increment": 0.24126999999999998
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.8387327194213867,
+    "disk_usage": {
+      "peak_disk": 1538102.67578125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.79263,
+      "memory_increment": 0.53499
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 14.521637201309204,
+    "disk_usage": {
+      "peak_disk": 1538102.68359375,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 127.09683999999999,
+      "memory_increment": 0.05245
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.7888832092285156,
+    "disk_usage": {
+      "peak_disk": 1538102.6875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.76115999999999,
+      "memory_increment": 0.46155999999999997
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 13.303533554077148,
+    "disk_usage": {
+      "peak_disk": 1538102.69140625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 127.01292,
+      "memory_increment": 0.22028999999999999
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.3430700302124023,
+    "disk_usage": {
+      "peak_disk": 1538102.6875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.77164999999998,
+      "memory_increment": 0.48253999999999997
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "actual_code": "get_ipython().system('pip install -q -U bitsandbytes --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U transformers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U tokenizers --no-index --find-links ../input/llm-detect-pip/')\nget_ipython().system('pip install -q -U peft --no-index --find-links ../input/llm-detect-pip/')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 13.24424934387207,
+    "disk_usage": {
+      "peak_disk": 1538102.69140625,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 127.03389999999999,
+      "memory_increment": 0.22028999999999999
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 24.187340259552002,
+    "disk_usage": {
+      "peak_disk": 1538102.69921875,
+      "increment": 0.01171875
+    },
+    "memory_usage": {
+      "peak_memory": 126.60381,
+      "memory_increment": 0.45106999999999997
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 24.602490186691284,
+    "disk_usage": {
+      "peak_disk": 1538102.703125,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.53038,
+      "memory_increment": 0.57695
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.24.1')\nget_ipython().system('pip install -qq transformers==4.35.0')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 24.076818227767944,
+    "disk_usage": {
+      "peak_disk": 1538102.70703125,
+      "increment": 0.00390625
+    },
+    "memory_usage": {
+      "peak_memory": 127.04438999999999,
+      "memory_increment": 0.5874400000000001
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq sentencepiece')\nget_ipython().system('pip install -qq datasets')\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.27.2')\nget_ipython().system('pip install -qq transformers==4.42.3')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq sentencepiece')\nget_ipython().system('pip install -qq datasets')\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.27.2')\nget_ipython().system('pip install -qq transformers==4.42.3')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 47.67517948150635,
+    "disk_usage": {
+      "peak_disk": 1538102.7578125,
+      "increment": 0.046875
+    },
+    "memory_usage": {
+      "peak_memory": 127.19125,
+      "memory_increment": 1.02802
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq sentencepiece')\nget_ipython().system('pip install -qq datasets')\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.27.2')\nget_ipython().system('pip install -qq transformers==4.42.3')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq sentencepiece')\nget_ipython().system('pip install -qq datasets')\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.27.2')\nget_ipython().system('pip install -qq transformers==4.42.3')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 33.07843232154846,
+    "disk_usage": {
+      "peak_disk": 1538102.765625,
+      "increment": 0.01171875
+    },
+    "memory_usage": {
+      "peak_memory": 127.10732999999999,
+      "memory_increment": 0.65038
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.4482169151306152,
+    "disk_usage": {
+      "peak_disk": 1538102.89453125,
+      "increment": -0.07421875
+    },
+    "memory_usage": {
+      "peak_memory": 127.12830999999998,
+      "memory_increment": 0.50352
+    }
+  },
+  {
+    "code": "import time\nfrom dataclasses import dataclass\nfrom concurrent.futures import ThreadPoolExecutor\nimport torch\nimport sklearn\nimport numpy\nimport pandas\nfrom transformers import Gemma2ForSequenceClassification, GemmaTokenizerFast, BitsAndBytesConfig\nfrom transformers.data.data_collator import pad_without_fast_tokenizer_warning\nfrom peft import PeftModel",
+    "actual_code": "import time\nfrom dataclasses import dataclass\nfrom concurrent.futures import ThreadPoolExecutor\n\nimport torch\nimport sklearn\nimport numpy as np\nimport pandas as pd\nfrom transformers import Gemma2ForSequenceClassification, GemmaTokenizerFast, BitsAndBytesConfig\nfrom transformers.data.data_collator import pad_without_fast_tokenizer_warning\nfrom peft import PeftModel",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.876525640487671,
+    "disk_usage": {
+      "peak_disk": 1538102.8046875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 617.8819799999999,
+      "memory_increment": 490.4284799999999
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "actual_code": "get_ipython().system('pip install transformers peft accelerate bitsandbytes      -U --no-index --find-links /kaggle/input/lmsys-wheel-files')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 3.445082664489746,
+    "disk_usage": {
+      "peak_disk": 1538102.796875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 126.48841999999999,
+      "memory_increment": 0.45106999999999997
+    }
+  },
+  {
+    "code": "import time\nfrom dataclasses import dataclass\nfrom concurrent.futures import ThreadPoolExecutor\nimport torch\nimport sklearn\nimport numpy\nimport pandas\nfrom transformers import Gemma2ForSequenceClassification, GemmaTokenizerFast, BitsAndBytesConfig\nfrom transformers.data.data_collator import pad_without_fast_tokenizer_warning\nfrom peft import PeftModel",
+    "actual_code": "import time\nfrom dataclasses import dataclass\nfrom concurrent.futures import ThreadPoolExecutor\n\nimport torch\nimport sklearn\nimport numpy as np\nimport pandas as pd\nfrom transformers import Gemma2ForSequenceClassification, GemmaTokenizerFast, BitsAndBytesConfig\nfrom transformers.data.data_collator import pad_without_fast_tokenizer_warning\nfrom peft import PeftModel",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 4.039965391159058,
+    "disk_usage": {
+      "peak_disk": 1538102.796875,
+      "increment": 0.0
+    },
+    "memory_usage": {
+      "peak_memory": 616.8749399999999,
+      "memory_increment": 490.34455999999994
+    }
+  },
+  {
+    "code": "get_ipython().system('pip install -qq sentencepiece')\nget_ipython().system('pip install -qq datasets')\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.27.2')\nget_ipython().system('pip install -qq transformers==4.42.3')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "actual_code": "# Install libs\nget_ipython().system('pip install -qq sentencepiece')\nget_ipython().system('pip install -qq datasets')\nget_ipython().system('pip install -qq peft==0.9.0')\nget_ipython().system('pip install -qq bitsandbytes==0.41.1')\nget_ipython().system('pip install -qq accelerate==0.27.2')\nget_ipython().system('pip install -qq transformers==4.42.3')\nget_ipython().system('pip install -qq torch~=2.1.0 --index-url https://download.pytorch.org/whl/cpu -q')\nget_ipython().system('pip install -qq torch_xla[tpu]~=2.1.0 -f https://storage.googleapis.com/libtpu-releases/index.html -q')\nget_ipython().system(\"pip uninstall -qq tensorflow -y # If we don't do this, TF will take over TPU and cause permission error for PT\")\nget_ipython().system('cp /kaggle/input/utils-xla/spmd_util.py . # From this repo: https://github.com/HeegyuKim/torch-xla-SPMD')",
+    "ip_variables": {},
+    "op_variables": {},
+    "imports": {},
+    "execution_time": 30.594316244125366,
+    "disk_usage": {
+      "peak_disk": 1538102.80078125,
+      "increment": 0.0078125
+    },
+    "memory_usage": {
+      "peak_memory": 126.83458999999999,
+      "memory_increment": 0.5245
+    }
+  }
+]
