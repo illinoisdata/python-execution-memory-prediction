@@ -33,10 +33,9 @@ class KaggleAdapter():
         else:
             self.main_dir = "./datasets"
             self.data_source = dataset_name
-            self.data_source_name = dataset_name.split("/")[-1]
+            self.data_source_name = "_".join(dataset_name.split("/"))
 
-        self.data_source_dir = os.path.join(
-            self.main_dir, self.data_source)
+        self.data_source_dir = os.path.join(self.main_dir, self.data_source_name)
 
         if os.path.exists(self.data_source_dir):
             print(f"Directory '{self.data_source_dir}' exists.")
