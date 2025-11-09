@@ -14,8 +14,8 @@ api = KaggleApi()
 api.authenticate()
 
 class DataSourceType(Enum):
-    DATASET = 1
-    COMPETITION = 1
+    DATASET = "dataset"
+    COMPETITION = "competition"
 
 class KaggleAdapter():
     def __init__(self, dataset_name: str = None, competition_name: str = None, deleteExisting = False):
