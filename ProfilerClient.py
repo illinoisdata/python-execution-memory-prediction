@@ -22,10 +22,10 @@ def timeout_handler():
 
 
 class ProfilerClient(NotebookClient):
-    def __init__(self, nb, competition_name, notebook_name, timeout):
+    def __init__(self, nb, data_source_name, notebook_name, timeout):
         self.results = []
         self.imports = {}
-        self.competition_name = competition_name
+        self.data_source_name = data_source_name
         self.timeout = timeout
         self.notebook_name = notebook_name
         new_cells = [nbformat.v4.new_code_cell(parser_code), nbformat.v4.new_code_cell(
@@ -68,12 +68,12 @@ print("{PROFILER_DATA_ENDS}")
         """
 
     def clean_cell_for_input(self, code):
-        kaggle_path = f'/kaggle/input/{self.competition_name}'
-        competition_path = f'../input/{self.competition_name}'
+        kaggle_path = f'/kaggle/input/{self.data_source_name}'
+        data_source_path = f'../input/{self.data_source_name}'
         if kaggle_path in code:
             code = code.replace(kaggle_path, '../input')
-        if competition_path in code:
-            code = code.replace(competition_path, '../input')
+        if data_source_path in code:
+            code = code.replace(data_source_path, '../input')
         return code
 
     def clean_cell_for_ast(self, code):

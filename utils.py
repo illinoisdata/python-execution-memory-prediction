@@ -10,9 +10,9 @@ def load_file(path):
     return file_content
 
 
-def save_output(notebook_dir, output_dir, competition_name, page, page_size, data):
+def save_output(notebook_dir, output_dir, data_source_name, page, page_size, data):
     output_path = os.path.join(
-        output_dir, f"{competition_name}-{page}-{page_size}.json")
+        output_dir, f"{data_source_name}-{page}-{page_size}.json")
     if (len(data) > 0):
         with open(output_path, "w") as f:
             json.dump(data, f, indent=2)
@@ -36,11 +36,18 @@ def save_output(notebook_dir, output_dir, competition_name, page, page_size, dat
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument(
+    group = parser.add_mutually_exclusive_group(required=True)
+
+    group.add_argument(
         "-c", "--competition",
         type=str,
-        required=True,
         help="Name of the Kaggle competition"
+    )
+
+    group.add_argument(
+        "-d", "--dataset",
+        type=str,
+        help="Slug of the Kaggle dataset"
     )
 
     parser.add_argument(
@@ -65,14 +72,14 @@ def parse_args():
     )
 
     parser.add_argument(
-        "-o", "--overwrite",
+        "--overwrite",
         action="store_true",
         default=False,
         help="Overwrite existing notebooks and inputs for this competition"
     )
 
     parser.add_argument(
-        "-t", "--timeout",
+        "--timeout",
         type=int,
         default=(7 * 60),
         help="Timeout in seconds for each cell to complete execution (including AST parsing) (default: 7 minutes)"

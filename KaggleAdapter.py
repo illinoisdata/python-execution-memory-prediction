@@ -2,6 +2,7 @@ import zipfile
 import os
 import shutil
 from dotenv import load_dotenv
+from enum import Enum
 
 load_dotenv()
 
@@ -12,31 +13,48 @@ import kaggle
 api = KaggleApi()
 api.authenticate()
 
+class DataSourceType(Enum):
+    DATASET = 1
+    COMPETITION = 1
 
 class KaggleAdapter():
-    def __init__(self, competition_name: str, deleteExisting = False):
-        self.competition_name = competition_name
-        self.main_dir = "./dataset"
-        self.competition_dir = os.path.join(
-            self.main_dir, self.competition_name)
+    def __init__(self, dataset_name: str | None, competition_name: str | None, deleteExisting = False):
+        """
+        data_source_type: Either one of DATASET or COMPETITION
+        main_dir: Top level directory for storage (dataset/competition)
+        data_source: Name of the competition or dataset slug
+        data_source_name: Human readable name for the competition or dataset for file/directory names and logging
+        """
+        self.data_source_type = DataSourceType.COMPETITION if competition_name is not None else DataSourceType.DATASET
+        if self.data_source_type == DataSourceType.COMPETITION:
+            self.main_dir = "./competitions"
+            self.data_source = competition_name
+            self.data_source_name = competition_name
+        else:
+            self.main_dir = "./datasets"
+            self.data_source = dataset_name
+            self.data_source_name = dataset_name.split("/")[-1]
 
-        if os.path.exists(self.competition_dir):
-            print(f"Directory '{self.competition_dir}' exists.")
+        self.data_source_dir = os.path.join(
+            self.main_dir, self.data_source)
+
+        if os.path.exists(self.data_source_dir):
+            print(f"Directory '{self.data_source_dir}' exists.")
             if (deleteExisting):
                 try:
-                    shutil.rmtree(self.competition_dir)
+                    shutil.rmtree(self.data_source_dir)
                     print(
-                        f"Directory '{self.competition_dir}' and its contents removed successfully.")
+                        f"Directory '{self.data_source_dir}' and its contents removed successfully.")
                 except OSError as e:
-                    print(f"Error: {self.competition_dir} : {e.strerror}")
+                    print(f"Error: {self.data_source_dir} : {e.strerror}")
         else:
-            print(f"Directory '{self.competition_dir}' does not exist.")
+            print(f"Directory '{self.data_source_dir}' does not exist.")
 
-        self.input_dir = os.path.join(self.competition_dir, "input")
-        self.notebook_dir = os.path.join(self.competition_dir, "notebooks")
-        self.output_dir = os.path.join(self.competition_dir, "output")
+        self.input_dir = os.path.join(self.data_source_dir, "input")
+        self.notebook_dir = os.path.join(self.data_source_dir, "notebooks")
+        self.output_dir = os.path.join(self.data_source_dir, "output")
 
-        os.makedirs(self.competition_dir, exist_ok=True)
+        os.makedirs(self.data_source_dir, exist_ok=True)
         os.makedirs(self.input_dir, exist_ok=True)
         os.makedirs(self.notebook_dir, exist_ok=True)
         os.makedirs(self.output_dir, exist_ok=True)
@@ -44,11 +62,14 @@ class KaggleAdapter():
     def download_input_data(self):
         if len(os.listdir(self.input_dir)) > 0:
             return
-        
-        zip_file_path = os.path.join(
-            self.input_dir, f"{self.competition_name}.zip")
 
-        api.competition_download_files(competition=self.competition_name, path=self.input_dir)
+        zip_file_path = os.path.join(
+            self.input_dir, f"{self.data_source}.zip")
+
+        if (self.data_source_type == DataSourceType.COMPETITION):
+            api.competition_download_files(competition=self.data_source, path=self.input_dir)
+        else:
+            api.dataset_download_files(dataset=self.data_source, path=self.input_dir)
 
         try:
             with zipfile.ZipFile(zip_file_path, 'r') as zf:
@@ -66,8 +87,12 @@ class KaggleAdapter():
     def download_notebooks(self, page=1, page_size=50):
         downloaded_notebooks = []
         try:
-            notebooks = api.kernels_list(
-                competition=self.competition_name, sort_by='hotness', page=page, page_size=page_size)
+            notebooks = []
+            if (self.data_source_type == DataSourceType.COMPETITION):
+                notebooks = api.kernels_list(competition=self.data_source, sort_by='hotness', page=page, page_size=page_size)
+            else:
+                notebooks = api.kernels_list(dataset=self.data_source, sort_by='votes', page=page, page_size=page_size)
+
             kernel_count = 0
             for kernel in notebooks:
                 if (not kernel._is_private and not kernel._enable_tpu):

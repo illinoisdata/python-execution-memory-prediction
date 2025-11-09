@@ -39,11 +39,12 @@ docker run -e HOST_UID=$(id -u) -e HOST_GID=$(id -g) -v $(pwd):/workspace -w /wo
 **Command line arguments**
 
 -   `-c or --competition` **(Required)**: Name of the Kaggle competition.
+-   `-d or --dataset` **(Required)**: Slug of the Kaggle dataset. **Use either dataset or competition, not both.**
 -   `-p or --page`: Page number (1-indexed) to fetch (default: 1).
 -   `-ps or --page-size`: Number of notebooks to fetch in each page (default: 50). Minimum of this value and number of notebooks to process.
 -   `-m or --multithreading`: Enable multithreading.
--   `-o or --overwrite`: Overwrite existing notebooks and inputs for this competition.
--   `-t or --timeout`: Timeout in seconds for each cell to complete execution (including AST parsing) after which it is stopped and further processing of the notebook is abandoned (default: 7 minutes).
+-   `--overwrite`: Overwrite existing notebooks and inputs for this competition.
+-   `--timeout`: Timeout in seconds for each cell to complete execution (including AST parsing) after which it is stopped and further processing of the notebook is abandoned (default: 7 minutes).
 
 ### Paths
 

@@ -7,21 +7,21 @@ from multiprocessing import Lock
 from utils import parse_args, save_output
 
 
-def run_notebook_with_hooks(notebook, competition_name):
+def run_notebook_with_hooks(notebook, data_source_name):
     args = parse_args()
     nb = nbformat.read(notebook, as_version=4)
 
-    client = ProfilerClient(nb, competition_name,
+    client = ProfilerClient(nb, data_source_name,
                             notebook, timeout=args.timeout)
     results = client.execute()
 
     return results
 
 
-def start_worker(final_results, competition_name: str, nb: str, wl=None):
+def start_worker(final_results, data_source_name: str, nb: str, wl=None):
     try:
-        print(f"Running {competition_name}/{nb}")
-        results = run_notebook_with_hooks(nb, competition_name)
+        print(f"Running {data_source_name}/{nb}")
+        results = run_notebook_with_hooks(nb, data_source_name)
         if wl is not None:
             wl.acquire()
         try:
@@ -33,25 +33,25 @@ def start_worker(final_results, competition_name: str, nb: str, wl=None):
         print(f"An unexpected error occurred while executing {nb}: {e}")
 
 
-def process_notebooks(final_results, root_dir, competition_name, notebook_dir, notebooks, multithread=True):
+def process_notebooks(final_results, root_dir, data_source_name, notebook_dir, notebooks, multithread=True):
     os.chdir(notebook_dir)
 
     if multithread:
         wl = Lock()
         with ThreadPool() as pool:
             pool.starmap(start_worker, [tuple(
-                [final_results, competition_name, nb, wl]) for nb in notebooks])
+                [final_results, data_source_name, nb, wl]) for nb in notebooks])
     else:
         for nb in notebooks:
-            start_worker(final_results, competition_name, nb)
+            start_worker(final_results, data_source_name, nb)
     os.chdir(root_dir)
 
 
 if __name__ == "__main__":
     args = parse_args()
 
-    adapter = KaggleAdapter(
-        competition_name=args.competition, deleteExisting=args.overwrite)
+    adapter = KaggleAdapter(dataset_name=args.dataset,
+                            competition_name=args.competition, deleteExisting=args.overwrite)
 
     page = args.page
     page_size = args.page_size
@@ -64,16 +64,16 @@ if __name__ == "__main__":
         try:
             notebooks = adapter.download_notebooks(page, page_size)
             process_notebooks(
-                final_results, root_dir, adapter.competition_name, adapter.notebook_dir, notebooks, multithread=args.multithreading)
-            save_output(adapter.notebook_dir, adapter.output_dir, adapter.competition_name,
+                final_results, root_dir, adapter.data_source_name, adapter.notebook_dir, notebooks, multithread=args.multithreading)
+            save_output(adapter.notebook_dir, adapter.output_dir, adapter.data_source_name,
                         page, page_size, final_results)
         except KeyboardInterrupt:
             os.chdir(root_dir)
-            save_output(adapter.notebook_dir, adapter.output_dir, adapter.competition_name,
+            save_output(adapter.notebook_dir, adapter.output_dir, adapter.data_source_name,
                         page, page_size, final_results)
         except Exception:
             os.chdir(root_dir)
-            save_output(adapter.notebook_dir, adapter.output_dir, adapter.competition_name,
+            save_output(adapter.notebook_dir, adapter.output_dir, adapter.data_source_name,
                         page, page_size, final_results)
     except Exception as e:
         print(f"An unexpected error occurred while downloading datasets: {e}")
