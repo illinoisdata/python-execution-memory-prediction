@@ -10,12 +10,13 @@ def load_file(path):
     return file_content
 
 
-def keep_files_by_extension(path_to_dir, ext):
+def keep_files_by_extension(path_to_dir, ext, remove_dir=True):
     for _file in os.listdir(path_to_dir):
         try:
             path = os.path.join(path_to_dir, _file)
             if os.path.isdir(path):
-                shutil.rmtree(path)
+                if (remove_dir):
+                    shutil.rmtree(path)
             else:
                 filename = os.path.basename(path)
                 if not filename.endswith(ext):

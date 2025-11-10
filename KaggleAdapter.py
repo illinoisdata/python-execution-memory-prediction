@@ -19,7 +19,7 @@ class DataSourceType(Enum):
     COMPETITION = "competition"
 
 class KaggleAdapter():
-    def __init__(self, dataset_name: str = None, competition_name: str = None, deleteExisting = False):
+    def __init__(self, dataset_name: str = None, competition_name: str = None, delete_existing = False):
         """
         data_source_type: Either one of DATASET or COMPETITION
         main_dir: Top level directory for storage (dataset/competition)
@@ -41,7 +41,7 @@ class KaggleAdapter():
 
         if os.path.exists(self.data_source_dir):
             print(f"Directory '{self.data_source_dir}' exists.")
-            if (deleteExisting):
+            if (delete_existing):
                 try:
                     shutil.rmtree(self.data_source_dir)
                     print(
@@ -75,7 +75,7 @@ class KaggleAdapter():
             with zipfile.ZipFile(zip_file_path, 'r') as zf:
                 zf.extractall(self.input_dir)
             os.remove(zip_file_path)
-            keep_files_by_extension(self.input_dir, ".csv")
+            keep_files_by_extension(self.input_dir, ".csv", remove_dir=False)
             print(
                 f"Successfully downloaded and unzipped '{zip_file_path}' to '{self.input_dir}'")
         except zipfile.BadZipFile:

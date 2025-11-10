@@ -51,7 +51,7 @@ if __name__ == "__main__":
     args = parse_args()
 
     adapter = KaggleAdapter(dataset_name=args.dataset,
-                            competition_name=args.competition, deleteExisting=args.overwrite)
+                            competition_name=args.competition, delete_existing=args.overwrite)
 
     page = args.page
     page_size = args.page_size
