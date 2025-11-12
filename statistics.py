@@ -40,3 +40,4 @@ def get_notebooks_count():
 
     print(f"Competition notebooks: {competitions_notebooks}")
     print(f"Dataset notebooks: {datasets_notebooks}")
+
