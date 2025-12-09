@@ -48,11 +48,12 @@ docker run -e HOST_UID=$(id -u) -e HOST_GID=$(id -g) -v $(pwd):/workspace -w /wo
 
 ### Paths
 
-All downloads and outputs are stored in the `dataset` directory. Most paths on the downloaded notebooks are modified at runtime to follow these conventions.
+All downloads and outputs from a competition are stored in the `competitions` directory, and `datasets` for dataset-based downloads. Most paths on the downloaded notebooks are modified at runtime to follow these conventions.
 
--   Inputs are stored in `datasets/competition-name/input` directory.
--   Notebooks are stored in `datasets/competition-name/notebooks` directory.
--   Outputs are stored in `datasets/competition-name/output` directory.
+-   The base path is either `competitions/competition-name` or `datasets/dataset-name` depending on the type of download.
+-   Inputs are stored in `/input` directory.
+-   Notebooks are stored in `/notebooks` directory.
+-   Outputs are stored in `/output` directory.
 
 ### Miscellaneous
 
