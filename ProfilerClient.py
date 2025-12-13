@@ -10,7 +10,7 @@ from TreeParser import TreeParser
 import textwrap
 
 parser_code = load_file("./parser_utils.py")
-gpu_profiler_code = load_file("./TorchGPUProfiler.py")
+gpu_profiler_code = load_file("./GPUProfiler.py")
 load_profiler_code = "%load_ext memory_profiler" + "\n"
 
 PROFILER_PEAK_MEMORY = "peak memory:"
@@ -68,6 +68,15 @@ class ProfilerClient(NotebookClient):
             cleaned_lines.append(line)
 
         return repr("\n".join(cleaned_lines))
+
+    def get_cuda_allocation_type(self):
+        for v in list(self.imports.values()):
+            if (v.startswith("torch")):
+                return "torch"
+            elif (v.startswith("tensorflow")):
+                return "tensorflow"
+            else:
+                return None
 
     def execute(self):
         cell_count = 0
@@ -133,7 +142,7 @@ class ProfilerClient(NotebookClient):
     def execute_cell(self, cell, cell_index, execution_count=None, store_history=True, should_profile=False):
         if (should_profile):
             cell['source'] = self.clean_cell_for_input(cell['source'])
-            cell['source'] = "%%memit" + "\n" + "with gpu_profiler():" + \
+            cell['source'] = "%%memit" + "\n" + f"with gpu_profiler(type='{self.get_cuda_allocation_type()}'):" + \
                 "\n" + textwrap.indent(cell['source'], "\t")
 
         result = super().execute_cell(cell, cell_index, execution_count, store_history)
