@@ -3,18 +3,21 @@ from nbclient import NotebookClient
 from nbclient.exceptions import CellExecutionError
 from IPython.core.inputtransformer2 import TransformerManager
 import re
-import ast
+import json
 import signal
 from utils import load_file
+from TreeParser import TreeParser
+import textwrap
 
-parser_code = load_file("./TreeParser.py")
-disk_profiler_code = load_file("./DiskProfiler.py")
+parser_code = load_file("./parser_utils.py")
+gpu_profiler_code = load_file("./TorchGPUProfiler.py")
 load_profiler_code = "%load_ext memory_profiler" + "\n"
 
-PROFILER_DATA_STARTS = "PROFILER_DATA_STARTS"
-PROFILER_DATA_ENDS = "PROFILER_DATA_ENDS"
 PROFILER_PEAK_MEMORY = "peak memory:"
 PROFILER_MEMORY_INCREMENT = "increment:"
+
+PROFILER_PEAK_GPU = "peak gpu:"
+PROFILER_GPU_INCREMENT = "gpu increment:"
 
 
 def timeout_handler():
@@ -24,48 +27,23 @@ def timeout_handler():
 class ProfilerClient(NotebookClient):
     def __init__(self, nb, data_source_name, notebook_name, timeout):
         self.results = []
-        self.imports = {}
         self.data_source_name = data_source_name
         self.timeout = timeout
         self.notebook_name = notebook_name
+
+        self.parser = TreeParser()
+
         new_cells = [nbformat.v4.new_code_cell(parser_code), nbformat.v4.new_code_cell(
-            disk_profiler_code), nbformat.v4.new_code_cell(load_profiler_code)]
+            gpu_profiler_code), nbformat.v4.new_code_cell(load_profiler_code)]
         self.new_cell_count = len(new_cells)
-        nb.cells = new_cells + nb.cells
+
+        new_nb_cells = []
+        for cell in nb.cells:
+            new_nb_cells.extend([nbformat.v4.new_code_cell(""), cell])
+
+        nb.cells = new_cells + new_nb_cells
         super().__init__(nb)
         print("Initialized ProfilerClient")
-
-    def get_cell_profiler_code(self):
-        return "%%memit" + "\n"
-
-    def get_start_parse_code(self, code):
-        return f"""
-parser.start({self.clean_cell_for_ast(code)})
-diskProfiler.start()
-start = time.time()
-        """
-
-    def get_exit_parse_code(self):
-        return f"""
-end = time.time()
-diskProfiler.stop()
-actual_code, code = parser.exit()
-
-print("{PROFILER_DATA_STARTS}")
-print({{
-    "code": code,
-    "actual_code": actual_code,
-    "ip_variables": parser.variables_ip,
-    "op_variables": parser.variables_op,
-    "imports": parser.local_imports,
-    "execution_time": end - start,
-    "disk_usage": {{
-        "peak_disk": diskProfiler.peak_used,
-        "increment": diskProfiler.increment
-    }}
-}})
-print("{PROFILER_DATA_ENDS}")
-        """
 
     def clean_cell_for_input(self, code):
         kaggle_path = f'/kaggle/input/{self.data_source_name}'
@@ -94,15 +72,27 @@ print("{PROFILER_DATA_ENDS}")
     def execute(self):
         cell_count = 0
         with self.setup_kernel():
-            for i, cell in enumerate(self.nb.cells):
+            for i in range(self.new_cell_count):
+                cell = self.nb.cells[i]
                 if cell.cell_type != "code":
                     continue
+                self.execute_cell(cell, i, should_profile=False)
+            for i in range(self.new_cell_count, len(self.nb.cells), 2):
+                profiling_cell = self.nb.cells[i]
+                cell = self.nb.cells[i + 1]
+
+                if cell.cell_type != "code":
+                    continue
+
                 try:
+                    self.execute_cell(profiling_cell, i,
+                                      cell, should_profile=True)
+
                     signal.signal(signal.SIGALRM, timeout_handler)
                     signal.alarm(self.timeout)
 
                     print(f"{self.notebook_name}: Executing cell {i}")
-                    self.execute_cell(cell, i)
+                    self.execute_cell(cell, i, should_profile=True)
                     cell_count += 1
                     print(f"{self.notebook_name}: Complete cell {i}")
                 except Exception as e:
@@ -115,60 +105,77 @@ print("{PROFILER_DATA_ENDS}")
             f"{self.notebook_name}: Total {len(self.nb.cells)} cells, executed {cell_count - self.new_cell_count} cells, results for {len(self.results)} cells")
         return self.results
 
-    def execute_cell(self, cell, cell_index, execution_count=None, store_history=True):
-        should_profile = cell_index >= self.new_cell_count
+    def profile_cell(self, cell, cell_index, source_cell, execution_count=None, store_history=True):
+        tm = TransformerManager()
+        cell_code = tm.transform_cell(source_cell['source'])
 
+        imports, variables = self.parser.start(
+            self.clean_cell_for_ast(cell_code))
+
+        cell['source'] = f"""
+        import json
+
+        ip_variables = {{}}
+        for id in json.loads({variables}):
+            ip_variables[id] = get_variable_info(id)
+        print(ip_variables)
+        """
+
+        result = super().execute_cell(cell, cell_index, execution_count, store_history)
+
+        output_data_text = result['outputs'][-1].get('text', '\{\}')
+
+        self.results.append(
+            {'imports': imports, 'ip_variables': json.loads(output_data_text)})
+
+        return result
+
+    def execute_cell(self, cell, cell_index, execution_count=None, store_history=True, should_profile=False):
         if (should_profile):
-            tm = TransformerManager()
-            cell_code = tm.transform_cell(cell['source'])
-
-            cell['source'] = self.clean_cell_for_input(cell_code)
-
-            cell['source'] = self.get_cell_profiler_code() + self.get_start_parse_code(
-                cell_code) + "\n" + cell['source'] + "\n" + self.get_exit_parse_code()
+            cell['source'] = self.clean_cell_for_input(cell['source'])
+            cell['source'] = "%%memit" + "\n" + "with gpu_profiler():" + \
+                "\n" + textwrap.indent(cell['source'], "\t")
 
         result = super().execute_cell(cell, cell_index, execution_count, store_history)
 
         if (should_profile):
             output_data_text = result['outputs'][-1].get('text', None)
 
-            data_start_idx = -1
-            data_end_idx = -1
             peak_memory_idx = -1
             memory_increment_idx = -1
+            peak_gpu_idx = -1
+            gpu_increment_idx = -1
             for i in range(len(result['outputs']) - 1, -1, -1):
                 output_data_text = result['outputs'][i].get('text', None)
                 if output_data_text is not None:
-                    if output_data_text.find(PROFILER_DATA_STARTS) != -1:
-                        data_start_idx = i
-                    if output_data_text.find(PROFILER_DATA_ENDS) != -1:
-                        data_end_idx = i
                     if output_data_text.find(PROFILER_PEAK_MEMORY) != -1:
                         peak_memory_idx = i
                     if output_data_text.find(PROFILER_MEMORY_INCREMENT) != -1:
                         memory_increment_idx = i
+                    if output_data_text.find(PROFILER_PEAK_GPU) != -1:
+                        peak_gpu_idx = i
+                    if output_data_text.find(PROFILER_GPU_INCREMENT) != -1:
+                        gpu_increment_idx = i
 
             output_data_text = ""
-            start_idx = min([data_start_idx, data_end_idx,
-                            peak_memory_idx, memory_increment_idx])
-            end_idx = max([data_start_idx, data_end_idx,
-                           peak_memory_idx, memory_increment_idx])
+            start_idx = min(
+                [peak_memory_idx, memory_increment_idx, peak_gpu_idx, gpu_increment_idx])
+            end_idx = max([peak_memory_idx, memory_increment_idx,
+                          peak_gpu_idx, gpu_increment_idx])
             for output in result['outputs'][start_idx: end_idx + 1]:
                 output_data_text += output.get('text', '')
 
             if len(output_data_text) > 0:
                 output = {}
 
-                data_match = re.search(r"PROFILER_DATA_STARTS(.*?)PROFILER_DATA_ENDS",
-                                       output_data_text, re.DOTALL)
-                if data_match:
-                    data = data_match.group(1).strip()
-                    output = {**ast.literal_eval(data)}
-
                 peak_memory_match = re.search(r"peak memory: (.*?) MiB",
                                               output_data_text, re.DOTALL)
                 memory_increment_match = re.search(r"increment: (.*?) MiB",
                                                    output_data_text, re.DOTALL)
+                peak_gpu_match = re.search(r"peak gpu: (.*?) MB",
+                                           output_data_text, re.DOTALL)
+                gpu_increment_match = re.search(r"gpu increment: (.*?) MB",
+                                                output_data_text, re.DOTALL)
 
                 if peak_memory_match and memory_increment_match:
                     peak_memory = float(peak_memory_match.group(
@@ -179,7 +186,14 @@ print("{PROFILER_DATA_ENDS}")
                         'peak_memory': peak_memory,
                         'memory_increment': memory_increment
                     }
+                if peak_gpu_match and gpu_increment_match:
+                    peak_gpu = float(peak_gpu_match.group(1).strip())
+                    gpu_increment = float(gpu_increment_match.group(1).strip())
+                    output['gpu_usage'] = {
+                        'peak_gpu': peak_gpu,
+                        'gpu_increment': gpu_increment
+                    }
 
                 if len(list(output.keys())) > 0:
-                    self.results.append(output)
+                    self.results[-1] = {**self.results[-1], **output}
         return result
