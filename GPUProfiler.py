@@ -5,7 +5,7 @@ from contextlib import contextmanager
 
 @contextmanager
 def gpu_profiler(type=None):
-    if type is None:
+    if type is None or type == "None":
         yield
         return
 

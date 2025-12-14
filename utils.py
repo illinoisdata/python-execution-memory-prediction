@@ -34,7 +34,6 @@ def save_output(notebook_dir, output_dir, data_source_name, page, page_size, dat
         print(f"Execution complete. Results saved to {output_path}")
     else:
         print(f"Execution complete. No results to save")
-
     keep_files_by_extension(notebook_dir, ".ipynb")
 
 

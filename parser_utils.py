@@ -1,7 +1,7 @@
 from IPython import get_ipython
 import sys
 from io import StringIO
-
+import inspect
 
 def get_shape(variable):
     try:
@@ -28,18 +28,20 @@ def get_variable_value(variable):
         base_classes = variable.__class__.__bases__
 
         if name in ['int', 'float', 'str', 'bool', 'NoneType']:
-            return {'value': variable, id: name}
+            return {'value': variable, 'type': name}
         elif "torch.nn.modules.module" in base_classes:
-            return {'value': str(variable), id: classname.__base__.__module__}
+            return {'value': str(variable), 'type': classname.__base__.__module__}
         elif "keras.src.models.model" in base_classes:
             s = StringIO()
             variable.summary(print_fn=lambda x: s.write(x + "\n"))
             summary_str = s.getvalue()
-            return {'value': summary_str, id: classname.__base__.__module__}
+            return {'value': summary_str, 'type': classname.__base__.__module__}
+        elif name == 'function':
+            return {'value': inspect.getsource(variable), 'type': name }
         else:
-            return {'value': 'NoValue', id: name if module == 'builtins' else f"{module}.{name}"}
+            return {'value': 'NoValue', 'type': name if module == 'builtins' else f"{module}.{name}"}
     except:
-        return {'value': 'NoValue', id: name if module == 'builtins' else f"{module}.{name}"}
+        return {'value': 'NoValue', 'type': name if module == 'builtins' else f"{module}.{name}"}
 
 
 def get_variable_info(id):
@@ -52,13 +54,8 @@ def get_variable_info(id):
         classname = variable.__class__
         name = classname.__name__
 
-        if name != 'function':
-            shape = get_shape(variable)
-            size = sys.getsizeof(variable)
-            variable_info = {
-                **get_variable_value(variable), 'shape': shape, 'size': size}
-            return variable_info
-        else:
-            return None
+        shape = get_shape(variable)
+        size = sys.getsizeof(variable)
+        return = { **get_variable_value(variable), 'shape': shape, 'size': size }
     except Exception:
         return None
