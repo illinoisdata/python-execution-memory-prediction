@@ -1,4 +1,4 @@
-FROM kaggle/python
+FROM gcr.io/kaggle-gpu-images/python
 WORKDIR /workspace
 COPY . /workspace
 

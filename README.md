@@ -10,10 +10,18 @@ KAGGLE_KEY=<key>
 ```
 
 ### Building the image
+**CPU image**
 
 ```bash
 cd python-execution-dataset
-docker build -t kaggle-profiler .
+docker build -f Dockerfile.cpu -t kaggle-profiler .
+```
+
+**GPU image**
+
+```bash
+cd python-execution-dataset
+docker build -f Dockerfile.gpu -t kaggle-profiler-gpu .
 ```
 
 ### Running the image
