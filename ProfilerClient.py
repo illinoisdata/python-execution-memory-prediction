@@ -33,7 +33,8 @@ class ProfilerClient(NotebookClient):
 
         new_nb_cells = []
         for cell in nb.cells:
-            new_nb_cells.extend([nbformat.v4.new_code_cell(""), cell])
+            new_nb_cells.extend([nbformat.v4.new_code_cell(
+                ""), cell, nbformat.v4.new_code_cell("")])
 
         nb.cells = new_cells + new_nb_cells
         super().__init__(nb)
@@ -63,29 +64,45 @@ class ProfilerClient(NotebookClient):
                 if cell.cell_type != "code":
                     continue
                 self.execute_cell(cell, i, should_profile=False)
-            
+
             cell_count = 0
-            for i in range(self.new_cell_count, len(self.nb.cells), 2):
+            for i in range(self.new_cell_count, len(self.nb.cells), 3):
                 parsing_cell = self.nb.cells[i]
                 cell = self.nb.cells[i + 1]
+                post_parsing_cell = self.nb.cells[i + 2]
 
                 if cell.cell_type != "code":
                     continue
 
+                actual_cell_index = (i - self.new_cell_count) // 3 + 1
                 try:
-                    actual_cell_index = (i - self.new_cell_count) // 2 + 1
-                    print(f"{self.notebook_name}: Parsing for cell {actual_cell_index}")
+                    print(
+                        f"{self.notebook_name}: Parsing for cell {actual_cell_index}")
                     variable_output = self.parse_cell(parsing_cell, i, cell)
 
-                    signal.signal(signal.SIGALRM, timeout_handler)
-                    signal.alarm(self.timeout)
-                    
-                    print(f"{self.notebook_name}: Executing cell {actual_cell_index}")
-                    profiling_output = self.execute_cell(cell, i, should_profile=True)
+                    try:
+                        signal.signal(signal.SIGALRM, timeout_handler)
+                        signal.alarm(self.timeout)
 
-                    self.results.append({**variable_output, **profiling_output})
+                        print(
+                            f"{self.notebook_name}: Executing cell {actual_cell_index}")
+                        profiling_output = self.execute_cell(
+                            cell, i + 1, should_profile=True)
+                    except Exception:
+                        raise
+                    finally:
+                        signal.alarm(0)
+
+                    print(
+                        f"{self.notebook_name}: Post-parsing for cell {actual_cell_index}")
+                    post_variable_output = self.parse_cell(
+                        post_parsing_cell, i + 2, cell, variable_output)
+
+                    self.results.append(
+                        {**variable_output, **post_variable_output, **profiling_output})
                     cell_count += 1
-                    print(f"{self.notebook_name}: Complete cell {actual_cell_index}")
+                    print(
+                        f"{self.notebook_name}: Complete cell {actual_cell_index}")
                 except Exception as e:
                     print(e)
                     print(f"{self.notebook_name}: Error cell {actual_cell_index}")
@@ -96,8 +113,13 @@ class ProfilerClient(NotebookClient):
             f"{self.notebook_name}: Total {(len(self.nb.cells) - self.new_cell_count)//2} cells, executed {cell_count} cells, results for {len(self.results)} cells")
         return self.results
 
-    def parse_cell(self, cell, cell_index, source_cell, execution_count=None, store_history=True):
-        code, imports, variables = self.parser.start(source_cell['source'])
+    def parse_cell(self, cell, cell_index, source_cell, execution_count=None, store_history=True, variable_output=None):
+        output = {}
+        if variable_output is not None:
+            variables = list(variable_output.keys())
+        else:
+            code, imports, variables = self.parser.start(source_cell['source'])
+            output = {'code': code, 'imports': imports}
 
         cell['source'] = f"""
         ip_variables = {{}}
@@ -110,7 +132,8 @@ class ProfilerClient(NotebookClient):
 
         output_data_text = result['outputs'][-1].get('text', '{}')
 
-        return {'code': code, 'imports': imports, 'ip_variables': {**ast.literal_eval(output_data_text)} }
+        id = 'op_variables' if variable_output is not None else 'ip_variables'
+        return {**output, id: {**ast.literal_eval(output_data_text)}}
 
     def execute_cell(self, cell, cell_index, execution_count=None, store_history=True, should_profile=False):
         if (should_profile):
@@ -123,7 +146,8 @@ class ProfilerClient(NotebookClient):
         result = super().execute_cell(cell, cell_index, execution_count, store_history)
 
         if (should_profile):
-            output_data_text = "\n".join([output.get('text', '') for output in result['outputs']])
+            output_data_text = "\n".join(
+                [output.get('text', '') for output in result['outputs']])
             patterns = {
                 "peak_gpu": r"peak gpu:\s*([\d\.]+)\s*MB",
                 "gpu_increment": r"gpu increment:\s*([\d\.]+)\s*MB",
@@ -131,6 +155,7 @@ class ProfilerClient(NotebookClient):
                 "memory_increment": r"increment:\s*([\d\.]+)\s*MiB"
             }
 
-            values = {key: float(re.search(pattern, output_data_text).group(1)) for key, pattern in patterns.items()}
-            return { 'memory_usage': values.get('memory_increment', None), 'gpu_usage': values.get('gpu_increment', None) }
+            values = {key: float(re.search(pattern, output_data_text).group(
+                1)) for key, pattern in patterns.items()}
+            return {'memory_usage': values.get('memory_increment', None), 'gpu_usage': values.get('gpu_increment', None)}
         return {}
