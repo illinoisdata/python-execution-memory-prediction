@@ -2,9 +2,11 @@ import ast
 from IPython.core.inputtransformer2 import TransformerManager
 import builtins
 
+
 class TreeParser(ast.NodeTransformer):
     def __init__(self):
         self.imports = {}
+        self.class_defs = {}
         self.variables = set()
 
     def visit_Import(self, node: ast.Import):
@@ -21,6 +23,7 @@ class TreeParser(ast.NodeTransformer):
         return node
 
     def visit_ClassDef(self, node: ast.ClassDef):
+        self.class_defs[node.name] = ast.unparse(node)
         return node
 
     def visit_FunctionDef(self, node: ast.FunctionDef):
@@ -62,7 +65,7 @@ class TreeParser(ast.NodeTransformer):
         code = "\n".join(cleaned_lines)
         tm = TransformerManager()
         code = tm.transform_cell(code)
-        
+
         node = ast.parse(code)
         self.generic_visit(node)
         return code, self.local_imports, list(self.variables)

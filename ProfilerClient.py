@@ -8,6 +8,7 @@ import signal
 from utils import load_file
 from TreeParser import TreeParser
 import textwrap
+import time
 
 parser_code = load_file("./parser_utils.py")
 gpu_profiler_code = load_file("./GPUProfiler.py")
@@ -132,8 +133,15 @@ class ProfilerClient(NotebookClient):
 
         output_data_text = result['outputs'][-1].get('text', '{}')
 
+        var_output = {**ast.literal_eval(output_data_text)}
+
+        for key in list(var_output.keys()):
+            if var_output[key].get('ctx', None) == 'ClassDef':
+                var_output[key]['ctx'] = self.parser.class_defs.get(
+                    var_output[key]['type'], None)
+
         id = 'op_variables' if variable_output is not None else 'ip_variables'
-        return {**output, id: {**ast.literal_eval(output_data_text)}}
+        return {**output, id: var_output}
 
     def execute_cell(self, cell, cell_index, execution_count=None, store_history=True, should_profile=False):
         if (should_profile):
@@ -143,7 +151,10 @@ class ProfilerClient(NotebookClient):
             cell['source'] = "%%memit" + "\n" + f"with gpu_profiler(type='{self.get_cuda_allocation_type()}'):" + \
                 "\n" + textwrap.indent(cell['source'], "\t")
 
+        start_time = time.perf_counter()
         result = super().execute_cell(cell, cell_index, execution_count, store_history)
+        end_time = time.perf_counter()
+        execution_time = end_time - start_time
 
         if (should_profile):
             output_data_text = "\n".join(
@@ -157,5 +168,5 @@ class ProfilerClient(NotebookClient):
 
             values = {key: float(re.search(pattern, output_data_text).group(
                 1)) for key, pattern in patterns.items()}
-            return {'memory_usage': values.get('memory_increment', None), 'gpu_usage': values.get('gpu_increment', None)}
+            return {'execution_time': execution_time, 'memory_usage': values.get('memory_increment', None), 'gpu_usage': values.get('gpu_increment', None)}
         return {}
